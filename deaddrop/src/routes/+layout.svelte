@@ -1,16 +1,16 @@
-<!-- Layout.svelte -->
-
 <script>
     import Header from "./Header.svelte";
     import SideBar from "./SideBar.svelte";
 </script>
 
 <div class = "container">
-    <SideBar/>
-    <div class="content">
-        <Header/>
-        <main>
-            <slot />
+    <Header/>
+    <div class = "divider">
+        <div class = "sidebar">
+            <SideBar/>
+        </div>
+        <main class = "content">
+            <slot/>
         </main>
     </div>
 </div>
@@ -18,9 +18,24 @@
 <style>
     .container {
         display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .divider {
+        display:flex;
+        flex-direction: row;
+        flex: 1;
+    }
+
+    .sidebar {
+        flex: .2;
+        
     }
 
     .content {
         flex: 1;
     }
+
+     
 </style>

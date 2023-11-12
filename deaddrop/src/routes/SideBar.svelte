@@ -4,7 +4,7 @@
 
 <div class="sidebar-container">
     <div class="sidebar">
-      
+      <d1> DeadDrop </d1>
     </div>
 </div>
 
@@ -21,16 +21,9 @@
     }
   
     .sidebar {
-      flex: 0 0 25%; /* Adjust the width as needed */
-      background-color: #f0f0f0; /* Off-grey color */
+      flex: 1;
+      background-color: #e6e6e6; /* Off-grey color */
       padding: 1rem;
     }
   
-    .content {
-      flex: 1; /* Stretch the content area to fill the remaining space */
-      background-color: white;
-      padding: 1rem;
-    }
-  
-    /* Add more styles as needed */
   </style>
