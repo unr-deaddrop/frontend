@@ -28,8 +28,9 @@
         flex: 1;
     }
 
+    /*adjust sidebar size and content size here */
     .sidebar {
-        flex: .2;
+        flex: .25;
         
     }
 
@@ -37,5 +38,4 @@
         flex: 1;
     }
 
-     
 </style>
