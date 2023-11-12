@@ -1,16 +1,13 @@
 <script>
-    /*
-    function goToRoute(route) {
-        window.location.href = route; // Redirect to the specified route
-    }
-    */
+
+    
 </script>
 
 
 <div class="sidebar-container">
     <div class="sidebar">
       <a href = "/"> HOME </a>
-      <a href = "../brian/dashboard"> DASHBOARD </a>
+      <a href = "/dashboard"> DASHBOARD </a>
       <a href = "/"> GRAPH </a>
       <a href = "/"> DASHBOARD </a>
       <a href = "/"> USER ACCESS CONTROL </a>
