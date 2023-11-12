@@ -1,6 +1,9 @@
 <script>
-
-
+    /*
+    function goToRoute(route) {
+        window.location.href = route; // Redirect to the specified route
+    }
+    */
 </script>
 
 
@@ -8,6 +11,13 @@
     <div class="sidebar">
       <a href = "/"> HOME </a>
       <a href = "../brian/dashboard"> DASHBOARD </a>
+      <a href = "/"> GRAPH </a>
+      <a href = "/"> DASHBOARD </a>
+      <a href = "/"> USER ACCESS CONTROL </a>
+      <a href = "/"> AGENTS</a>
+      <a href = "/"> LOG </a>
+      <a href = "/"> TASK CONTROL </a>
+      <a href = "/"> TERMINAL </a>
     </div>
 </div>
 
@@ -32,8 +42,8 @@
     }
   
     .sidebar a {
-        margin-bottom: 0.5rem; /* Optional: Add spacing between links */
-        text-decoration: none; /* Optional: Remove underline from links */
-        color: #545454; /* Optional: Style link color */
+        color: #545454; 
+        margin-bottom: 0.5rem; 
+        text-decoration: none;
     }
 </style>
