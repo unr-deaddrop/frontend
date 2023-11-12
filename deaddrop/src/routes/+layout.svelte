@@ -1,13 +1,26 @@
+<!-- Layout.svelte -->
+
 <script>
-    import Header from './Header.svelte';
-    // this is where you put your dashboard or basically the things every page has which is the searchbar, nav bar, side bar etc
+    import Header from "./Header.svelte";
+    import SideBar from "./SideBar.svelte";
 </script>
 
-<div>
-	<Header/>
-
-	<main>
-		<slot />
-	</main>
-
+<div class = "container">
+    <SideBar/>
+    <div class="content">
+        <Header/>
+        <main>
+            <slot />
+        </main>
+    </div>
 </div>
+
+<style>
+    .container {
+        display: flex;
+    }
+
+    .content {
+        flex: 1;
+    }
+</style>
