@@ -11,4 +11,4 @@ DeadDrop
 <Button href='./tasks/edit'>Edit</Button>
 <Button>Sample</Button>
 <ProgressBar progress={.9}></ProgressBar>
-<TaskTable tableData={sampleData}/>
+<TaskTable inData={sampleData}/>
