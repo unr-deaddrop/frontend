@@ -1,7 +1,7 @@
 export let sampleData = [{
     "id": 1,
     "first_name": "Willie",
-    "last_name": "McConnulty",
+    "last_name": "",
     "age": 28,
     "job_title": "Internal Auditor",
     "country": "Poland"
