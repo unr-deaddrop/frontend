@@ -1,20 +1,71 @@
-export let sampleData = [{"id":1,"log_name":"Quo Lux","progress":29,"status":"failed","agent":"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36"},
-{"id":2,"log_name":"Namfix","progress":46,"status":"completed","agent":"Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.26 Safari/537.11"},
-{"id":3,"log_name":"Voyatouch","progress":89,"status":"failed","agent":"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; ru-ru) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16"},
-{"id":4,"log_name":"Voyatouch","progress":1,"status":"failed","agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Ubuntu/10.10 Chromium/17.0.963.65 Chrome/17.0.963.65 Safari/535.11"},
-{"id":5,"log_name":"Regrant","progress":36,"status":"in progress","agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36"},
-{"id":6,"log_name":"Gembucket","progress":31,"status":"not yet started","agent":"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20130406 Firefox/23.0"},
-{"id":7,"log_name":"Regrant","progress":25,"status":"in progress","agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.71 Safari/534.24"},
-{"id":8,"log_name":"Fix San","progress":58,"status":"failed","agent":"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.801.0 Safari/535.1"},
-{"id":9,"log_name":"Subin","progress":45,"status":"in progress","agent":"Mozilla/5.0 (Windows; U; Windows NT 6.0; fr-FR) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5"},
-{"id":10,"log_name":"Quo Lux","progress":13,"status":"completed","agent":"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; ja-jp) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27"},
-{"id":11,"log_name":"Matsoft","progress":84,"status":"in progress","agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.813.0 Safari/535.1"},
-{"id":12,"log_name":"Tresom","progress":68,"status":"in progress","agent":"Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/11.0.655.0 Safari/534.17"},
-{"id":13,"log_name":"Transcof","progress":83,"status":"completed","agent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.13 (KHTML, like Gecko) Chrome/24.0.1290.1 Safari/537.13"},
-{"id":14,"log_name":"Opela","progress":52,"status":"in progress","agent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.66 Safari/535.11"},
-{"id":15,"log_name":"Zathin","progress":2,"status":"failed","agent":"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20120101 Firefox/29.0"},
-{"id":16,"log_name":"Matsoft","progress":37,"status":"not yet started","agent":"Mozilla/5.0 (Windows NT 5.1; rv:21.0) Gecko/20100101 Firefox/21.0"},
-{"id":17,"log_name":"Toughjoyfax","progress":10,"status":"not yet started","agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0"},
-{"id":18,"log_name":"Voltsillam","progress":91,"status":"completed","agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.186 Safari/535.1"},
-{"id":19,"log_name":"Vagram","progress":57,"status":"completed","agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0"},
-{"id":20,"log_name":"Prodder","progress":99,"status":"completed","agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1"}];
+export let sampleData = [{
+    "id": 1,
+    "status": "success",
+    "date": "2/19/2023",
+    "description": "Drainage of Hepatic Vein with Drainage Device, Perc Approach",
+    "long_description": "Insertion of recombinant bone morphogenetic protein",
+    "agents": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:14.0) Gecko/20120405 Firefox/14.0a1"
+  }, {
+    "id": 2,
+    "status": "success",
+    "date": "5/10/2023",
+    "description": "Restriction of Face Artery, Open Approach",
+    "long_description": "Dilation of ureteral meatus",
+    "agents": "Mozilla/5.0 (Windows NT 6.0; WOW64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.699.0 Safari/534.24"
+  }, {
+    "id": 3,
+    "status": "failed",
+    "date": "5/28/2023",
+    "description": "Bypass R Ext Iliac Art to R Ext Ilia w Autol Art, Open",
+    "long_description": "Other partial salpingectomy",
+    "agents": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.67 Safari/537.36"
+  }, {
+    "id": 4,
+    "status": "success",
+    "date": "4/19/2023",
+    "description": "Dilate R Ulnar Art w 3 Intralum Dev, Perc Endo",
+    "long_description": "Other repair of ankle",
+    "agents": "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:15.0) Gecko/20120910144328 Firefox/15.0.2"
+  }, {
+    "id": 5,
+    "status": "success",
+    "date": "12/1/2022",
+    "description": "Fragmentation in Mediastinum, Percutaneous Approach",
+    "long_description": "Cerebral thermography",
+    "agents": "Mozilla/4.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/11.0.1245.0 Safari/537.36"
+  }, {
+    "id": 6,
+    "status": "success",
+    "date": "11/18/2022",
+    "description": "Revision of Synth Sub in Cervcal Vertebra, Extern Approach",
+    "long_description": "Manual rupture of ovarian cyst",
+    "agents": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.91 Chromium/12.0.742.91 Safari/534.30"
+  }, {
+    "id": 7,
+    "status": "success",
+    "date": "8/4/2023",
+    "description": "Destruction of Right Hand Tendon, Open Approach",
+    "long_description": "Other and open bilateral repair of direct inguinal hernia",
+    "agents": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.17 (KHTML, like Gecko) Chrome/11.0.655.0 Safari/534.17"
+  }, {
+    "id": 8,
+    "status": "failed",
+    "date": "12/20/2022",
+    "description": "Excision of Left Eustachian Tube, Endo, Diagn",
+    "long_description": "Revision of facet replacement device(s)",
+    "agents": "Mozilla/5.0 (Windows NT 5.1; rv:12.0) Gecko/20120403211507 Firefox/12.0"
+  }, {
+    "id": 9,
+    "status": "failed",
+    "date": "2/21/2023",
+    "description": "Drainage of Penis, Open Approach, Diagnostic",
+    "long_description": null,
+    "agents": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7ad-imcjapan-syosyaman-xkgi3lqg03!wgz"
+  }, {
+    "id": 10,
+    "status": "failed",
+    "date": "3/7/2023",
+    "description": "Revision of Drainage Device in Low Bursa/Lig, Perc Approach",
+    "long_description": "Bilateral partial salpingectomy, not otherwise specified",
+    "agents": "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.792.0 Safari/535.1"
+  }];

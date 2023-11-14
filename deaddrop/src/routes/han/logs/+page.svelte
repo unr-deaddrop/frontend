@@ -12,7 +12,7 @@
 </script>
 
 <PageHeader>Logs</PageHeader>
-<!-- <Button href='./tasks/edit'>Edit</Button>
-<Button>Sample</Button> -->
+<Button href='./logs/generate'>Generate Log</Button>
+<!-- <Button>Sample</Button> -->
 <!-- <ProgressBar progress={.9}></ProgressBar> -->
 <LogTable tableData={sampleData}/>

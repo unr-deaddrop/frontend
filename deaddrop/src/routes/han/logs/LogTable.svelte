@@ -40,7 +40,7 @@
     {#each tableData as row}
         <!-- <a href={"./tasks/" + row["id"]}> -->
             {#each Object.keys(row) as cell}
-                <a href={"./tasks/" + row["id"]} class="grid-item">
+                <a href={"./logs/" + row["id"]} class="grid-item">
                     {#if cell == 'progress'}
                         <ProgressBar progress={row[cell]/100}/>
                         {row[cell]}
