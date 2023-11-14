@@ -5,7 +5,7 @@
 
     // i should be able to finish the task page with this
     // i need to pass in the progressbar and buttons as slots
-    
+
     // table of items
     // this is the table that contains rows of items
     // i want this to be able to take in data and convert it into a table
@@ -19,7 +19,7 @@
     // i'm thinking that we can bind a particular component to a column
     import { styles } from '$lib/styles.js'
     export let tableData; // table data going in 
-    export let component_column; // the component going into a specific column (component, column)
+    // export let component_column; // the component going into a specific column (component, column)
     // let tableData = inData;
 
     const tableHeaders = Object.keys(tableData[0]);
@@ -41,7 +41,9 @@
 
 
 </script>
-<div class="grid-container" use:styles={{columns}}>
+<slot name="RowHeader"/>
+<slot name="Row"/>
+<!-- <div class="grid-container" use:styles={{columns}}>
     {#each tableHeaders as header}
         <div class="grid-item" class:highlighted={selectedHeader === header} on:click={ () => { 
             asc = !asc;
@@ -60,7 +62,7 @@
             <div class="grid-item">{cell}</div>
         {/each}
     {/each}
-</div>
+</div> -->
 
 <style>
     .grid-container{

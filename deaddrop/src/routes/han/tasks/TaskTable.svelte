@@ -1,29 +1,6 @@
 <script>
-    // this should be a table specific to the task group.
-    // this table should accept components via slots
-    // https://blog.logrocket.com/comprehensive-guide-svelte-components-slots/
-
-    // i should be able to finish the task page with this
-    // i need to pass in the progressbar and buttons as slots
-
-    // table of items
-    // this is the table that contains rows of items
-    // i want this to be able to take in data and convert it into a table
-    // https://svelte.dev/repl/f04266dcd39c4024b1e89084aa549844?version=3.31.2
-
-    // with the way it's implemented, all keys need to be present for the data to be structured correctly
-    // is there a way for the data to be incomplete and still have it be structured correctly?
-
-    // we also aren't able to use my beautiful progress bar in this. how do i make it modular enough to make it use custom components for metrics
-    // do i need to make it modular enough or should i just make it enough for right now
-    // i'm thinking that we can bind a particular component to a column
-    import Row from '$lib/components/Row.svelte';
-import RowHeader from '$lib/components/RowHeader.svelte';
-import Table from '$lib/components/Table.svelte';
-import { styles } from '$lib/styles.js'
+    import { styles } from '$lib/styles.js'
     export let tableData; // table data going in
-    // let tableData = inData;
-
     const tableHeaders = Object.keys(tableData[0]);
     const columns = tableHeaders.length;
     let selectedHeader = "id";
@@ -40,14 +17,12 @@ import { styles } from '$lib/styles.js'
         selectedHeader = header;
     }
 
+    let headerData;
+
 
 
 </script>
-<Table>
-    <RowHeader/> 
-    <Row/>
-</Table>
-<!-- <div class="grid-container" use:styles={{columns}}>
+<div class="grid-container" use:styles={{columns}}>
     {#each tableHeaders as header}
         <div class="grid-item" class:highlighted={selectedHeader === header} on:click={ () => { 
             asc = !asc;
@@ -66,7 +41,7 @@ import { styles } from '$lib/styles.js'
             <div class="grid-item">{cell}</div>
         {/each}
     {/each}
-</div> -->
+</div>
 
 <style>
     .grid-container{
