@@ -38,16 +38,18 @@
         </div>
     {/each}
     {#each tableData as row}
-        {#each Object.keys(row) as cell}
-            <div class="grid-item">
-                {#if cell == 'progress'}
-                    <ProgressBar progress={row[cell]/100}/>
-                    {row[cell]}
-                {:else}
-                    {row[cell]}
-                {/if}
-            </div>
-        {/each}
+        <!-- <a href={"./tasks/" + row["id"]}> -->
+            {#each Object.keys(row) as cell}
+                <a href={"./tasks/" + row["id"]} class="grid-item">
+                    {#if cell == 'progress'}
+                        <ProgressBar progress={row[cell]/100}/>
+                        {row[cell]}
+                    {:else}
+                        {row[cell]}
+                    {/if}
+                </a>
+            {/each}
+        <!-- </a> -->
     {/each}
 </div>
 

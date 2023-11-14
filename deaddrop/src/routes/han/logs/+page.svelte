@@ -1,4 +1,5 @@
 <script>
+    // 1+, general logs, generate specific logs/snapshots, specific logs?
     // table of logs
     // table contains status (string), date (date), task description (string), agents used (string/component), donwload report button (button? that queries an api)
     // features - generate snapshots, filters

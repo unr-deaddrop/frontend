@@ -1,4 +1,5 @@
 <script>
+    // 3+, general agents, specific agents, edit agent
     // this is a grid of all agents
     // this has a name (string), description (string), list of permissions (object list?), docs (button) 
     /** @type {import('./$types').PageData} */

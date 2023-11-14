@@ -1,4 +1,5 @@
 <script>
+    // 2+ ss, general tasks, specific tasks
     /** @type {import('./$types').PageData} */
     // import Button from '../../../lib/Button.svelte'; // should use button, interactionbutton, progressbar, taskrow, taskrowitem, tasktable
     import Button from '$lib/components/Button.svelte';
