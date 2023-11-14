@@ -1,5 +1,6 @@
 <script>
     import { styles } from '$lib/styles.js'
+    import ProgressBar from './ProgressBar.svelte';
     export let tableData; // table data going in
     const tableHeaders = Object.keys(tableData[0]);
     const columns = tableHeaders.length;
@@ -37,8 +38,15 @@
         </div>
     {/each}
     {#each tableData as row}
-        {#each Object.values(row) as cell}
-            <div class="grid-item">{cell}</div>
+        {#each Object.keys(row) as cell}
+            <div class="grid-item">
+                {#if cell == 'age'}
+                    <ProgressBar progress={row[cell]/100}/>
+                    {row[cell]}
+                {:else}
+                    {row[cell]}
+                {/if}
+            </div>
         {/each}
     {/each}
 </div>
