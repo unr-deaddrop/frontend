@@ -40,7 +40,7 @@
     {#each tableData as row}
         {#each Object.keys(row) as cell}
             <div class="grid-item">
-                {#if cell == 'age'}
+                {#if cell == 'progress'}
                     <ProgressBar progress={row[cell]/100}/>
                     {row[cell]}
                 {:else}
