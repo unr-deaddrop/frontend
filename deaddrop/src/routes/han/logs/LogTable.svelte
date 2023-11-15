@@ -3,7 +3,7 @@
     import ProgressBar from './ProgressBar.svelte';
     export let tableData; // table data going in
     const tableHeaders = Object.keys(tableData[0]);
-    const columns = tableHeaders.length;
+    const columns = tableHeaders.length+1;
     let selectedHeader = "id";
     let asc = true;
 
@@ -37,6 +37,7 @@
             {/if}
         </div>
     {/each}
+    <div class="grid-item">download</div>
     {#each tableData as row}
         <!-- <a href={"./tasks/" + row["id"]}> -->
             {#each Object.keys(row) as cell}
@@ -49,6 +50,8 @@
                     {/if}
                 </a>
             {/each}
+            <a href={"./logs/" + row["id"]} class="grid-item">download</a>
+
         <!-- </a> -->
     {/each}
 </div>
