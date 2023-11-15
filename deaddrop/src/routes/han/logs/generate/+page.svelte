@@ -6,6 +6,7 @@
 import Checkbox from '$lib/components/Checkbox.svelte';
 	import DropDown from '$lib/components/DropDown.svelte';
 import InputBox from '$lib/components/InputBox.svelte';
+	import KanbanBoard from '$lib/components/KanbanBoard.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 
     /** @type {import('./$types').PageData} */
@@ -22,5 +23,7 @@ Output Format <DropDown/>
 Include __? <Checkbox/>
 
 Exclude __? <Checkbox/>
+
+<KanbanBoard/>
 
 <Button>Generate</Button>
