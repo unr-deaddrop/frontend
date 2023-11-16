@@ -9,7 +9,6 @@
     <input type="input" class="form__field" placeholder="Name" name="name" id='name' bind:value={inputStuffChild}/>
     <label for="name" class="form__label">{label}</label>
 </div>
-{inputStuffChild}
 <!-- <input type="button" value="test"/>
 <input type="color" name="1" id="1">
 <input type="date" name="" id="">
