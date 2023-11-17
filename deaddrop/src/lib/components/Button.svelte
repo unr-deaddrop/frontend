@@ -1,14 +1,14 @@
 <script>
     // generic button
     // this is the button that can edit, add and perform other actions
-    export let type = 'primary'; // type of button i.e. primary or secondary. a class to the button
-    export let flat = false;
+    export let type = 'primary'; // type of button i.e. primary or secondary. a class to the button. used for css
+    export let href = '';
 </script>
-
-<button class={type}>
-    <slot>
-    </slot>
-</button>
+<a href={href}>
+    <button class={type}>
+        <slot></slot>
+    </button>
+</a>
 
 <style>
     button{
@@ -19,5 +19,8 @@
         border-radius: 10px;
         padding: 8px 12px;
         font-weight: bold;
+    }
+    .primary{
+        background-color: #a60707;
     }
 </style>

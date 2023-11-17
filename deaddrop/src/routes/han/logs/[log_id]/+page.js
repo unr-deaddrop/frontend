@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
     return {
-        "task_id": params.task_id
+        "log_id": params.log_id
     };
 };
