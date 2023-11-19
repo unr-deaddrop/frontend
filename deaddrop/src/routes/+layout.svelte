@@ -1,7 +1,7 @@
 <script>
 	import '../app.scss';
-	import Header from './Header.svelte';
-	import SideBar from './SideBar.svelte';
+	import Header from '$lib/components/Header.svelte';
+	import SideBar from '$lib/components/SideBar.svelte';
 </script>
 
 <div class="container">

@@ -6,15 +6,14 @@
 
 <div class="sidebar-container">
     <div class="sidebar">
-      <a href = "/"> PAYLOADS </a>
-      <a href = "/dashboard"> DASHBOARD </a>
-      <a href = "/"> GRAPH VIEW </a>
-      <a href = "/"> DASHBOARD </a>
-      <a href = "/"> USER ACCESS CONTROL </a>
-      <a href = "/"> AGENT MANAGER</a>
-      <a href = "/"> LOG VIEW </a>
-      <a href = "/"> TASK CONTROL </a>
-      <a href = "/"> TERMINAL </a>
+      <a href = "/brian/payloads"> PAYLOADS </a>
+      <a href = "/brian/dashboard"> DASHBOARD </a>
+      <a href = "/brian/graph"> GRAPH VIEW </a>
+      <a href = "/brian/uac"> USER ACCESS CONTROL </a>
+      <a href = "/han/agents"> AGENT MANAGER</a>
+      <a href = "/han/logs"> LOG VIEW </a>
+      <a href = "/tasks"> TASK CONTROL </a>
+      <a href = "/terminal"> TERMINAL </a>
       <a href = "/"> LEARNING CENTER </a>
     </div>
 </div>
