@@ -11,9 +11,9 @@
       <a href = "/brian/uac"> USER ACCESS CONTROL </a>
       <a href = "/han/agents"> AGENT MANAGER</a>
       <a href = "/han/logs"> LOG VIEW </a>
-      <a href = "/tasks"> TASK CONTROL </a>
-      <a href = "/terminal"> TERMINAL </a>
-      <a href = "/"> LEARNING CENTER </a>
+      <a href = "/han/tasks"> TASK CONTROL </a>
+      <a href = "/han/terminal"> TERMINAL </a>
+      <a href = "/brian/tutorial"> LEARNING CENTER </a>
     </div>
 </div>
 
