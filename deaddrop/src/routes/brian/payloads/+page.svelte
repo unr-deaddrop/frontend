@@ -69,8 +69,6 @@
                                 {:else}
                                 <img src = "/red_circle.svg" alt="incomplete">
                             {/if}
-
-                            
                         </div>
                     </div>
                 </div>
