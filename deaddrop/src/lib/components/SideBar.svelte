@@ -7,7 +7,6 @@
 <div class="sidebar-container">
     <div class="sidebar">
       <a href = "/brian/payloads"> PAYLOADS </a>
-      <a href = "/brian/dashboard"> DASHBOARD </a>
       <a href = "/brian/graph"> GRAPH VIEW </a>
       <a href = "/brian/uac"> USER ACCESS CONTROL </a>
       <a href = "/han/agents"> AGENT MANAGER</a>

@@ -1,5 +1,6 @@
 <script>
     import PageHeader from "$lib/components/PageHeader.svelte";
+    import BuildProg from "$lib/components/BuildProg.svelte";
     let payloads = [
         {prog: 3, filename: 'deaddrop_test.exe', description: 'created by dd_admin 11-1-23', is_complete: true},
         {prog: 3, filename: 'deaddrop_test2.exe', description: 'created by dd_admin 11-1-23', is_complete: false},
@@ -28,7 +29,7 @@
                         </div>
                         <div class="content">
                             <span style="background-color: #a60707; color: white; padding: 7px 30px; border-radius: 15px;">
-                                Modify
+                                actions
                             </span>
                             
                         </div>
@@ -38,7 +39,7 @@
                         Build Progress
                         </div>
                         <div class="content">
-                        {prog}
+                        <BuildProg progress = {prog}/>
                         </div>
                     </div>
                     <div class = "segment">
@@ -125,7 +126,7 @@
         display:flex;
         padding: 1rem;
         margin-bottom: 0.2rem;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
     }
 
