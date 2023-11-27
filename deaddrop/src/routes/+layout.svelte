@@ -5,36 +5,44 @@
 </script>
 
 <div class="container">
-	<Header />
-	<div class="divider">
-		<div class="sidebar">
-			<SideBar />
+	<div class = "divider"> 
+		<div class ="sidebar">
+			<SideBar/>
 		</div>
-		<main class="content">
-			<slot />
-		</main>
+		<div class = "content">
+				<Header/>
+			<div class = "content"> 
+				<main>
+					<slot/>
+				</main>
+			</div>
+		</div>
+		
 	</div>
 </div>
 
 <style>
 	.container {
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
+	  display: flex;
+	  flex-direction: column;
+	  height: 100vh;
 	}
-
+  
 	.divider {
-		display: flex;
-		flex-direction: row;
-		flex: 1;
+	  display: flex;
+	  flex-direction: row;
+	  flex: 1;
 	}
-
-	/*adjust sidebar size and content size here */
+  
 	.sidebar {
-		flex: 0.25;
+	  flex: 0.15;
+	  height: 100vh;
 	}
-
+  
 	.content {
-		flex: 1;
+	  flex: 1;
+	  background-color: #e6e6e6;
 	}
-</style>
+  </style>
+  
+

@@ -4,7 +4,6 @@
 </script>
 
 <header>
-    <h1 style="margin-left: 20px;">DeadDrop</h1>
     <div class="container">
         <SearchBar/>
     </div>
@@ -19,15 +18,14 @@
     }
 
     header {
-        background-color: #a60707;
+        background-color: white;
         color: white;
         display: flex;
         align-items: center;
         justify-content: space-around;
-    }
-
-    h1 {
-        flex: 1;
+        padding: 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        
     }
 
     .container {
