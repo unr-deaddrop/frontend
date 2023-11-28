@@ -34,7 +34,7 @@
   style={`opacity: ${isHovered ? 1 : 0.5}`} 
 >
   <img src={src} alt={alt}>
-  <span>{text}</span>
+  <span style = "margin-left: 5px;">{text}</span>
 </a>
 
 <style>
@@ -55,7 +55,7 @@
   }
 
   .button img {
-    max-width: 15%;
+    max-width: 10%;
     height: auto;
   }
 

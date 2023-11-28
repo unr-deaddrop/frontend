@@ -13,21 +13,21 @@
     <div class = "body">
       <div class = "report">
         <h3> Reporting </h3>
-        <SidebarButton href="/brian/dashboard" text = "Dashboard" src="/favicon.png" alt="test icon" />
-        <SidebarButton href="/example" text = "Logs" src="/favicon.png" alt="test icon" />
-        <SidebarButton href="/example" text = "Reporting" src="/favicon.png" alt="test icon" />
+        <SidebarButton href="/brian/dashboard" text = "Dashboard" src="/dash.svg" alt="test icon" />
+        <SidebarButton href="/example" text = "Logs" src="/logs.svg" alt="test icon" />
+        <SidebarButton href="/example" text = "Reporting" src="/report.svg" alt="test icon" />
       </div>
       <div class = "payloads">
         <h3> Payloads </h3>
-        <SidebarButton href="/example" text = "Agents" src="/favicon.png" alt="test icon" />
-        <SidebarButton href="/example" text = "Reporting" src="/favicon.png" alt="test icon" />
+        <SidebarButton href="/han/agents" text = "Agents" src="/bug.svg" alt="agents icon" />
+        <SidebarButton href="/example" text = "Protocols" src="/wifi.svg" alt="test icon" />
       </div>
       <div class = "operational">
         <h3> Operational </h3>
-        <SidebarButton href="/example" text = "Endpoints" src="/favicon.png" alt="test icon" />
-        <SidebarButton href="/example" text = "Tasks" src="/favicon.png" alt="test icon" />
-        <SidebarButton href="/example" text = "Files" src="/favicon.png" alt="test icon" />
-        <SidebarButton href="/example" text = "Credentials" src="/favicon.png" alt="test icon" />
+        <SidebarButton href="/example" text = "Endpoints" src="/monitor.svg" alt="test icon" />
+        <SidebarButton href="/example" text = "Tasks" src="/clipboard.svg" alt="test icon" />
+        <SidebarButton href="/example" text = "Files" src="/folder.svg" alt="test icon" />
+        <SidebarButton href="/example" text = "Credentials" src="/key.svg" alt="test icon" />
       </div>
     </div>
     
@@ -44,7 +44,7 @@
 
     .sidebar-container {
       display: flex;
-      height: 100vh; 
+      height: 75vh; 
     }
   
     .sidebar {
