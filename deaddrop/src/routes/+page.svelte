@@ -1,10 +1,13 @@
 <script>
+    import {goto} from '$app/navigation'
+
     let username = ""
     let passwd = ""
+    let auth = true
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
 
     function handleButtonClick() {
-
+        auth? goto('/dashboard') : console.log("error")
     }
 
 </script>

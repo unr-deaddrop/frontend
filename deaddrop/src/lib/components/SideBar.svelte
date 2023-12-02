@@ -28,6 +28,7 @@
         <SidebarButton href="/example" text = "Tasks" src="/clipboard.svg" alt="test icon" />
         <SidebarButton href="/example" text = "Files" src="/folder.svg" alt="test icon" />
         <SidebarButton href="/example" text = "Credentials" src="/key.svg" alt="test icon" />
+        <SidebarButton href="/" text = "Log Out" src="/favicon.png" alt="test icon" />
       </div>
     </div>
     
