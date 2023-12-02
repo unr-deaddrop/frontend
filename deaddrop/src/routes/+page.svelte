@@ -1,6 +1,7 @@
 <script>
     let username = ""
     let passwd = ""
+    $: isInputsFilled = username.length > 0 && passwd.length > 0;
 
     function handleButtonClick() {
 
@@ -10,14 +11,30 @@
 
 <div class = "container">
     <div class = "login_bar">
+       
+      
         <h1> Sign in to DeadDrop</h1>
-        <label for="username">Username:</label>
-        <input type="text" id="username" bind:value={username} placeholder="Enter your username">
-
-        <label for="email">Password:</label>
-        <input type="password" id="password" bind:value={passwd} placeholder="Enter your password">
-        <button on:click={handleButtonClick}> Login </button>
-
+        <div class = "login_section">
+            <div class = "field"> 
+                <label for="username">Username:</label>
+                <input type="text" id="username" bind:value={username} placeholder="Enter your username">
+            </div>
+            
+            <div class = "field"> 
+                <label for="email">Password:</label>
+                <input type="password" id="password" bind:value={passwd} placeholder="Enter your password">
+            </div>
+    
+            <div class ="field">
+                <button 
+                on:click={handleButtonClick}
+                disabled = {!isInputsFilled}> 
+                    Sign In
+                </button>
+            </div>
+                
+            
+        </div>
     </div>
     
     <div class ="body"> 
@@ -43,11 +60,12 @@
     }
 
     .login_bar {
-        flex: .25;
+        flex: .33;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 10px;
         background-color: #a60707;
     }
 
@@ -55,8 +73,57 @@
         color: white;
     }
 
-    .login_bar label {
-        color: white;
+    .login_section {
+        flex: .33;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%
+    }
+    
+    .field {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        width: 77%;
+        max-height: 50px;
+    }
+
+    .field label{
+        color: white
+        
+    }
+
+    .field input{
+        margin-top: 5px;
+        flex: 1;
+    }
+
+    .field button {
+        flex: .5;
+        margin-left: 40px;
+        margin-right: 40px;
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 3px;
+        outline: none;
+        opacity: .9;
+        transition: opacity 0.3s ease
+    }
+
+    .field button:disabled {
+        opacity: .5;
+    }
+
+    .field button:hover:not([disabled]) {
+        opacity: 1;
+    }
+
+    .field button:active:not([disabled]) {
+        border: 1px solid darkgray
     }
 
     .body {
