@@ -13,7 +13,7 @@
     <div class = "body">
       <div class = "report">
         <h3> Reporting </h3>
-        <SidebarButton href="/brian/dashboard" text = "Dashboard" src="/dash.svg" alt="test icon" />
+        <SidebarButton href="/dashboard" text = "Dashboard" src="/dash.svg" alt="test icon" />
         <SidebarButton href="/example" text = "Logs" src="/logs.svg" alt="test icon" />
         <SidebarButton href="/example" text = "Reporting" src="/report.svg" alt="test icon" />
       </div>
