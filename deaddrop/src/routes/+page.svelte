@@ -1,8 +1,8 @@
 <script>
     import {goto} from '$app/navigation'
 
-    let username = "sve"
-    let passwd = "sve"
+    let username = ""
+    let passwd = ""
     let auth = true
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
 
@@ -10,8 +10,9 @@
         auth? goto('/dashboard') : console.log("error")
     }
 
+    // POST - creates new user in db
     async function doPost () {
-        const res = await fetch('http://127.0.0.1:8000/backend/signUp/', {
+        const res = await fetch('http://127.0.0.1:8000/backend/signUpViewSet/', {
             method: 'POST',
             mode: "cors",
             headers: {
@@ -20,10 +21,20 @@
             },
             body: JSON.stringify(
                 {
-                    "username": "username",
-                    "password": "passwd"
+                    "username": username,
+                    "password": passwd
                 }
             )
+        })
+        
+        const json = await res.json()
+        console.log(JSON.stringify(json))
+    }
+
+    // GET METHOD (NOT USED, only for testing)
+    async function doGet () {
+        const res = await fetch('http://127.0.0.1:8000/backend/signUpViewSet/', {
+            method: 'GET'
         })
         
         const json = await res.json()
