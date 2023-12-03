@@ -45,7 +45,7 @@
 
     .sidebar-container {
       display: flex;
-      height: 75vh; 
+      height: 100vh; 
     }
   
     .sidebar {
