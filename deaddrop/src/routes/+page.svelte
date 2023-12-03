@@ -1,13 +1,33 @@
 <script>
     import {goto} from '$app/navigation'
 
-    let username = ""
-    let passwd = ""
+    let username = "sve"
+    let passwd = "sve"
     let auth = true
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
 
     function handleButtonClick() {
         auth? goto('/dashboard') : console.log("error")
+    }
+
+    async function doPost () {
+        const res = await fetch('http://127.0.0.1:8000/backend/signUp/', {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(
+                {
+                    "username": "username",
+                    "password": "passwd"
+                }
+            )
+        })
+        
+        const json = await res.json()
+        console.log(JSON.stringify(json))
     }
 
 </script>
@@ -30,7 +50,7 @@
     
             <div class ="field">
                 <button 
-                on:click={handleButtonClick}
+                on:click={doPost}
                 disabled = {!isInputsFilled}> 
                     Sign In
                 </button>
