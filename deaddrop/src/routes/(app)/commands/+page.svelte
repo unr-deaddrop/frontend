@@ -1,4 +1,5 @@
 <script>
+    import Dropdown from "$lib/components/Dropdown.svelte";
     let target = ""
     let protocol = ""
     let args = ""
@@ -49,11 +50,34 @@
                 <div class = "tab_content">
                     <span style = "color: #4d4d4d"> Select a command to issue. 
                     You can view the command reference by selecting the target endpoint and then using the Command Reference below.
+                        <div class = "checkbox">
+                            <input type = "checkbox" id = "Protocol 1"> 
+                            <label for ="Protocol 1"> Protocol 1</label>
+                        </div>
+                        <div class = "checkbox">
+                            <input type = "checkbox" id = "Protocol2"> 
+                            <label for ="Protocol 2"> Protocol 2</label>
+                        </div>
+                        <div class = "checkbox">
+                            <input type = "checkbox" id = "Protocol 3"> 
+                            <label for ="Protocol 3"> Protocol 3</label>
+                        </div>
+                        <div class = "checkbox">
+                            <input type = "checkbox" id = "Protocol 4"> 
+                            <label for ="Protocol 4"> Protocol 4</label>
+                        </div>
+                        <div class = "checkbox">
+                            <input type = "checkbox" id = "Protocol 5"> 
+                            <label for ="Protocol 5"> Protocol 5</label>
+                        </div>
+                        <div class = "checkbox">
+                            <input type = "checkbox" id = "Protocol 6"> 
+                            <label for ="Protocol 6"> Protocol 6</label>
+                        </div>
                     </span>
                     <div class = "protocol_options">
-                        <input type = "checkbox" id ="Protocol1"> 
-                        <input type = "checkbox" id ="Protocol2"> 
-                        <input type = "checkbox" id ="Protocol3"> 
+                       
+                
                     </div>
                 </div>    
             </div>
@@ -65,6 +89,11 @@
                 <span> Protocol Options </span>
             </div> 
             <div class = "tab_content">
+                <div class = "drop_container">
+                    <Dropdown title = "YouTube Configuration" topradius = true/>
+                    <Dropdown title = "Randomization Options"/>
+                    <Dropdown title = "Encoding Options"/>
+                </div>
             </div>    
         </div>
         <div class = "tab_body"> 
@@ -118,6 +147,17 @@
         
     }
 
+    .checkbox {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px
+    }
+
+    .checkbox label {
+        color:#4d4d4d;
+    }
+
     .field {
         width: 100%;
         margin-left: 0px;
@@ -145,6 +185,16 @@
         flex: .6;
         display: flex;    
         flex-direction: column;
+    }
+
+    .drop_container{
+        flex: 1;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        justify-content: center;
+        height:100%;
+    
     }
 
     
