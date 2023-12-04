@@ -1,8 +1,8 @@
 <script>
     import {goto} from '$app/navigation'
 
-    let username = "sve"
-    let passwd = "sve"
+    let username = ""
+    let passwd = ""
     let auth = true
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
 
@@ -103,25 +103,6 @@
         justify-content: center;
         align-items: center;
         width: 100%
-    }
-    
-    .field {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin: 10px;
-        width: 77%;
-        max-height: 50px;
-    }
-
-    .field label{
-        color: white
-        
-    }
-
-    .field input{
-        margin-top: 5px;
-        flex: 1;
     }
 
     .field button {

@@ -1,4 +1,5 @@
 <script>
+	import '../../app.scss';
 	import Header from '$lib/components/Header.svelte';
 	import SideBar from '$lib/components/SideBar.svelte';
 </script>
@@ -21,7 +22,7 @@
 	.container {
 		display: flex;
 		flex-direction: column;
-		height: 100vh; /* Set a fixed height for the container */
+		height: 100vh; 
 		
 	}
 
