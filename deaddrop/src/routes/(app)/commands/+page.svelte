@@ -90,9 +90,9 @@
             </div> 
             <div class = "tab_content">
                 <div class = "drop_container">
-                    <Dropdown title = "YouTube Configuration" topradius = true/>
+                    <Dropdown title = "YouTube Configuration" radius_side = {1}/>
                     <Dropdown title = "Randomization Options"/>
-                    <Dropdown title = "Encoding Options"/>
+                    <Dropdown title = "Encoding Options"  radius_side = {2}/>
                 </div>
             </div>    
         </div>
@@ -101,7 +101,13 @@
                 <span> Command Reference </span>
             </div> 
             <div class = "tab_content">
-                this as a thing
+                <div class = "tab_content">
+                    <div class = "drop_container">
+                        <Dropdown title = "ls" radius_side = {1}/>
+                        <Dropdown title = "calculator"/>
+                        <Dropdown title = "dump_creds"  radius_side = {2}/>
+                    </div>
+                </div>    
             </div>    
         </div>
     </div>
@@ -111,7 +117,7 @@
     .container {
         display: flex;
 		flex-direction: column;
-        height: 175vh;
+        height: 133vh;
 
     }
 

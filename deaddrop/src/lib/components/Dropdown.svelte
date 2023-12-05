@@ -1,13 +1,41 @@
 <script>
     let menuOpen = false;
-    export let topradius = false;
+    export let radius_side = 0
     export let title = "";
+   
     function toggleMenu() {
       menuOpen = !menuOpen;
     }
-  </script>
+
+    function radius(){
+        if (radius_side == 0){
+            return "dropbtn"
+        }
+
+        else if (radius_side == 1){
+            return "dropbtn_trad"
+        }
+
+        else if (radius_side == 2){
+            return "dropbtn_brad"
+        }
+
+        else {
+            return "dropbtn"
+        }
+    }
+</script>
   
-  <style>
+<div class="container">
+    <button on:click={toggleMenu} class="{radius()}">{title}</button>
+    <div class={`dropdown-content ${menuOpen ? 'visible' : ''}`}>
+        <a href="/example" class="dropdown-item">Nullam id dolor id nibh ultricies vehicula ut id elit. 
+        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
+        </a>
+    </div>
+</div>
+
+<style>
     .container {
       position: relative;
     }
@@ -22,18 +50,30 @@
       width: 100%;
     }
 
-    .dropbtn_rad {
+    .dropbtn_trad {
       background-color: white;
       color: #4d4d4d;
       border: 1px solid #4d4d4d;
-      border-top-right-radius: 10px;
-      border-top-left-radius: 10px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
       padding: 16px;
       font-size: 16px;
       cursor: pointer;
       width: 100%;
     }
   
+    .dropbtn_brad {
+      background-color: white;
+      color: #4d4d4d;
+      border: 1px solid #4d4d4d;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      padding: 16px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+
     .dropdown-content {
       position: absolute;
       width: 100%;
@@ -63,14 +103,5 @@
       text-decoration: none;
       color: #333;
     }
-  </style>
-  
-  <div class="container">
-    <button on:click={toggleMenu} class="{topradius? `dropbtn_rad` : `dropbtn`}">{title}</button>
-    <div class={`dropdown-content ${menuOpen ? 'visible' : ''}`}>
-        <a href="/" class="dropdown-item">Nullam id dolor id nibh ultricies vehicula ut id elit. 
-        Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
-        </a>
-    </div>
-  </div>
+</style>
   
