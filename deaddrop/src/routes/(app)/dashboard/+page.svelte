@@ -1,8 +1,8 @@
 <script>
     import {goto} from '$app/navigation'
-    import { comms_data } from '$lib/components/data';
+    import { comms_data, endpt_comms } from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
-
+    import PieChart from '$lib/components/PieChart.svelte';
     async function handleLink(link){
         await goto(link)
     }
@@ -70,7 +70,8 @@
         
         <div class = "right"> 
             <h2 style = "color: #e6e6e6">.</h2>
-            <div class = "tab_body" style = "flex:.3"> 
+
+            <div class = "tab_body" style = "flex: .6"> 
                 <div class = "tab_head">
                     <span> Quick Links </span>
                 </div> 
@@ -93,7 +94,7 @@
                     <span> Endpoint Communication Share </span>
                 </div> 
                 <div class = "tab_content">
-                    this as a thing
+                    <PieChart data = {endpt_comms}/>
                 </div>    
             </div>
         </div>

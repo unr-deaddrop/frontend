@@ -30,3 +30,13 @@ export const comms_data = {
     ],
   };
   
+export const endpt_comms = {
+    labels: ['Direct', 'Social', 'Referral'],
+    datasets: [
+      {
+        data: [30, 40, 30],
+        backgroundColor: ['#636097', '#73a4a7', '#d7375a'],
+        hoverBackgroundColor: ['#636097', '#73a4a7', '#d7375a'],
+      },
+    ],
+  };
