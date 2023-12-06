@@ -1,5 +1,7 @@
 <script>
     import {goto} from '$app/navigation'
+    import { comms_data } from '$lib/components/data';
+    import LineChart from '$lib/components/LineChart.svelte';
 
     async function handleLink(link){
         await goto(link)
@@ -8,14 +10,51 @@
 
 <div class="container">
     <div class= "upper_body">
+
         <div class = "left"> 
             <h2> Dashboard </h2>
+
             <div class = "tab_body"> 
                 <div class = "tab_head">
                     <span> Statistics </span>
                 </div> 
                 <div class = "tab_content">
-                    this as a thing
+                    <div class = "stat_container">
+                        <div class = "stat_column">
+                            <div class = "stat_field">
+                                <span class = "field_label"> Registered endpoints: </span> <span>24</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Messages sent: </span> <span>10 (1.5 kB)</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Messages fetched:  </span> <span>4 (2.4 kB)</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Ongoing tasks: </span> <span>0</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Completed tasks: </span> <span>0</span>
+                            </div>
+                        </div>
+                        <div class = "stat_column">
+                            <div class = "stat_field">
+                                <span class = "field_label"> Registered endpoints: </span> <span>24</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Messages sent: </span> <span>10 (1.5 kB)</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Messages fetched:  </span> <span>4 (2.4 kB)</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Ongoing tasks: </span> <span>0</span>
+                            </div>
+                            <div class = "stat_field">
+                                <span class = "field_label"> Completed tasks: </span> <span>0</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>    
             </div>
 
@@ -24,15 +63,14 @@
                     <span> Communications (Last 24 Hours) </span>
                 </div> 
                 <div class = "tab_content">
-                    this as a thing
+                    <LineChart data = {comms_data}/>
                 </div>    
             </div>
-
         </div>
         
         <div class = "right"> 
             <h2 style = "color: #e6e6e6">.</h2>
-            <div class = "tab_body"> 
+            <div class = "tab_body" style = "flex:.3"> 
                 <div class = "tab_head">
                     <span> Quick Links </span>
                 </div> 
@@ -81,7 +119,7 @@
 .container {
 		display: flex;
 		flex-direction: column;
-		height: 125vh; 
+		height: 175vh; 
 		
 	}
 
@@ -137,4 +175,33 @@
     .quick_links button:active {
     background-color: #6e0404; 
     }
+
+    .stat_container{
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .stat_column{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .stat_field {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .field_label {
+        font-weight: bold;
+    }
+
+    .stat_field span {
+        margin-left: 5px;
+    }
+
 </style>
