@@ -1,6 +1,9 @@
 run:
 	npm run dev
 
+open:
+	npm run dev -- --open
+
 node:
 	# Remove node and NPM completely
 	sudo rm -rf /usr/local/bin/npm 
