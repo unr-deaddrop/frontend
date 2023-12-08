@@ -3,46 +3,38 @@
     let target = "t"
     let protocol = "t"
     let args = "t"
-    let task_form = {
-        "start_time": null,
-        "end_time": null,
-        "in_progress": false,
-        "data": "",
-        "user": null,
-        "endpoint": null
-    }
-    
     
     async function handleClick(){
-        // let body = JSON.stringify(
-        //     {
-        //         "target": target,
-        //         "protocol": protocol,
-        //         "args": args,
-        //         "xxx": "xxx"
-        //     }
-        // );
+        var currentDateTime = new Date().toISOString();
         let body = {
                 "target": target,
                 "protocol": protocol,
                 "args": args,
                 "xxx": "xxx"
             }
-        const res = await fetch('http://127.0.0.1:8000/backend/credentials/', {
+        let task_form = {
+            "start_time": currentDateTime,
+            "end_time": null,
+            "in_progress": false,
+            "data": body,
+            "user": null,
+            "endpoint": null
+        }
+        const res = await fetch('http://127.0.0.1:8000/backend/tasks/', {
             method: 'POST',
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(
-                {
-                    "credential_type": "test",
-                    "credential_value": body,
-                    "expiry": null,
-                    "task": null
-                }
-            )
+            body: JSON.stringify({
+            "start_time": currentDateTime,
+            "end_time": null,
+            "in_progress": false,
+            "data": body,
+            "user": null,
+            "endpoint": null
+            })
         })
         
         const json = await res.json();
