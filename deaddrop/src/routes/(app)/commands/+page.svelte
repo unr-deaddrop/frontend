@@ -19,7 +19,7 @@
                     <span> Standard Options </span>
                 </div> 
                 <div class = "tab_content">
-                    <div class = "std_options">
+                    <div class = "field_column">
                         <div class = "field"> 
                             <label for="username">Target Agent:</label>
                             <input type="text" id="username" bind:value={target} placeholder="user.name">
@@ -137,13 +137,6 @@
         margin: 20px;
     }
 
-    .std_options {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-
     .protocol_options{
         flex: 1;
         display: flex;
@@ -151,17 +144,6 @@
         align-items: flex-start;
         margin-top: 10px;
         
-    }
-
-    .checkbox {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px
-    }
-
-    .checkbox label {
-        color:#4d4d4d;
     }
 
     .field {
