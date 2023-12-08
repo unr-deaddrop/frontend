@@ -27,14 +27,7 @@
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-            "start_time": currentDateTime,
-            "end_time": null,
-            "in_progress": false,
-            "data": body,
-            "user": null,
-            "endpoint": null
-            })
+            body: JSON.stringify(task_form)
         })
         
         const json = await res.json();
