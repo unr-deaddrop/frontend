@@ -9,8 +9,7 @@
         let body = {
                 "target": target,
                 "protocol": protocol,
-                "args": args,
-                "xxx": "xxx"
+                "args": args
             }
         let task_form = {
             "start_time": currentDateTime,
