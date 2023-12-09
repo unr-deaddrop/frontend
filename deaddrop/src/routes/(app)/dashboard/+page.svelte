@@ -3,6 +3,7 @@
     import { comms_data, endpt_comms } from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
     import PieChart from '$lib/components/PieChart.svelte';
+
     async function handleLink(link){
         await goto(link)
     }

@@ -175,15 +175,7 @@
         flex-direction: column;
     }
 
-    .drop_container{
-        flex: 1;
-        display:flex;
-        flex-direction: column;
-        justify-content: space-around;
-        justify-content: center;
-        height:100%;
     
-    }
 
     
 </style>

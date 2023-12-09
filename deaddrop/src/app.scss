@@ -9,6 +9,15 @@
     font-family: './fonts/Nunito-Regular.ttf', sans-serif;
   }
 
+    .section {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    }
+
+    .section h2 {
+        margin-left: 20px
+    }
   
   .tab_body {
     flex: 1;
@@ -79,4 +88,14 @@
 
 .checkbox label {
     color:#4d4d4d;
+}
+
+.drop_container{
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-content: center;
+    height:100%;
+
 }

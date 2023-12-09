@@ -8,7 +8,7 @@
         <div class ="upper_body">  
             
             <div class = "section">
-                <h2> Issue Command </h2>
+                <h2> Logs </h2>
                 <div class = "tab_body"> 
                     <div class = "tab_head">
                         <span> Server-generated logs </span>
@@ -55,16 +55,6 @@
         flex: 1;
         display: flex;
         flex-direction: row;
-    }
-
-    .section {
-        flex:1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .section h2 {
-        margin-left: 20px
     }
 
     .lower_body {
