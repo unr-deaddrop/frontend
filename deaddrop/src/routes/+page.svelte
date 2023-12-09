@@ -67,7 +67,7 @@
     
             <div class ="field">
                 <button 
-                on:click={doGet}
+                on:click={handleButtonClick}
                 disabled = {!isInputsFilled}> 
                     Sign In
                 </button>
