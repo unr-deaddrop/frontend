@@ -1,12 +1,39 @@
 <script>
     import Dropdown from "$lib/components/Dropdown.svelte";
-    let target = ""
-    let protocol = ""
-    let args = ""
-
-    function handleClick(){
-
+    let target = "t"
+    let protocol = "t"
+    let args = "t"
+    
+    async function handleClick(){
+        var currentDateTime = new Date().toISOString();
+        let body = {
+                "target": target,
+                "protocol": protocol,
+                "args": args
+            }
+        let task_form = {
+            "start_time": currentDateTime,
+            "end_time": null,
+            "in_progress": false,
+            "data": body,
+            "user": null,
+            "endpoint": null
+        }
+        const res = await fetch('http://127.0.0.1:8000/backend/tasks/', {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(task_form)
+        })
+        
+        const json = await res.json();
+        console.log(JSON.stringify(json));
     }
+
+    export let data;
 </script>
 
 <div class = "container">
