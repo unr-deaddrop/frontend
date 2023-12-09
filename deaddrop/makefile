@@ -5,6 +5,11 @@ open:
 	npm run dev -- --open
 
 node:
+	make node1
+	make node2
+	make node3
+
+node1:
 	# Remove node and NPM completely
 	sudo rm -rf /usr/local/bin/npm 
 	sudo rm -rf /usr/local/share/man/man1/node* 
@@ -21,10 +26,11 @@ node:
 	sudo apt-get purge nodejs
 
 	# These should return nothing
-	which node 
-	which nodejs
-	which npm
+	# which node 
+	# which nodejs
+	# which npm
 
+node2:
 	# Install nvm
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	export NVM_DIR="$HOME/.nvm"
@@ -34,6 +40,7 @@ node:
 	# Should return a number if success
 	nvm --version
 
+node3:
 	# install both node and npm
 	nvm install 18.15.0
 	nvm use 18.15.0
@@ -44,6 +51,7 @@ node:
 
 dep:
 	make node
+	npm i svelte-chartjs --force
 	npm install
 
 build:
