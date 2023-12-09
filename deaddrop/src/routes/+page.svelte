@@ -121,25 +121,6 @@
         align-items: center;
         width: 100%
     }
-    
-    .field {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin: 10px;
-        width: 77%;
-        max-height: 50px;
-    }
-
-    .field label{
-        color: white
-        
-    }
-
-    .field input{
-        margin-top: 5px;
-        flex: 1;
-    }
 
     .field button {
         flex: .5;

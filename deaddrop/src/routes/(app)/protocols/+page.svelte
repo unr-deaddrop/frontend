@@ -1,6 +1,7 @@
 <script>
     import { comms_data, endpt_comms } from '$lib/components/data';
     import PieChart from '$lib/components/PieChart.svelte';
+    import LineChart from '$lib/components/LineChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
 </script>
 
@@ -8,10 +9,10 @@
 
         <div class = "section" style = "flex-direction: row">
             <div class = "section" style = "flex:.5">
-                <h2> Agents </h2>
+                <h2> Protocols </h2>
                 <div class = "tab_body"> 
                     <div class = "tab_head">
-                        <span> Agent type breakdown</span>
+                        <span> Protocol type breakdown</span>
                     </div> 
                     <div class = "tab_content">
                         <div class = "chart_container">
@@ -19,6 +20,10 @@
                         </div>
                     </div>    
                 </div>
+                <div style = "flex:1">
+                    <h2 style = "color: #e6e6e6">.</h2>
+                </div> 
+            
             </div>
 
             <div class = "section">
@@ -30,33 +35,37 @@
                     <div class = "tab_content">
                         <div class = "action_column"> 
                             <div class = "action_bar"> 
-                                <ActionButton button_color = "#4364C1" text = "Register agent" src = './clipboard.svg'/>
-                                <span>Register a new type of agent for payload construction</span>
+                                <ActionButton button_color = "#4364C1" text = "Register protocol" src = './clipboard.svg'/>
+                                <span>Register a new type of protocol for payload construction</span>
                             </div>
                             <div class = "action_bar"> 
-                                <ActionButton button_color = '#E74A3B' text = "Delete agent"/>
-                                <span>Uninstall an agent type and its definitions </span>
+                                <ActionButton button_color = '#E74A3B' text = "Delete protocol"/>
+                                <span>Uninstall a protocol type and its definitions </span>
                             </div>
                             <div class = "action_bar"> 
-                                <ActionButton button_color = '#858796' text = "Show agents" src = "./folder.svg"/>
-                                <span>Show the agent definition storage directory</span>
+                                <ActionButton button_color = '#858796' text = "Show protocols" src = "./folder.svg"/>
+                                <span>Show the protocol definition storage directory</span>
                             </div>
                         </div>
                     </div>    
                 </div>
-                <div style = "flex:1">
-                    <h2 style = "color: #e6e6e6">.</h2> 
+                
+                <div class = "tab_body"> 
+                    <div class = "tab_head">
+                        <span> Communication by protocol (Last 24 hours) </span>
+                    </div> 
+                    <div class = "tab_content">
+                        <LineChart data = {comms_data}/>
+                    </div>    
                 </div>
-         
             </div>
-
         </div>
 
         <div class = "section">
             
             <div class = "tab_body"> 
                 <div class = "tab_head">
-                    <span> Installed agents </span>
+                    <span> Installed Protocols </span>
                 </div> 
                 <div class = "tab_content">
                 </div>    
@@ -72,7 +81,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: 150vh;
+        height: 175vh;
     }
 
     .chart_container{

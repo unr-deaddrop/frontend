@@ -1,1 +1,101 @@
-/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+@font-face {
+    font-family: 'Nunito';
+    src: url('./fonts/Nunito-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: './fonts/Nunito-Regular.ttf', sans-serif;
+  }
+
+    .section {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    }
+
+    .section h2 {
+        margin-left: 20px
+    }
+  
+  .tab_body {
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    margin: 20px;
+    border-radius: 10px;
+    border-color: 5px solid darkgray;
+    background-color: white;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.tab_head {
+    flex:.15;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 1px solid darkgrey;
+    background-color: #a60707;
+    
+}
+
+.tab_head span {
+    color: white;
+    font-weight: 300;
+}
+
+.tab_content{
+    padding: 20px;
+    flex: 1;
+}
+
+.field_column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 77%;
+    max-height: 50px;
+}
+
+.field label{
+    color: white
+    
+}
+
+.field input{
+    margin-top: 5px;
+    flex: 1;
+}
+
+.checkbox {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px
+}
+
+.checkbox label {
+    color:#4d4d4d;
+}
+
+.drop_container{
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-content: center;
+    height:100%;
+
+}

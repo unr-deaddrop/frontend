@@ -23,6 +23,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
+        height: 10vh;
         padding: 20px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         

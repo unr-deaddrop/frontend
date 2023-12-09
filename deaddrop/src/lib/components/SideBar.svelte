@@ -13,21 +13,21 @@
     <div class = "body">
       <div class = "report">
         <h3> Reporting </h3>
-        <SidebarButton href="/dashboard" text = "Dashboard" src="/dash.svg" alt="test icon" />
-        <SidebarButton href="/example" text = "Logs" src="/logs.svg" alt="test icon" />
-        <SidebarButton href="/example" text = "Reporting" src="/report.svg" alt="test icon" />
+        <SidebarButton href="/dashboard" text = "Dashboard" src="/dash.svg" alt="dashboard icon" />
+        <SidebarButton href="/logs" text = "Logs" src="/logs.svg" alt="logs icon" />
+        <SidebarButton href="/reporting" text = "Reporting" src="/report.svg" alt="report icon" />
       </div>
       <div class = "payloads">
         <h3> Payloads </h3>
-        <SidebarButton href="/han/agents" text = "Agents" src="/bug.svg" alt="agents icon" />
-        <SidebarButton href="/example" text = "Protocols" src="/wifi.svg" alt="test icon" />
+        <SidebarButton href="/agents" text = "Agents" src="/bug.svg" alt="agents icon" />
+        <SidebarButton href="/protocols" text = "Protocols" src="/wifi.svg" alt="protocols icon" />
       </div>
       <div class = "operational">
         <h3> Operational </h3>
-        <SidebarButton href="/example" text = "Endpoints" src="/monitor.svg" alt="test icon" />
-        <SidebarButton href="/example" text = "Tasks" src="/clipboard.svg" alt="test icon" />
-        <SidebarButton href="/example" text = "Files" src="/folder.svg" alt="test icon" />
-        <SidebarButton href="/example" text = "Credentials" src="/key.svg" alt="test icon" />
+        <SidebarButton href="/endpoints" text = "Endpoints" src="/monitor.svg" alt="test icon" />
+        <SidebarButton href="/tasks" text = "Tasks" src="/clipboard.svg" alt="test icon" />
+        <SidebarButton href="/files" text = "Files" src="/folder.svg" alt="test icon" />
+        <SidebarButton href="/credentials" text = "Credentials" src="/key.svg" alt="test icon" />
         <SidebarButton href="/" text = "Log Out" src="/favicon.png" alt="test icon" />
       </div>
     </div>
@@ -45,7 +45,7 @@
 
     .sidebar-container {
       display: flex;
-      height: 75vh; 
+      height: 100vh; 
     }
   
     .sidebar {
