@@ -10,20 +10,37 @@
         auth? goto('/dashboard') : console.log("error")
     }
 
+    // POST - creates new user in db
     async function doPost () {
-        const res = await fetch('http://127.0.0.1:8000/backend/signUp/', {
+        const res = await fetch('http://127.0.0.1:8000/backend/get_token/', {
             method: 'POST',
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
+                "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
             },
             body: JSON.stringify(
                 {
-                    "username": "username",
-                    "password": "passwd"
+                    "username": username,
+                    "password": passwd
                 }
             )
+        })
+        
+        const json = await res.json()
+        console.log(JSON.stringify(json))
+    }
+
+    // GET METHOD (NOT USED, only for testing)
+    async function doGet () {
+        const res = await fetch('http://127.0.0.1:8000/backend/credentials/', {
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
+            },
+            method: 'GET'
         })
         
         const json = await res.json()
@@ -50,7 +67,7 @@
     
             <div class ="field">
                 <button 
-                on:click={doPost}
+                on:click={doGet}
                 disabled = {!isInputsFilled}> 
                     Sign In
                 </button>
