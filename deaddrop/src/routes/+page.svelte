@@ -50,7 +50,7 @@
     
             <div class ="field">
                 <button 
-                on:click={doPost}
+                on:click={handleButtonClick}
                 disabled = {!isInputsFilled}> 
                     Sign In
                 </button>
