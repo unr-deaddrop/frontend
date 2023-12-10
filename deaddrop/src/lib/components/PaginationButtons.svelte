@@ -1,5 +1,5 @@
 <script>
-    import ActionButton from "./ActionButton.svelte";
+    
 </script>
 
     <div class = "container">
@@ -25,7 +25,7 @@
         background-color: white;
         border: 1px solid #4d4d4d;
         outline:none;
-        color: #460707;
+        color: #a60707;
         transition: 3s smooth;
     }
 
