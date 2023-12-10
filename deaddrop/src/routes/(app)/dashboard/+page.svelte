@@ -1,9 +1,10 @@
 <script>
     import {goto} from '$app/navigation'
-    import { comms_data, endpt_comms } from '$lib/components/data';
+    import { comms_data, endpt_comms, tasks } from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
     import PieChart from '$lib/components/PieChart.svelte';
-
+    import Pagination from '$lib/components/Pagination.svelte';
+    
     async function handleLink(link){
         await goto(link)
     }
@@ -109,7 +110,8 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                this as a thing
+                <Pagination data = {tasks}/>
+
             </div>    
         
         </div>    
@@ -122,7 +124,6 @@
 		display: flex;
 		flex-direction: column;
 		height: 175vh; 
-		
 	}
 
     .upper_body {

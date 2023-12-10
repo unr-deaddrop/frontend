@@ -6,7 +6,7 @@
   <div class = "sidebar">
     
     <div class = "header">
-      <img src = "/favicon.png" alt = "deaddrop logo">
+      <img src = "/bird.svg" alt = "deaddrop logo">
       <h2> DeadDrop </h2>
     </div>
 
@@ -28,7 +28,7 @@
         <SidebarButton href="/tasks" text = "Tasks" src="/clipboard.svg" alt="test icon" />
         <SidebarButton href="/files" text = "Files" src="/folder.svg" alt="test icon" />
         <SidebarButton href="/credentials" text = "Credentials" src="/key.svg" alt="test icon" />
-        <SidebarButton href="/" text = "Log Out" src="/favicon.png" alt="test icon" />
+        <SidebarButton href="/" text = "Log Out" src="/log_out.svg" alt="test icon" />
       </div>
     </div>
     

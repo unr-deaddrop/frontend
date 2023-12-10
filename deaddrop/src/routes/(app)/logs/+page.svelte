@@ -1,6 +1,7 @@
 <script>
-    import { comms_data, endpt_comms } from '$lib/components/data';
+    import { comms_data, tasks} from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
+    import Pagination from '$lib/components/Pagination.svelte';
 </script>
 
     <div class = "container">
@@ -37,6 +38,7 @@
                     <span> Logs</span>
                 </div> 
                 <div class = "tab_content">
+                    <Pagination data = {tasks}/>
                 </div>    
             </div>
         </div>

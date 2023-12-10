@@ -40,3 +40,10 @@ export const endpt_comms = {
       },
     ],
   };
+
+export const tasks = [
+  ["1", "WORKSTATION1", "USER", "2023-11-06 14:34:23"],
+  ["2", "WORKSTATION2", "USER", "2023-11-06 14:34:23"],
+  ["3", "WORKSTATION3", "USER", "2023-11-06 14:34:23"],
+]
+

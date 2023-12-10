@@ -4,12 +4,13 @@
 
 
 <div class="SearchBar">
-    <input type="text" placeholder="Search..." style = "width: 400px" />
+    <input type="text" placeholder="Search..." style = "flex:1;" />
 </div>
 
 
 <style>
     .SearchBar {
+    
     display:flex;
     align-items: center;
     }

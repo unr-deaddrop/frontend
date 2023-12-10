@@ -1,5 +1,6 @@
 <script>
-
+    import { tasks } from '$lib/components/data';
+    import Pagination from '$lib/components/Pagination.svelte';
 </script>
 
     <div class = "container">
@@ -10,6 +11,7 @@
                     <span> Stored credentials </span>
                 </div> 
                 <div class = "tab_content">
+                    <Pagination data = {tasks}/>
                 </div>    
             </div>
         </div>
