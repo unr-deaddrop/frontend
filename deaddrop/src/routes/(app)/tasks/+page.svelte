@@ -1,5 +1,7 @@
 <script>
+    import { tasks } from '$lib/components/data';
     import Dropdown from "$lib/components/Dropdown.svelte";
+    import Pagination from "$lib/components/Pagination.svelte";
 </script>
 
     <div class = "container">
@@ -51,6 +53,7 @@
                     <span> All tasks </span>
                 </div> 
                 <div class = "tab_content">
+                    <Pagination data = {tasks}/>
                 </div>    
             </div>
         </div>

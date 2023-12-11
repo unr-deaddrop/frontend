@@ -1,8 +1,9 @@
 <script>
-    import { comms_data, endpt_comms } from '$lib/components/data';
+    import { comms_data, endpt_comms, tasks } from '$lib/components/data';
     import PieChart from '$lib/components/PieChart.svelte';
     import LineChart from '$lib/components/LineChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
+    import Pagination from '$lib/components/Pagination.svelte';
 </script>
 
     <div class = "container">
@@ -39,7 +40,7 @@
                                 <span>Register a new type of protocol for payload construction</span>
                             </div>
                             <div class = "action_bar"> 
-                                <ActionButton button_color = '#E74A3B' text = "Delete protocol"/>
+                                <ActionButton button_color = '#E74A3B' text = "Delete protocol" src = './trash.svg'/>
                                 <span>Uninstall a protocol type and its definitions </span>
                             </div>
                             <div class = "action_bar"> 
@@ -68,6 +69,7 @@
                     <span> Installed Protocols </span>
                 </div> 
                 <div class = "tab_content">
+                    <Pagination data = {tasks}/>
                 </div>    
             </div>
            

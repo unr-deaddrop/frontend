@@ -1,7 +1,8 @@
 <script>
-    import { comms_data, endpt_comms } from '$lib/components/data';
+    import { tasks, endpt_comms } from '$lib/components/data';
     import PieChart from '$lib/components/PieChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
+    import Pagination from '$lib/components/Pagination.svelte';
 </script>
 
     <div class = "container">
@@ -34,7 +35,7 @@
                                 <span>Register a new type of agent for payload construction</span>
                             </div>
                             <div class = "action_bar"> 
-                                <ActionButton button_color = '#E74A3B' text = "Delete agent"/>
+                                <ActionButton button_color = '#E74A3B' text = "Delete agent" src = './trash.svg'/>
                                 <span>Uninstall an agent type and its definitions </span>
                             </div>
                             <div class = "action_bar"> 
@@ -59,6 +60,7 @@
                     <span> Installed agents </span>
                 </div> 
                 <div class = "tab_content">
+                    <Pagination data = {tasks}/>
                 </div>    
             </div>
            
@@ -72,7 +74,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: 150vh;
+        height: 125vh;
     }
 
     .chart_container{
