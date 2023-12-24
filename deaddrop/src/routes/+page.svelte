@@ -1,6 +1,10 @@
 <script>
     import {goto} from '$app/navigation'
 
+    // login page
+    // add auth
+    // sign-in (post and compare passwords) and sign-up (post)
+
     let username = ""
     let passwd = ""
     let auth = true
