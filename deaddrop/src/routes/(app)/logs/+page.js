@@ -1,6 +1,9 @@
 /** @type {import('../payloads/generate/$types').PageLoad} */
 export async function load() {
+    const comms_data_points = [50, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14]
+
     const comms_data = { // for line chart
+        
         labels: [ // time data - x axis - corresponds to data in datasets
             '1AM', '2AM', '3AM', '4AM', '5AM', '6AM',
             '7AM', '8AM', '9AM', '10AM', '11AM', '12PM',
@@ -27,27 +30,31 @@ export async function load() {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [12, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14] // the only important data point - corresponds to labels
+                data: comms_data_points // the only important data point - corresponds to labels
             },
         ],
     };
     
+    const endpt_comms_data = [40, 30, 40]
     const endpt_comms = { // for pie chart
         labels: ['Direct', 'Social', 'Referral'],
         datasets: [
             {
-                data: [30, 40, 30],
+                data: endpt_comms_data,
                 backgroundColor: ['#636097', '#73a4a7', '#d7375a'],
                 hoverBackgroundColor: ['#636097', '#73a4a7', '#d7375a'],
             },
         ],
     };
     
-    const tasks = [ // for log list
-        ["1", "WORKSTATION1", "USER", "2023-11-06 14:34:23"],
+
+    let tasks = [ // for log list
+        ["id", "endpoint", "initiated by", "start time"],
         ["2", "WORKSTATION2", "USER", "2023-11-06 14:34:23"],
         ["3", "WORKSTATION3", "USER", "2023-11-06 14:34:23"],
     ]
+
+    // tasks = []
     
     
 
