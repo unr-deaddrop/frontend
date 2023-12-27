@@ -1,8 +1,9 @@
 /** @type {import('../payloads/generate/$types').PageLoad} */
 export async function load() {
+    let data = {}
     const comms_data_points = [50, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14]
 
-    const comms_data = { // for line chart
+    data['comms_data'] = { // for line chart
         
         labels: [ // time data - x axis - corresponds to data in datasets
             '1AM', '2AM', '3AM', '4AM', '5AM', '6AM',
@@ -36,7 +37,7 @@ export async function load() {
     };
     
     const endpt_comms_data = [40, 30, 40]
-    const endpt_comms = { // for pie chart
+    data['endpt_comms'] = { // for pie chart
         labels: ['Direct', 'Social', 'Referral'],
         datasets: [
             {
@@ -48,8 +49,8 @@ export async function load() {
     };
     
 
-    let tasks = [ // for log list
-        ["id", "endpoint", "initiated by", "start time"],
+    data['tasks'] = [ // for log list
+        ["id", "endpoint", " by", "start time"],
         ["2", "WORKSTATION2", "USER", "2023-11-06 14:34:23"],
         ["3", "WORKSTATION3", "USER", "2023-11-06 14:34:23"],
     ]
@@ -58,9 +59,10 @@ export async function load() {
     
     
 
-    return {
-        comms_data : comms_data,
-        endpt_comms : endpt_comms,
-        tasks : tasks
-    }; // should return tasks and comms_data in the form of data.js
+    // return {
+    //     comms_data : comms_data,
+    //     endpt_comms : endpt_comms,
+    //     tasks : tasks
+    // }; // should return tasks and comms_data in the form of data.js
+    return data; // should return tasks and comms_data in the form of data.js
 };
