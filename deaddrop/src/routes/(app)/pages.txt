@@ -10,3 +10,5 @@ command task
 
 agent
     https://unr-deaddrop.github.io/prototype_frontend/agent_listing.html
+
+    https://unr-deaddrop.github.io/prototype_frontend/agent_detail.html
