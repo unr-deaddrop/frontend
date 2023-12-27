@@ -1,4 +1,7 @@
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-    return {};
+    let agent_list;
+    return {
+        agent_list: agent_list // fetch from db
+    };
 };
