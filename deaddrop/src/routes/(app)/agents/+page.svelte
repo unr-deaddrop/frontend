@@ -1,5 +1,5 @@
 <script>
-    import { tasks, endpt_comms } from '$lib/components/data';
+    import { tasks, endpt_comms } from '$lib/components/data'; // tasks is meant to be replaced by agent_types
     import PieChart from '$lib/components/PieChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
