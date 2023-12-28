@@ -3,7 +3,27 @@
     import PieChart from '$lib/components/PieChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
+    export let data;
+    let {agent_types, agent_list, supported_oss, supported_protocols, endpoints_list} = data;
+    console.log(agent_list) // you can yoink the name from here
+    console.log((endpoints_list)) // you can yoink the endpoint counts from here
+    
+    function get_count(id, lst=endpoints_list) {
+        const matchingItems = lst.filter(item => item.agent === id);
+        return matchingItems.length;
+    }
 </script>
+endpoint count
+{get_count(1)}
+
+all data
+{#each Object.values(data) as cell}
+        <div class="grid-item">{cell}</div>
+{/each}
+agent data
+{#each Object.values(agent_list) as cell}
+        <div class="grid-item">{cell}</div>
+{/each}
 
     <div class = "container">
 
@@ -16,7 +36,7 @@
                     </div> 
                     <div class = "tab_content">
                         <div class = "chart_container">
-                            <PieChart data = {endpt_comms}/>
+                            <PieChart data = {agent_types}/>
                         </div>
                     </div>    
                 </div>
