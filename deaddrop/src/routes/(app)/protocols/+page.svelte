@@ -1,13 +1,32 @@
 <script>
-    import { comms_data, endpt_comms, tasks } from '$lib/components/data';
+    import { tasks } from '$lib/components/data'; // tasks is meant to be replaced by protocol_list
     import PieChart from '$lib/components/PieChart.svelte';
     import LineChart from '$lib/components/LineChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
+    export let data;
+    let {protocol_types, comms_data, protocol_list, supported_oss, supported_protocols, endpoints_list} = data;
+    console.log(protocol_list) // you can yoink the name and exe from here
+    console.log((endpoints_list)) // you can yoink the endpoint counts from here
+    function get_count(id, lst=endpoints_list) {
+        const matchingItems = lst.filter(item => item.agent === id);
+        return matchingItems.length;
+    }
 </script>
 
-    <div class = "container">
+endpoint count
+{get_count(1)}
 
+all data
+{#each Object.values(data) as cell}
+        <div class="grid-item">{cell}</div>
+{/each}
+agent data
+{#each Object.values(protocol_list) as cell}
+        <div class="grid-item">{cell}</div>
+{/each}
+
+    <div class = "container">
         <div class = "section" style = "flex-direction: row">
             <div class = "section" style = "flex:.5">
                 <h2> Protocols </h2>
@@ -17,7 +36,7 @@
                     </div> 
                     <div class = "tab_content">
                         <div class = "chart_container">
-                            <PieChart data = {endpt_comms}/>
+                            <PieChart data = {protocol_types}/>
                         </div>
                     </div>    
                 </div>
