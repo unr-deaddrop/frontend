@@ -1,6 +1,7 @@
 /** @type {import('../payloads/generate/$types').PageLoad} */
 export async function load() {
     let data = {}
+
     const comms_data_points = [50, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14]
 
     data['comms_data'] = { // for line chart
@@ -54,15 +55,46 @@ export async function load() {
         ["2", "WORKSTATION2", "USER", "2023-11-06 14:34:23"],
         ["3", "WORKSTATION3", "USER", "2023-11-06 14:34:23"],
     ]
-
-    // tasks = []
     
-    
+    const logs = await fetch(`http://127.0.0.1:8000/backend/logs/`, {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    });
 
-    // return {
-    //     comms_data : comms_data,
-    //     endpt_comms : endpt_comms,
-    //     tasks : tasks
-    // }; // should return tasks and comms_data in the form of data.js
+    async function getLogDetails(log) {
+        console.log(log.id);
+        let data = {};
+        let endpoint = await fetch(`http://127.0.0.1:8000/backend/endpoints/?id=${log.source}`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        });
+        let task = await fetch(`http://127.0.0.1:8000/backend/tasks/?id=${log.task}`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        });
+        let task_result = await fetch(`http://127.0.0.1:8000/backend/taskresults/?id=${log.task_result}`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        });
+
+        data['log'] = await log.json(); // does this work?
+        data['source'] = await endpoint.json(); // get name
+        data['user'] = data['log'].user; // get name
+        data['task'] = (await task.json()); // get name
+        data['task_result'] = (await task_result.json()); // what is this doing here
+        return data;
+    }
+    
+    data['log_list'] = await logs.json(); // fetch
+    data['log_rows'] = await Promise.all(data['log_list'].map(getLogDetails));
+
     return data; // should return tasks and comms_data in the form of data.js
 };
