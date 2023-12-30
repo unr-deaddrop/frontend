@@ -85,7 +85,7 @@ export async function load() {
             method: 'GET'
         });
 
-        data['log'] = await log.json(); // does this work?
+        data['log'] = log; // does this work?
         data['source'] = await endpoint.json(); // get name
         data['user'] = data['log'].user; // get name
         data['task'] = (await task.json()); // get name

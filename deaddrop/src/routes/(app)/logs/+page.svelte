@@ -12,7 +12,15 @@
     // for comms_data - we can't do this yet or i don't know how to
     // this comms_data may just be a calculation of all logs filtered by the time. 
     // this will be the implementation in the load function at least. by implementing this in the load function, we are able to easily change as needed
+    let {log_list, log_rows} = data;
+    console.log(log_list) // you can yoink the name from here
+    console.log((log_rows)) // you can yoink the endpoint counts from here
 </script>
+
+all data
+{#each Object.values(data) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
 
 <div class = "container">
     <div class ="upper_body">  
