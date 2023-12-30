@@ -1,7 +1,16 @@
 <script>
     import { tasks } from '$lib/components/data';
     import Pagination from '$lib/components/Pagination.svelte';
+
+    export let data;
+    let {credentials_list} = data;
+    console.log(credentials_list) // you can yoink the name from here
 </script>
+
+all data
+{#each Object.values(data) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
 
     <div class = "container">
         <div class ="section">
