@@ -79,7 +79,10 @@
                 </div> 
                 <div class = "tab_content">
                     <div class = "quick_links">
-                        <button>Go to Django administrative site </button>
+                        <button
+                        on:click={() => handleLink("http://127.0.0.1:8000/admin")}>
+                            Go to Django administrative site 
+                        </button>
                         <button
                         on:click={() => handleLink("/commands")}>
                             Issue command 

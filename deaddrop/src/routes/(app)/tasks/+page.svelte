@@ -2,7 +2,18 @@
     import { tasks } from '$lib/components/data';
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Pagination from "$lib/components/Pagination.svelte";
+    export let data;
+    let {task_list, running_tasks, completed_tasks} = data;
+    console.log(task_list) // you can yoink the counts from here
+    console.log((running_tasks).length) // you can yoink the counts from here
+    console.log((completed_tasks)) // you can yoink the counts from here
 </script>
+running tasks length
+{(running_tasks).length}
+all data
+{#each Object.values(data) as cell}
+        <div class="grid-item">{cell}</div>
+{/each}
 
     <div class = "container">
         <div class = "section" style = "flex:.25"> 

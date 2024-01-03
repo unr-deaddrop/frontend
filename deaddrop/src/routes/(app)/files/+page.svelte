@@ -1,7 +1,25 @@
 <script>
     import { tasks } from '$lib/components/data';
     import Pagination from '$lib/components/Pagination.svelte';
+
+    export let data;
+    let {file_list, file_rows} = data;
+    console.log(file_list) // you can yoink the name from here
+    console.log(file_rows) // you can yoink the name from here
 </script>
+
+all data
+{#each Object.values(data) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
+file_list
+{#each Object.values(file_list) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
+file_rows
+{#each Object.values(file_rows) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
 
     <div class = "container">
         <div class ="section">
