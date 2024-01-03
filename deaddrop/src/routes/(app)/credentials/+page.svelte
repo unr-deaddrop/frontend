@@ -3,12 +3,21 @@
     import Pagination from '$lib/components/Pagination.svelte';
 
     export let data;
-    let {credentials_list} = data;
-    console.log(credentials_list) // you can yoink the name from here
+    let {credential_list, credential_rows} = data;
+    console.log(credential_list) // you can yoink the name from here
+    console.log(credential_rows) // you can yoink the name from here
 </script>
 
 all data
 {#each Object.values(data) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
+credential_list
+{#each Object.values(credential_list) as cell}
+        <div class="grid-item">{JSON.stringify(cell)}</div>
+{/each}
+credential_rows
+{#each Object.values(credential_rows) as cell}
         <div class="grid-item">{JSON.stringify(cell)}</div>
 {/each}
 
