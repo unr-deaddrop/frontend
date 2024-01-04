@@ -58,5 +58,11 @@ build:
 	npm run build
 	npm run preview
 
+docker_image:
+	docker build -t deaddrop/frontend:1.0 .
+
+docker_run-%:
+	docker run -p 5173:5173 $*
+
 all:
 	make run
