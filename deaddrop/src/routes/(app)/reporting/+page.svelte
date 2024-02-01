@@ -7,10 +7,7 @@
     let category = ""
     let end_time = ""
     
-
-    function handleClick(){
-
-    }
+    function handleClick(){}
 </script>
 
     <div class = "container">
