@@ -77,6 +77,11 @@
                 </button>
             </div>
                 
+            <span class = "signup"> 
+                Don't have an account? 
+                <a href = "/signup" class = "signup"> Sign up </a>
+            </span>
+            
             
         </div>
     </div>
@@ -115,6 +120,7 @@
 
     .login_bar h1 {
         color: white;
+        
     }
 
     .login_section {
@@ -160,5 +166,14 @@
         background-color: #e6e6e6;
     }
 
-   
+    .signup{
+        color: gainsboro;
+        font-size: 12;
+       
+    }
+
+    .signup a{
+        color: whitesmoke
+    }
+
 </style>
