@@ -1,19 +1,36 @@
 <script>
     import {goto} from '$app/navigation'
-	import ActionButton from '$lib/components/ActionButton.svelte';
-    let username = ""
-    let passwd = ""
-    let confrm = ""
+    $: username = ""
+    $: passwd = ""
+    $: confirm = ""
     $: err = false
-    $: isInputsFilled = username.length > 0 && passwd.length > 0 && confrm.length >0;
+    $: isInputsFilled = username.length > 0 && passwd.length > 0 && confirm.length >0;
 
-    function handleRegister(err) {
-        if(passwd != confrm){
+    async function handleRegister() {
+        if(passwd != confirm){
             err = true
-            return err
         }
          
         else {
+            console.log(username)
+            console.log(passwd)
+            let task_form = {
+                "username": username,
+                "password": passwd,
+            }
+
+            const res = await fetch('http://127.0.0.1:8000/backend/signUp/', {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(task_form)
+            })
+
+            const json = await res.json();
+            console.log(JSON.stringify(json));
             goto('/login')
         }
     }
@@ -30,13 +47,13 @@
             </div>
             
             <div class = "field"> 
-                <label for="email">Password:</label>
+                <label for="password">Password:</label>
                 <input type="password" id="password" bind:value={passwd} placeholder="Enter your password">
             </div>
 
             <div class = "field"> 
-                <label for="email">Confirm:</label>
-                <input type="password" id="password" bind:value={confrm} placeholder="Enter your password">
+                <label for="confirm">Confirm:</label>
+                <input type="password" id="confirm" bind:value={confirm} placeholder="Enter your password">
             </div>
     
             <div hidden = {err}>
@@ -45,7 +62,7 @@
 
             <div class ="field">
                 <button 
-                on:click={handleRegister(err)}
+                on:click={handleRegister}
                 disabled = {!isInputsFilled}> 
                     Register
                 </button>
