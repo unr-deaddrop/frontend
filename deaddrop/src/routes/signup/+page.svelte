@@ -14,19 +14,18 @@
         else {
             console.log(username)
             console.log(passwd)
-            let task_form = {
-                "username": username,
-                "password": passwd,
-            }
 
-            const res = await fetch('http://127.0.0.1:8000/backend/signUp/', {
-            method: 'POST',
-            mode: "cors",
-            headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(task_form)
+            const res = await fetch('http://127.0.0.1:8000/backend/users/sign_up/', {
+                method: 'POST',
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                body: JSON.stringify({
+                    "username": username,
+                    "password": passwd,
+            })
             })
 
             const json = await res.json();

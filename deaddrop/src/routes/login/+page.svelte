@@ -1,5 +1,6 @@
 <script>
     import {goto} from '$app/navigation'
+    import user from './user.js';
 
     // login page
     // add auth
@@ -7,22 +8,18 @@
 
     let username = ""
     let passwd = ""
-    let auth = true
+    let auth = false
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
 
-    function handleButtonClick() {
-        auth? goto('/dashboard') : console.log("error")
-    }
-
     // POST - creates new user in db
-    async function doPost () {
-        const res = await fetch('http://127.0.0.1:8000/backend/get_token/', {
+    async function handleLogin() {
+        const res = await fetch('http://127.0.0.1:8000/backend/users/login/', {
             method: 'POST',
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
-                "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
+                // "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
             },
             body: JSON.stringify(
                 {
@@ -31,9 +28,20 @@
                 }
             )
         })
+
+        // const status = await res.status;
+        // let error = null;
+        // if (status > 299) error = "some error";
         
         const json = await res.json()
+        if (json) {
+            user.update(val => val = {...json})
+            auth = json.token
+        }
+
         console.log(JSON.stringify(json))
+        
+        auth? goto('/dashboard') : console.log("error")
     }
 
     // GET METHOD (NOT USED, only for testing)
@@ -71,7 +79,7 @@
     
             <div class ="field">
                 <button 
-                on:click={handleButtonClick}
+                on:click={handleLogin}
                 disabled = {!isInputsFilled}> 
                     Sign In
                 </button>
