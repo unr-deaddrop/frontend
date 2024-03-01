@@ -1,5 +1,7 @@
-/** @type {import('../$types').PageServerLoad} */
+/** @type {import('./$types').PageServerLoad} */
+export async function load({cookies}) {
+    var data = {};
+    data['token'] = cookies.get('token');
 
-export async function load() {
-    return {};
+    return data;
 };
