@@ -1,74 +1,49 @@
 <script>
-    import {goto} from '$app/navigation'
     $: username = ""
     $: passwd = ""
     $: confirm = ""
     $: err = false
     $: isInputsFilled = username.length > 0 && passwd.length > 0 && confirm.length >0;
 
-    async function handleRegister() {
-        if(passwd != confirm){
-            err = true
-        }
-         
-        else {
-            console.log(username)
-            console.log(passwd)
+    /** @type {import('./$types').PageData} */
+    export let signup_status 
 
-            const res = await fetch('http://127.0.0.1:8000/backend/users/sign_up/', {
-                method: 'POST',
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                body: JSON.stringify({
-                    "username": username,
-                    "password": passwd,
-            })
-            })
-
-            const json = await res.json();
-            console.log(JSON.stringify(json));
-            goto('/login')
-        }
-    }
 </script>
 
+    
     <div class = "container">
         <div class = "section"></div>
         <div class = "signup_bar"> 
-            <h1> Register DeadDrop Account </h1>
-            <span> Already have an account? <a href = /login> Log in </a></span>
-            <div class = "field"> 
-                <label for="username">Username:</label>
-                <input type="text" id="username" bind:value={username} placeholder="Enter your username">
-            </div>
-            
-            <div class = "field"> 
-                <label for="password">Password:</label>
-                <input type="password" id="password" bind:value={passwd} placeholder="Enter your password">
-            </div>
+            <form method="POST">
+                <h1> Register DeadDrop Account </h1>
+                <span> Already have an account? <a href = /login> Log in </a></span>
+                <div class = "field"> 
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name = "username" bind:value={username} placeholder="Enter your username">
+                </div>
+                
+                <div class = "field"> 
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name = "password" bind:value={passwd} placeholder="Enter your password">
+                </div>
 
-            <div class = "field"> 
-                <label for="confirm">Confirm:</label>
-                <input type="password" id="confirm" bind:value={confirm} placeholder="Enter your password">
-            </div>
-    
-            <div hidden = {err}>
+                <div class = "field"> 
+                    <label for="confirm">Confirm:</label>
+                    <input type="password" id="confirm" name = "confirm" bind:value={confirm} placeholder="Enter your password">
+                </div>
 
-            </div>
-
-            <div class ="field">
-                <button 
-                on:click={handleRegister}
-                disabled = {!isInputsFilled}> 
-                    Register
-                </button>
-            </div>
+                <div class ="field">
+                    <button 
+                    type = "submit"
+                    disabled = {!isInputsFilled}> 
+                        Register
+                    </button>
+                </div>
+            </form>
         </div>
         <div class = "section"></div>
     </div>
+    
 
 <style>
     :global(body, div) {
