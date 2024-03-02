@@ -2,63 +2,11 @@
     import {goto} from '$app/navigation'
     import user from './user.js';
 
-    // login page
-    // add auth
-    // sign-in (post and compare passwords) and sign-up (post)
-
     let username = ""
     let passwd = ""
     let auth = false
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
-
-    // POST - creates new user in db
-    async function handleLogin() {
-        const res = await fetch('http://127.0.0.1:8000/backend/users/login/', {
-            method: 'POST',
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-                // "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
-            },
-            body: JSON.stringify(
-                {
-                    "username": username,
-                    "password": passwd
-                }
-            )
-        })
-
-        // const status = await res.status;
-        // let error = null;
-        // if (status > 299) error = "some error";
-        
-        const json = await res.json()
-        if (json) {
-            user.update(val => val = {...json})
-            auth = json.token
-        }
-
-        console.log(JSON.stringify(json))
-        
-        auth? goto('/dashboard') : console.log("error")
-    }
-
-    // GET METHOD (NOT USED, only for testing)
-    async function doGet () {
-        const res = await fetch('http://127.0.0.1:8000/backend/credentials/', {
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-                "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
-            },
-            method: 'GET'
-        })
-        
-        const json = await res.json()
-        console.log(JSON.stringify(json))
-    }
-
+    
 </script>
 
 <div class = "container">
@@ -69,17 +17,16 @@
         <div class = "login_section">
             <div class = "field"> 
                 <label for="username">Username:</label>
-                <input type="text" id="username" bind:value={username} placeholder="Enter your username">
+                <input type="text" id="username" name = "username" bind:value={username} placeholder="Enter your username">
             </div>
             
             <div class = "field"> 
                 <label for="email">Password:</label>
-                <input type="password" id="password" bind:value={passwd} placeholder="Enter your password">
+                <input type="password" id="password" name = "password" bind:value={passwd} placeholder="Enter your password">
             </div>
     
             <div class ="field">
                 <button 
-                on:click={handleLogin}
                 disabled = {!isInputsFilled}> 
                     Sign In
                 </button>

@@ -12,7 +12,6 @@ export async function load({cookies}) {
 export const actions = {
     default: async ({request}) => {
         let signup_status = {"status": 200, "body": ""}
-
         const formData = await request.formData()
         let username = formData.get('username')
         let password = formData.get('password')
@@ -29,7 +28,7 @@ export const actions = {
         }
 
         else {
-            const res = await fetch('http://127.0.0.1:8000/backend/users/signUp/', {
+            const res = await fetch('http://127.0.0.1:8000/backend/signUp/', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -42,6 +41,7 @@ export const actions = {
 
             if (!res.ok) {
                 console.log("Failed to register user")
+                console.log(res.status)
                 signup_status = {
                     status: res.status,
                     body: JSON.stringify({ error: "Failed to register user" })
