@@ -3,7 +3,8 @@ import user from './user.js';
 
 
 /** @type {import('../$types').PageServerLoad} */
-export async function load() {
+export async function load({cookies}) {
+    cookies.delete('sessionid',{path:'/'})
     return {};
 };
 
@@ -45,7 +46,7 @@ export const actions = {
 
         if (json.message === 'successfully logged in') {
             console.log(json.message)
-            const sessionid = cookies.set('sessionid', '0000')
+            const sessionid = cookies.set('sessionid', '0000', {path: '/'})
             throw redirect(302, '/dashboard')
         }
         
