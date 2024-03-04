@@ -1,12 +1,18 @@
 <script>
-    import {goto} from '$app/navigation'
-    import user from './user.js';
+	import { goto } from '$app/navigation';
 
     let username = ""
     let passwd = ""
-    let auth = false
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
     
+    /** @type {import('./$types').PageServerLoad} */
+	export let auth;
+
+    async function wait_auth() {
+        console.log(auth)
+    }
+
+    wait_auth()
 </script>
 
 <div class = "container">
@@ -14,6 +20,8 @@
        
       
         <h1> Sign in to DeadDrop</h1>
+
+        <form method = "POST">
         <div class = "login_section">
             <div class = "field"> 
                 <label for="username">Username:</label>
@@ -36,9 +44,9 @@
                 Don't have an account? 
                 <a href = "/signup" class = "signup"> Sign up </a>
             </span>
-            
-            
         </div>
+        </form>
+
     </div>
     
     <div class ="body"> 

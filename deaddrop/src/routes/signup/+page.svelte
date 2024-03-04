@@ -2,11 +2,7 @@
     $: username = ""
     $: passwd = ""
     $: confirm = ""
-    $: err = false
     $: isInputsFilled = username.length > 0 && passwd.length > 0 && confirm.length >0;
-
-    /** @type {import('./$types').PageData} */
-    export let signup_status 
 
 </script>
 
