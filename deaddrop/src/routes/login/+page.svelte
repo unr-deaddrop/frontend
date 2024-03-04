@@ -5,14 +5,8 @@
     let passwd = ""
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
     
-    /** @type {import('./$types').PageServerLoad} */
-	export let auth;
+    export let data
 
-    async function wait_auth() {
-        console.log(auth)
-    }
-
-    wait_auth()
 </script>
 
 <div class = "container">
@@ -45,6 +39,9 @@
                 <a href = "/signup" class = "signup"> Sign up </a>
             </span>
         </div>
+        {#if data == true}
+            goto('/dashboard')
+        {/if}
         </form>
 
     </div>

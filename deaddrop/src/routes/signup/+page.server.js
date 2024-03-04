@@ -17,8 +17,9 @@ export const actions = {
         let confirm = formData.get('confirm')
         
         if(passwd != confirm){console.log("error confirmation and password are not the same")}
-
-        const res = await fetch('http://127.0.0.1:8000/backend/users/sign_up/', {
+        
+        else {
+            const res = await fetch('http://127.0.0.1:8000/backend/users/sign_up/', {
             method: 'POST',
             mode: "cors",
             headers: {
@@ -29,9 +30,11 @@ export const actions = {
                 "username": username,
                 "password": passwd,
             })
-        })
+            })
 
-        const json = await res.json();
+            const json = await res.json();
+        }
+        
     }
 }
 
