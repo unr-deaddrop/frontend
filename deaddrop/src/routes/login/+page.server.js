@@ -23,7 +23,7 @@ export const actions = {
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
                 //"Authorization": "Token b0b13fb3c91521945cd53242c4cfcbb341765ee8"
-                // "Authorization": "Token 9163f165e84167aae5eba41367c7f2673f0ea9a7"
+                // "Authorization": "Token 60bea874042182f30eab35c1405d420e4b09855d"
             },
             body: JSON.stringify(
                 {
@@ -47,6 +47,7 @@ export const actions = {
         if (json.message === 'successfully logged in') {
             console.log(json.message)
             const sessionid = cookies.set('sessionid', '0000', {path: '/'})
+            const token = cookies.set('token', auth.toString(), {path: '/'})
             throw redirect(302, '/dashboard')
         }
         

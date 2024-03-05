@@ -1,12 +1,13 @@
-/** @type {import('./$types').PageLoad} */
-export async function load() {
+/** @type {import('./$types').PageServerLoad} */
+export async function load({cookies}) {
     var data = {};
     let endpt_comms_data = [40, 30, 30]
     let comms_data_points = [12, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14]
 
     const protocols = await fetch(`http://127.0.0.1:8000/backend/protocols/`, {
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Token " + cookies.get('token')
         },
         method: 'GET'
     });
