@@ -37,12 +37,12 @@ export const actions = {
         // let error = null;
         // if (status > 299) error = "some error";
         const json = await res.json()
-        /*
+        
         if (json) {
             user.update(val => val = {...json})
             auth = json.token
         }
-        */
+
 
         if (json.message === 'successfully logged in') {
             console.log(json.message)

@@ -1,4 +1,4 @@
-import {goto} from '$app/navigation'
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies}) {
@@ -33,6 +33,7 @@ export const actions = {
             })
 
             const json = await res.json();
+            throw redirect(302, '/login')
         }
         
     }
