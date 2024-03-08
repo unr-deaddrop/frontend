@@ -1,10 +1,12 @@
 <script>
     import {goto} from '$app/navigation'
-    import { comms_data, endpt_comms, tasks } from '$lib/components/data';
+    import { comms_data, endpt_comms} from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
     import PieChart from '$lib/components/PieChart.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
     
+    export let data
+    let {tasks, endpt_chart} = data.pagedata
     async function handleLink(link){
         await goto(link)
     }

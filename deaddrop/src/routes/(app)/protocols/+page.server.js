@@ -1,3 +1,5 @@
+import user from '../../login/user';
+import { get } from 'svelte/store';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies}) {
     var data = {};
@@ -7,7 +9,7 @@ export async function load({cookies}) {
     const protocols = await fetch(`http://127.0.0.1:8000/backend/protocols/`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Token " + cookies.get('token')
+            "Authorization": "Token " + get(user).token
         },
         method: 'GET'
     });

@@ -1,6 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
-
     let username = ""
     let passwd = ""
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
