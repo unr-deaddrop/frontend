@@ -1,12 +1,13 @@
 <script>
     import {goto} from '$app/navigation'
-    import { comms_data, endpt_comms} from '$lib/components/data';
+    import { comms_data, } from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
     import PieChart from '$lib/components/PieChart.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
-    
     export let data
-    let {tasks, endpt_chart} = data.pagedata
+    let {tasks, task_headers, endpt_chart} = data.pagedata
+    
+    
     async function handleLink(link){
         await goto(link)
     }
@@ -101,7 +102,7 @@
                     <span> Endpoint Communication Share </span>
                 </div> 
                 <div class = "tab_content">
-                    <PieChart data = {endpt_comms}/>
+                    <PieChart data = {endpt_chart}/>
                 </div>    
             </div>
         </div>
@@ -115,7 +116,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {tasks}/>
+                <Pagination data = {tasks} headers ={task_headers}/>
 
             </div>    
         
