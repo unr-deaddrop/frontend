@@ -5,7 +5,7 @@
     import PieChart from '$lib/components/PieChart.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
     export let data
-    let {tasks, task_headers, endpt_chart} = data.pagedata
+    let {tasks, endpt_chart} = data.pagedata
     
     
     async function handleLink(link){
@@ -116,7 +116,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {tasks} headers ={task_headers}/>
+                <Pagination data = {tasks}/>
 
             </div>    
         

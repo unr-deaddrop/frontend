@@ -3,7 +3,7 @@
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte";
     export let data;
-    export let headers;
+    let headers = Object.getOwnPropertyNames(data[0])
 
 </script>
 

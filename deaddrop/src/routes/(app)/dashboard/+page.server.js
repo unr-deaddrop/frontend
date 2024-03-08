@@ -24,7 +24,6 @@ export async function load() {
     })
 
     pagedata['tasks'] = await tasks.json()
-    pagedata['task_headers'] = Object.getOwnPropertyNames(pagedata['tasks'][0])
     pagedata['endpoints'] = await endpoints.json()
     pagedata['endpt_chart'] = endpnt_chart(pagedata['endpoints'])
 
