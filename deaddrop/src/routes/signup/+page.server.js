@@ -19,7 +19,7 @@ export const actions = {
         if(passwd != confirm){console.log("error confirmation and password are not the same")}
         
         else {
-            const res = await fetch('http://127.0.0.1:8000/backend/users/sign_up/', {
+            const res = await fetch('http://backend:8000/backend/users/sign_up/', {
             method: 'POST',
             mode: "cors",
             headers: {

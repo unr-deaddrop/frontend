@@ -4,7 +4,7 @@ export async function load() {
 
     let comms_data_points = [12, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14];
 
-    const endpoints = await fetch(`http://127.0.0.1:8000/backend/endpoints/`, {
+    const endpoints = await fetch(`http://backend:8000/backend/endpoints/`, {
         headers: {
             "Content-Type": "application/json"
         },

@@ -5,7 +5,7 @@ export async function load({params}) {
     var data = {};
     data['id'] = params.id;
 
-    const log = await fetch(`http://127.0.0.1:8000/backend/logs/${params.id}`, {
+    const log = await fetch(`http://backend:8000/backend/logs/${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -14,19 +14,19 @@ export async function load({params}) {
 
     data['log'] = await log.json();
 
-    const endpoint = await fetch(`http://127.0.0.1:8000/backend/endpoints/?id=${data['log'].source}`, {
+    const endpoint = await fetch(`http://backend:8000/backend/endpoints/?id=${data['log'].source}`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
-    const task = await fetch(`http://127.0.0.1:8000/backend/tasks/?id=${data['log'].task}`, {
+    const task = await fetch(`http://backend:8000/backend/tasks/?id=${data['log'].task}`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
-    const task_result = await fetch(`http://127.0.0.1:8000/backend/taskresults/?id=${data['log'].task_result}`, {
+    const task_result = await fetch(`http://backend:8000/backend/taskresults/?id=${data['log'].task_result}`, {
         headers: {
             "Content-Type": "application/json"
         },

@@ -4,7 +4,7 @@ export async function load() {
 
     // Your other data initialization code remains unchanged...
 
-    const logsResponse = await fetch(`http://127.0.0.1:8000/backend/logs/`, {
+    const logsResponse = await fetch(`http://backend:8000/backend/logs/`, {
         headers: {
             "Content-Type": "application/json"
         },

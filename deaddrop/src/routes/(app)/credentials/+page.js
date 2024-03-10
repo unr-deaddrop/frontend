@@ -2,7 +2,7 @@
 export async function load() {
     var data = {};
 
-    const credentials = await fetch(`http://127.0.0.1:8000/backend/credentials/`, {
+    const credentials = await fetch(`http://backend:8000/backend/credentials/`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -13,7 +13,7 @@ export async function load() {
         console.log(credential.id);
         let data = {};
         // a credential should only have one task associated with it
-        let task = await fetch(`http://127.0.0.1:8000/backend/tasks/?id=${credential.task}`, {
+        let task = await fetch(`http://backend:8000/backend/tasks/?id=${credential.task}`, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -23,7 +23,7 @@ export async function load() {
         data['task'] = (await task.json()); // get name
 
         // a credential should only have one endpoint associated with it
-        let endpoint = await fetch(`http://127.0.0.1:8000/backend/endpoints/?id=${data['task'].endpoint}`, {
+        let endpoint = await fetch(`http://backend:8000/backend/endpoints/?id=${data['task'].endpoint}`, {
             headers: {
                 "Content-Type": "application/json"
             },

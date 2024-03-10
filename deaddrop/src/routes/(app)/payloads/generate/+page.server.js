@@ -17,7 +17,7 @@ export const actions = {
         });
       }
       console.log(form.data)
-      const res = await fetch('http://127.0.0.1:8000/backend/endpoints/', {
+      const res = await fetch('http://backend:8000/backend/endpoints/', {
         method: 'POST',
         mode: "cors",
         headers: {
@@ -28,6 +28,6 @@ export const actions = {
         
       const json = await res.json();
       console.log("POST ADD", JSON.stringify(json));
-      redirect(302, 'http://127.0.0.1:5173/payloads'); // could possibly redirect to endpoints
+      redirect(302, 'http://backend:5173/payloads'); // could possibly redirect to endpoints
     }
   };

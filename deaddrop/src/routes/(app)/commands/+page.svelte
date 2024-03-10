@@ -19,7 +19,7 @@
             "user": null,
             "endpoint": null
         }
-        const res = await fetch('http://127.0.0.1:8000/backend/tasks/', {
+        const res = await fetch('http://backend:8000/backend/tasks/', {
             method: 'POST',
             mode: "cors",
             headers: {

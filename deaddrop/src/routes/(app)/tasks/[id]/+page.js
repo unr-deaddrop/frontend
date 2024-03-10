@@ -5,7 +5,7 @@ export async function load({params}) {
     var data = {};
     data['id'] = params.id;
 
-    const task = await fetch(`http://127.0.0.1:8000/backend/tasks/${params.id}`, {
+    const task = await fetch(`http://backend:8000/backend/tasks/${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -13,7 +13,7 @@ export async function load({params}) {
     });
     data['task'] = await task.json();
 
-    const endpoint = await fetch(`http://127.0.0.1:8000/backend/endpoints/?id=${data['task'].endpoint}`, {
+    const endpoint = await fetch(`http://backend:8000/backend/endpoints/?id=${data['task'].endpoint}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -23,7 +23,7 @@ export async function load({params}) {
 
     data['user'] = data['task'].user; // where to get
 
-    const task_result = await fetch(`http://127.0.0.1:8000/backend/taskresults/?task=${data['task'].id}`, {
+    const task_result = await fetch(`http://backend:8000/backend/taskresults/?task=${data['task'].id}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -38,7 +38,7 @@ export async function load({params}) {
     // even if that's not correct, i don't think the implementation changes anyway
     async function getLog(task_result) {
         console.log(task_result.id);
-        let log = await fetch(`http://127.0.0.1:8000/backend/logs/?task_result=${task_result.task}`, {
+        let log = await fetch(`http://backend:8000/backend/logs/?task_result=${task_result.task}`, {
             headers: {
                 "Content-Type": "application/json"
             },

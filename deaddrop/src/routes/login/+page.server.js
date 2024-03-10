@@ -16,7 +16,7 @@ export const actions = {
         let passwd = formData.get('password')
         let auth = false
         
-        const res = await fetch('http://127.0.0.1:8000/backend/users/login/', {
+        const res = await fetch('http://backend:8000/backend/users/login/', {
             method: 'POST',
             mode: "cors",
             headers: {

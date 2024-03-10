@@ -80,7 +80,7 @@
                 <div class = "tab_content">
                     <div class = "quick_links">
                         <button
-                        on:click={() => handleLink("http://127.0.0.1:8000/admin")}>
+                        on:click={() => handleLink("http://backend:8000/admin")}>
                             Go to Django administrative site 
                         </button>
                         <button
