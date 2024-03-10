@@ -8,12 +8,53 @@
     let {protocol_types, comms_data, protocol_list, supported_oss, supported_protocols, endpoints_list} = data;
     console.log(protocol_list) // you can yoink the name and exe from here
     console.log((endpoints_list)) // you can yoink the endpoint counts from here
-    function get_count(id, lst=endpoints_list) {
-        const matchingItems = lst.filter(item => item.agent === id);
+
+    //replacing lst=endpoints_list with lst
+    //switched item.agent to item
+    function get_count(id, lst) {
+        const matchingItems = lst.filter(item => item === id);
         return matchingItems.length;
     }
+
+    //temporary function for breaking down types of agents and displaying them, currently supports up to three "agnet-types", should I dynamically set colors?
+    //nevermind name in agent must be unique, will eventually change name to agent type in the following function
+    function make_piechart(protocol_list){
+        let protocols = []
+        let protocol_types = []
+        let freq = []
+
+        //collect into types of agents
+        for (let i = 0; i < protocol_list.length; i++){
+            protocols.push(protocol_list[i].name)
+        }
+        protocol_types = protocols.filter((value, index, self) => self.indexOf(value) === index);
+        
+        //get frequency of agent type
+        for (let i = 0; i < protocols.length; i++){
+            let count = 0
+            console.log(protocol_types[i])
+            count = get_count(protocol_types[i], protocols)
+            freq.push(count)
+        }
+
+        //compile agent_data
+        let piechart = {
+            labels: protocol_types,
+            datasets: [{
+                data: freq,
+                backgroundColor: ['#636097', '#73a4a7', '#d7375a'],
+                hoverBackgroundColor: ['#636097', '#73a4a7', '#d7375a'],
+            }],
+        }
+
+
+    return piechart
+    }
+
+    let protocol_data = make_piechart(protocol_list)
 </script>
 
+<!--
 endpoint count
 {get_count(1)}
 
@@ -25,6 +66,7 @@ agent data
 {#each Object.values(protocol_list) as cell}
         <div class="grid-item">{cell}</div>
 {/each}
+-->
 
     <div class = "container">
         <div class = "section" style = "flex-direction: row">
@@ -36,7 +78,7 @@ agent data
                     </div> 
                     <div class = "tab_content">
                         <div class = "chart_container">
-                            <PieChart data = {protocol_types}/>
+                            <PieChart data = {protocol_data}/>
                         </div>
                     </div>    
                 </div>

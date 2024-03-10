@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Nunito';
-    src: url('./fonts/Nunito-Regular.ttf') format('truetype');
+    src: url('./src/fonts/Nunito-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
   
-  body {
-    font-family: './fonts/Nunito-Regular.ttf', sans-serif;
-  }
+    html, body {
+    font-family: 'Nunito', sans-serif;
+    } 
 
     .section {
     flex:1;
@@ -99,3 +99,5 @@
     height:100%;
 
 }
+
+
