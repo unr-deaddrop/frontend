@@ -47,7 +47,7 @@
     </div>
     
     <div class ="body"> 
-        <img style = "height:100%; width: 100%" src ="test_graphic.webp" alt = "deaddrop graphic"/>
+        <img style = "height:100%; width: 100%" src ="/test_graphic.webp" alt = "deaddrop graphic"/>
     </div>
     
 </div>
