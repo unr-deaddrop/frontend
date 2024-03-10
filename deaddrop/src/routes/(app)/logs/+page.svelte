@@ -1,5 +1,8 @@
 <script>
-  
+    import Pagination from '$lib/components/Pagination.svelte';
+    export let data
+    let {logs} = data.pagedata
+    
 </script>
 
 <div class = "container">
@@ -34,7 +37,7 @@
                 <span> Logs</span>
             </div> 
             <div class = "tab_content">
-                <!--<Pagination data = {tasks}/>-->
+                <Pagination data = {logs}/>
             </div>    
         </div>
     </div>
