@@ -3,6 +3,8 @@
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte";
     export let data;
+    let headers = Object.getOwnPropertyNames(data[0])
+
 </script>
 
 <div class="container">
@@ -18,18 +20,19 @@
     </div>
     <div class="content">
         <div class="item"> 
-            <span style="font-weight: bold">ID</span>
-            <span style="font-weight: bold">Endpoint</span>
-            <span style="font-weight: bold">Initiated by</span>
-            <span style="font-weight: bold">Start time</span>
+            {#each headers as header}
+                <span style="font-weight: bold">{header}</span>
+            {/each}
         </div>
-        {#each data as item}
+        
+        {#each data as item}    
             <div class="item">
-                {#each item as value}
-                    <span style="flex: 1">{value}</span>
+                {#each headers as head}
+                    <span style="flex: 1"> {item[head]} </span>
                 {/each}
             </div>
         {/each}
+        
     </div>
     <div class="bar">
         <div class = "show">

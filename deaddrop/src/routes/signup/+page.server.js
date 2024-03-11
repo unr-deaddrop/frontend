@@ -4,7 +4,7 @@ import { redirect } from '@sveltejs/kit';
 export async function load({cookies}) {
     var data = {};
     data['token'] = cookies.get('token');
-    cookies.delete('sessionid',{path:'/'})
+    cookies.delete('token',{path:'/'})
     return data;
 };
 
