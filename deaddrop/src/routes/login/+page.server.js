@@ -4,7 +4,7 @@ import user from './user.js';
 
 /** @type {import('../$types').PageServerLoad} */
 export async function load({cookies}) {
-    cookies.delete('sessionid',{path:'/'})
+    cookies.delete('token',{path:'/'})
     return {};
 };
 
