@@ -45,8 +45,7 @@ export const actions = {
 
         if (json.message === 'successfully logged in') {
             console.log(json.message)
-            const sessionid = cookies.set('sessionid', '0000', {path: '/'})
-            //const token = cookies.set('token', auth.toString(), {path: '/'})
+            const token = cookies.set('token', auth.toString(), {path: '/'})
             throw redirect(302, '/dashboard')
         }
         
