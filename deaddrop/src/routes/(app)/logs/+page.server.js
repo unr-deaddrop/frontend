@@ -8,7 +8,7 @@ export async function load() {
     const auth = get(user).token
     const pagedata = {}
 
-    const logs = await fetch('http://127.0.0.1:8000/backend/logs/', {
+    const logs = await fetch('http://backend:8000/backend/logs/', {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
