@@ -8,21 +8,21 @@ export async function load({params}) {
 
     let comms_data_points = [12, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14]
 
-    const endpoint = await fetch(`http://127.0.0.1:8000/backend/endpoints/${params.id}`, {
+    const endpoint = await fetch(`http://backend:8000/backend/endpoints/${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
 
-    const connections = await fetch(`http://127.0.0.1:8000/backend/endpoints/?connections=${params.id}`, {
+    const connections = await fetch(`http://backend:8000/backend/endpoints/?connections=${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
 
-    const tasks = await fetch(`http://127.0.0.1:8000/backend/tasks/?endpoint=${params.id}`, {
+    const tasks = await fetch(`http://backend:8000/backend/tasks/?endpoint=${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },

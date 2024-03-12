@@ -5,14 +5,14 @@ export async function load({params}) {
     var data = {};
     data['id'] = params.id;
 
-    const agent = await fetch(`http://127.0.0.1:8000/backend/agents/${params.id}`, {
+    const agent = await fetch(`http://backend:8000/backend/agents/${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
 
-    const endpoints = await fetch(`http://127.0.0.1:8000/backend/endpoints/?agent=${params.id}`, {
+    const endpoints = await fetch(`http://backend:8000/backend/endpoints/?agent=${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },

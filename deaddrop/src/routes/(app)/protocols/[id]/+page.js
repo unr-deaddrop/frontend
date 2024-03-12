@@ -5,14 +5,14 @@ export async function load({params}) {
     var data = {};
     data['id'] = params.id;
 
-    const protocol = await fetch(`http://127.0.0.1:8000/backend/protocols/${params.id}`, {
+    const protocol = await fetch(`http://backend:8000/backend/protocols/${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
 
-    const endpoints = await fetch(`http://127.0.0.1:8000/backend/endpoints/?protocol=${params.id}`, {
+    const endpoints = await fetch(`http://backend:8000/backend/endpoints/?protocol=${params.id}`, {
         headers: {
             "Content-Type": "application/json"
         },

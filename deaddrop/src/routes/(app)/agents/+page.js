@@ -3,14 +3,14 @@ export async function load() {
     var data = {};
     let endpt_comms_data = [40, 30, 30]
 
-    const agents = await fetch(`http://127.0.0.1:8000/backend/agents/`, {
+    const agents = await fetch(`http://backend:8000/backend/agents/`, {
         headers: {
             "Content-Type": "application/json"
         },
         method: 'GET'
     });
 
-    const endpoints = await fetch(`http://127.0.0.1:8000/backend/endpoints/`, {
+    const endpoints = await fetch(`http://backend:8000/backend/endpoints/`, {
         headers: {
             "Content-Type": "application/json"
         },

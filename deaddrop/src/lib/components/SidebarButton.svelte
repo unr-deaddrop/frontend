@@ -14,7 +14,7 @@
     isHovered = false;
   }
 
-  // Additional focus-related events
+  
   function handleFocus() {
     isHovered = true;
   }
@@ -22,6 +22,7 @@
   function handleBlur() {
     isHovered = false;
   }
+
 </script>
 
 <a

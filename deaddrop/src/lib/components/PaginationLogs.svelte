@@ -3,15 +3,9 @@
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte";
     export let data;
-    let headers 
-    if(data.length > 0){
-        headers = Object.getOwnPropertyNames(data[0])
-    }
-    
 </script>
 
 <div class="container">
-    
     <div class="bar"> 
         <div class="show">
             <span>Show </span>
@@ -22,33 +16,21 @@
             <SearchBar/>
         </div>
     </div>
-
     <div class="content">
-        <div class="item">
-            {#if data.length > 0} 
-                {#each headers as header}
-                    <span style="font-weight: bold">{header}</span>
-                {/each}
-            {/if} 
+        <div class="item"> 
+            <span style="font-weight: bold">ID</span>
+            <span style="font-weight: bold">Endpoint</span>
+            <span style="font-weight: bold">Initiated by</span>
+            <span style="font-weight: bold">Start time</span>
         </div>
-        
-        {#if data.length > 0 }
-            {#each data as item}    
-                <div class="item">
-                    {#each headers as head}
-                        <span style="flex: 1"> {item[head]} </span>
-                    {/each}
-                </div>
-            {/each}
-
-            {:else}
-            <div class = "item"> 
-                <span style ="flex:1"> Table is Empty </span>
+        {#each data as item}
+            <div class="item">
+                {#each item as value}
+                    <span style="flex: 1">{value}</span>
+                {/each}
             </div>
-        {/if}
-        
+        {/each}
     </div>
-
     <div class="bar">
         <div class = "show">
             <span style = "margin-top: 10px"> Showing items 1-3 of 3 </span>
@@ -58,7 +40,6 @@
             <PaginationButtons/>
         </div>
     </div>
-
 </div>
 
 <style>

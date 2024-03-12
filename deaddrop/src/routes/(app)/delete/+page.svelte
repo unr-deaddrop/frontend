@@ -2,7 +2,7 @@
 import { goto, invalidateAll, invalidate } from '$app/navigation'
     
 async function deleteAgent(id) {
-    const agent = await fetch(`http://127.0.0.1:8000/backend/agents/${id}`, {
+    const agent = await fetch(`http://backend:8000/backend/agents/${id}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -18,7 +18,7 @@ async function deleteAgent(id) {
 }
 
 async function deleteProtocol(id) {
-    const protocol = await fetch(`http://127.0.0.1:8000/backend/protocols/${id}`, {
+    const protocol = await fetch(`http://backend:8000/backend/protocols/${id}`, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -34,7 +34,7 @@ async function deleteProtocol(id) {
 }
 
 async function deleteEndpoint(id) {
-    const endpoint = await fetch(`http://127.0.0.1:8000/backend/endpoints/${id}`, {
+    const endpoint = await fetch(`http://backend:8000/backend/endpoints/${id}`, {
         headers: {
             "Content-Type": "application/json"
         },
