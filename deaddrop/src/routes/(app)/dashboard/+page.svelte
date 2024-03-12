@@ -116,7 +116,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {[]}/>
+                <Pagination data = {tasks}/>
 
             </div>    
         

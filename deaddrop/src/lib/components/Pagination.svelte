@@ -23,7 +23,6 @@
         </div>
     </div>
 
-
     <div class="content">
         <div class="item">
             {#if data.length > 0} 
@@ -49,6 +48,7 @@
         {/if}
         
     </div>
+
     <div class="bar">
         <div class = "show">
             <span style = "margin-top: 10px"> Showing items 1-3 of 3 </span>
@@ -58,6 +58,7 @@
             <PaginationButtons/>
         </div>
     </div>
+
 </div>
 
 <style>
