@@ -7,8 +7,7 @@
     if(data.length > 0){
         headers = Object.getOwnPropertyNames(data[0])
     }
-    console.log(data)
-
+    
 </script>
 
 <div class="container">
