@@ -23,8 +23,8 @@ export async function load({cookies}) {
     })
 
     pagedata['tasks'] = await tasks.json()
-    ///pagedata['endpoints'] = await endpoints.json()
-    //pagedata['endpt_chart'] = endpnt_chart(pagedata['endpoints'])
+    pagedata['endpoints'] = await endpoints.json()
+    pagedata['endpt_chart'] = endpnt_chart(pagedata['endpoints'])
 
     return {pagedata};
 };

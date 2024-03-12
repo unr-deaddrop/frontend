@@ -3,8 +3,8 @@
     import LineChart from '$lib/components/LineChart.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
     export let data;
-    let {network_graph, endpoints_list} = data;
-    console.log((endpoints_list)) // you can yoink the endpoint stuff from here
+    let {endpoints, network_graph} = data.pagedata;
+ 
 </script>
 
 all data
@@ -30,7 +30,7 @@ all data
                     <span> Registered endpoints </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {tasks}/>
+                    <Pagination data = {endpoints}/>
                 </div>    
             </div>
         </div>
