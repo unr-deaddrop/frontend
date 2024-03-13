@@ -3,6 +3,24 @@
     let target = "t"
     let protocol = "t"
     let args = "t"
+
+    import SchemaForm from "svelte-jsonschema-form";
+    let schema = fetchSchema();
+
+    async function fetchSchema() {
+        let id = 1; // this will change dynamically
+        const res = await fetch(`http://backend:8000/backend/agents/${id}/get_metadata/`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (res.ok) {
+            return await res.json();
+        } else {
+            throw new Error(await res.text());
+        }
+    }
     
     async function handleClick(){
         var currentDateTime = new Date().toISOString();
@@ -27,7 +45,7 @@
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify(task_form)
-        })
+        });
         
         const json = await res.json();
         console.log(JSON.stringify(json));
