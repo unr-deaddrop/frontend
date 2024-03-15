@@ -1,8 +1,28 @@
 <script>
+    /** @type {import('./$types').PageData} */
     import Dropdown from "$lib/components/Dropdown.svelte";
-    let target = "Intentionally Left Blank"
-    let protocol = "Intentionally Left Blank"
-    let args = "Intentionally Left Blank"
+    import Context from "$lib/components/Context.svelte"
+	import ComboBox from "$lib/components/ComboBox.svelte"
+
+    export let data;
+    let {endpoint_list} = data;
+
+    let endpoint_options = [
+    	{ text: "Istanbul", value: "istanbul" },
+        { text: "Seoul", value: "seoul", disabled: true },
+  	]
+    endpoint_list.forEach(endpoint => {
+        console.log(endpoint)
+        let option = {text: endpoint['id'], value: endpoint['id']}
+        endpoint_options.push(option)
+    })
+    let target_endpoint = ""
+
+    let protocol_options = []
+    let protocol = ""
+    
+    let cmd_options = []
+    let cmd = ""
 
     import SchemaForm from "svelte-jsonschema-form";
     // let schema = fetchSchema();
@@ -23,45 +43,45 @@
     // }
 
     const schema = {
-            "description": "Simple helper class used for holding arguments.\n\nAlthough PingArgumentParser will guarantee that our dictionary has the\nsame keys in the right format as our attributes below, using a Pydantic\nmodel adds an extra layer of safety in case something *does* go wrong\nsomewhere.",
-            "properties": {
-                "message": {
-                    "default": "",
-                    "description": "Extra message to include in the ping response.",
-                    "title": "Message",
-                    "type": "string"
-                },
-                "delay": {
-                    "default": 0,
-                    "description": "The number of seconds to delay the reponse for.",
-                    "title": "Delay",
-                    "type": "number"
-                },
-                "ping_timestamp": {
-                    "description": "The reference timestamp for the ping request.",
-                    "format": "date-time",
-                    "title": "Ping Timestamp",
-                    "type": "string"
-                }
+        "description": "Simple helper class used for holding arguments.\n\nAlthough PingArgumentParser will guarantee that our dictionary has the\nsame keys in the right format as our attributes below, using a Pydantic\nmodel adds an extra layer of safety in case something *does* go wrong\nsomewhere.",
+        "properties": {
+            "message": {
+                "default": "",
+                "description": "Extra message to include in the ping response.",
+                "title": "Message",
+                "type": "string"
             },
-            "required": [
-                "ping_timestamp"
-            ],
-            "title": "PingArguments",
-            "type": "object"
-        };
-        
-        const initialData = {
-            "message": "asdfasdf",
-            "ping_timestamp": "2024-03-14"};
+            "delay": {
+                "default": 0,
+                "description": "The number of seconds to delay the reponse for.",
+                "title": "Delay",
+                "type": "number"
+            },
+            "ping_timestamp": {
+                "description": "The reference timestamp for the ping request.",
+                "format": "date-time",
+                "title": "Ping Timestamp",
+                "type": "string"
+            }
+        },
+        "required": [
+            "ping_timestamp"
+        ],
+        "title": "PingArguments",
+        "type": "object"
+    };
+    
+    const initialData = {
+        "message": "asdfasdf",
+        "ping_timestamp": "2024-03-14"};
 
     
-    async function handleClick(){
+    async function sendCommand(){
         var currentDateTime = new Date().toISOString();
         let body = {
-                "target": target,
+                "target_endpoint": target_endpoint,
                 "protocol": protocol,
-                "args": args
+                "cmd": cmd
             }
         let task_form = {
             "start_time": currentDateTime,
@@ -83,8 +103,6 @@
         const json = await res.json();
         console.log(JSON.stringify(json));
     }
-
-    export let data;
 </script>
 
 <div class = "container">
@@ -99,22 +117,48 @@
                 <div class = "tab_content">
                     <div class = "field_column">
                         <div class = "field"> 
-                            <label for="username">Target Agent:</label>
-                            <input type="text" id="username" bind:value={target} placeholder="user.name">
+                            <Context>   
+                                <div class="stack">
+                                <ComboBox 
+                                    id="Endpoint" 
+                                    bind:value={target_endpoint}
+                                    label="Endpoint"
+                                    name="endpoint"
+                                    placeholder="Endpoint"
+                                    options={endpoint_options}
+                                />
+                                </div>
+                            </Context>
                         </div>
                         <div class = "field"> 
-                            <label for="username">Protocol:</label>
-                            <input type="text" id="username" bind:value={protocol} placeholder="user.name">
+                            <Context>   
+                                <div class="stack">
+                                <ComboBox 
+                                    id="Protocol" 
+                                    bind:value={protocol}
+                                    label="Endpoint"
+                                    name="endpoint"
+                                    placeholder="Protocol"
+                                    options={protocol_options}
+                                    />
+                                </div>
+                            </Context>
                         </div>
                         <div class = "field"> 
-                            <label for="username">Arguments:</label>
-                            <input type="text" id="username" bind:value={args} placeholder="user.name">
+                            <Context>   
+                                <div class="stack">
+                                <ComboBox 
+                                    id="Command" 
+                                    bind:value={cmd}
+                                    label="Endpoint"
+                                    name="endpoint"
+                                    placeholder="Command"
+                                    options={cmd_options}
+                                    />
+                                </div>
+                            </Context>
                         </div>
                     </div>
-                    <button
-                    on:click={handleClick}> 
-                        Export Commands 
-                    </button>
                 </div>    
             </div>
         </div>
@@ -123,52 +167,23 @@
             <h2 style = "color: #e6e6e6">.</h2>
             <div class = "tab_body"> 
                 <div class = "tab_head">
-                    <span> Available Commands </span>
+                    <span> Command </span>
                 </div> 
 
-                <div>
+                <div class = "tab_content">
                     {#await schema}
-                    <p>Loading schema...</p>
+                        <p>Loading schema...</p>
                     {:then schema}
-                    <SchemaForm schema={schema} data={initialData} disabled/>
+                        <SchemaForm schema={schema} data={initialData} disabled/>
                     {:catch error}
-                    <div class="error">ERROR: {error.message}</div>
+                        <div class="error">ERROR: {error.message}</div>
                     {/await}
                 </div>
-
-                <div class = "tab_content">
-                    <span style = "color: #4d4d4d"> Select a command to issue. 
-                    You can view the command reference by selecting the target endpoint and then using the Command Reference below.
-                        <div class = "checkbox">
-                            <input type = "checkbox" id = "Protocol 1"> 
-                            <label for ="Protocol 1"> Protocol 1</label>
-                        </div>
-                        <div class = "checkbox">
-                            <input type = "checkbox" id = "Protocol2"> 
-                            <label for ="Protocol 2"> Protocol 2</label>
-                        </div>
-                        <div class = "checkbox">
-                            <input type = "checkbox" id = "Protocol 3"> 
-                            <label for ="Protocol 3"> Protocol 3</label>
-                        </div>
-                        <div class = "checkbox">
-                            <input type = "checkbox" id = "Protocol 4"> 
-                            <label for ="Protocol 4"> Protocol 4</label>
-                        </div>
-                        <div class = "checkbox">
-                            <input type = "checkbox" id = "Protocol 5"> 
-                            <label for ="Protocol 5"> Protocol 5</label>
-                        </div>
-                        <div class = "checkbox">
-                            <input type = "checkbox" id = "Protocol 6"> 
-                            <label for ="Protocol 6"> Protocol 6</label>
-                        </div>
-                    </span>
-                    <div class = "protocol_options">
-                       
                 
-                    </div>
-                </div>    
+                <button
+                on:click={sendCommand}> 
+                    Export Commands 
+                </button>  
             </div>
         </div>
     </div>
@@ -264,6 +279,11 @@
         flex-direction: column;
     }
 
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
     
 
     
