@@ -1,26 +1,60 @@
 <script>
     import Dropdown from "$lib/components/Dropdown.svelte";
-    let target = "t"
-    let protocol = "t"
-    let args = "t"
+    let target = "Intentionally Left Blank"
+    let protocol = "Intentionally Left Blank"
+    let args = "Intentionally Left Blank"
 
     import SchemaForm from "svelte-jsonschema-form";
-    let schema = fetchSchema();
+    // let schema = fetchSchema();
 
-    async function fetchSchema() {
-        let id = 1; // this will change dynamically
-        const res = await fetch(`http://backend:8000/backend/agents/${id}/get_metadata/`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        if (res.ok) {
-            return await res.json();
-        } else {
-            throw new Error(await res.text());
-        }
-    }
+    // async function fetchSchema() {
+    //     let id = '00000000-0000-0000-0000-000000000000'; // this will change dynamically
+    //     const res = await fetch(`http://backend:8000/backend/endpoints/${id}/get_command_metadata/`, {
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     });
+    //     if (res.ok) {
+    //         return await res.json();
+    //     } else {
+    //         throw new Error(await res.text());
+    //     }
+    // }
+
+    const schema = {
+            "description": "Simple helper class used for holding arguments.\n\nAlthough PingArgumentParser will guarantee that our dictionary has the\nsame keys in the right format as our attributes below, using a Pydantic\nmodel adds an extra layer of safety in case something *does* go wrong\nsomewhere.",
+            "properties": {
+                "message": {
+                    "default": "",
+                    "description": "Extra message to include in the ping response.",
+                    "title": "Message",
+                    "type": "string"
+                },
+                "delay": {
+                    "default": 0,
+                    "description": "The number of seconds to delay the reponse for.",
+                    "title": "Delay",
+                    "type": "number"
+                },
+                "ping_timestamp": {
+                    "description": "The reference timestamp for the ping request.",
+                    "format": "date-time",
+                    "title": "Ping Timestamp",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ping_timestamp"
+            ],
+            "title": "PingArguments",
+            "type": "object"
+        };
+        
+        const initialData = {
+            "message": "asdfasdf",
+            "ping_timestamp": "2024-03-14"};
+
     
     async function handleClick(){
         var currentDateTime = new Date().toISOString();
@@ -41,8 +75,7 @@
             method: 'POST',
             mode: "cors",
             headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(task_form)
         });
@@ -92,6 +125,17 @@
                 <div class = "tab_head">
                     <span> Available Commands </span>
                 </div> 
+
+                <div>
+                    {#await schema}
+                    <p>Loading schema...</p>
+                    {:then schema}
+                    <SchemaForm schema={schema} data={initialData} disabled/>
+                    {:catch error}
+                    <div class="error">ERROR: {error.message}</div>
+                    {/await}
+                </div>
+
                 <div class = "tab_content">
                     <span style = "color: #4d4d4d"> Select a command to issue. 
                     You can view the command reference by selecting the target endpoint and then using the Command Reference below.
