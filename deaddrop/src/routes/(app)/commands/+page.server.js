@@ -19,14 +19,17 @@ export const actions = {
       // validation here
     //   console.log(form.json())
       console.log(form)
-      let id = '0';
-      const res = await fetch(`http://127.0.0.1:8000/backend/endpoints/${id}/execute_command/`, {
+      let endpoint = form.get('endpoint');
+      const res = await fetch(`http://backend:8000/backend/endpoints/${endpoint}/execute_command/`, {
         method: 'POST',
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify({
+            "cmd_name": form.get('command'),
+            "cmd_args": form.get('args')
+        })
       })
         
       const json = await res.json();

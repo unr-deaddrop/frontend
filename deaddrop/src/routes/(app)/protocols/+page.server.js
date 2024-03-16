@@ -9,7 +9,6 @@ export async function load({cookies}) {
     const protocols = await fetch(`http://backend:8000/backend/protocols/`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Token " + get(user).token
         },
         method: 'GET'
     });

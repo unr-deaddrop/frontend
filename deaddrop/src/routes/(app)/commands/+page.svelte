@@ -44,10 +44,12 @@
         console.log("43 cmd_list")
         console.log(cmd_list)
         let cmd_options = []
+        let i = 0
         cmd_list.forEach(cmd => {
             console.log(cmd)
-            let option = {text: cmd['name'], value: cmd['name']}
+            let option = {text: cmd['name'], value: i}
             cmd_options.push(option)
+            i++;
         })
         return cmd_options
     }
@@ -76,34 +78,7 @@
     //     }
     // }
 
-    const schema = {
-        "description": "Simple helper class used for holding arguments.\n\nAlthough PingArgumentParser will guarantee that our dictionary has the\nsame keys in the right format as our attributes below, using a Pydantic\nmodel adds an extra layer of safety in case something *does* go wrong\nsomewhere.",
-        "properties": {
-            "message": {
-                "default": "",
-                "description": "Extra message to include in the ping response.",
-                "title": "Message",
-                "type": "string"
-            },
-            "delay": {
-                "default": 0,
-                "description": "The number of seconds to delay the reponse for.",
-                "title": "Delay",
-                "type": "number"
-            },
-            "ping_timestamp": {
-                "description": "The reference timestamp for the ping request.",
-                "format": "date-time",
-                "title": "Ping Timestamp",
-                "type": "string"
-            }
-        },
-        "required": [
-            "ping_timestamp"
-        ],
-        "title": "PingArguments",
-        "type": "object"
-    };
+    const schema = cmd_list[parseInt(cmd)]['argument_schema']
     
     const initialData = {
         "message": "asdfasdf",
@@ -140,7 +115,7 @@
 </script>
 
 <div class = "container">
-    <div class = "upper_body"> 
+    <form class = "upper_body"> 
         <div class = "left">
 
             <h2> Issue Command </h2>
@@ -154,7 +129,7 @@
                             <Context>   
                                 <div class="stack">
                                 <ComboBox 
-                                    id="Endpoint" 
+                                    id="endpoint" 
                                     bind:value={target_endpoint}
                                     label="Endpoint"
                                     name="endpoint"
@@ -168,10 +143,10 @@
                             <Context>   
                                 <div class="stack">
                                 <ComboBox 
-                                    id="Protocol" 
+                                    id="protocol" 
                                     bind:value={protocol}
-                                    label="Endpoint"
-                                    name="endpoint"
+                                    label="Protocol"
+                                    name="protocol"
                                     placeholder="Protocol"
                                     options={protocol_options}
                                     />
@@ -182,10 +157,10 @@
                             <Context>   
                                 <div class="stack">
                                 <ComboBox 
-                                    id="Command" 
+                                    id="command" 
                                     bind:value={cmd}
-                                    label="Endpoint"
-                                    name="endpoint"
+                                    label="Command"
+                                    name="command"
                                     placeholder="Command"
                                     options={cmd_options}
                                     />
@@ -214,13 +189,12 @@
                     {/await}
                 </div>
                 
-                <button
-                on:click={sendCommand}> 
+                <button> 
                     Export Commands 
                 </button>  
             </div>
         </div>
-    </div>
+    </form>
     <div class = "lower_body">
         <div class = "tab_body"> 
             <div class = "tab_head">
