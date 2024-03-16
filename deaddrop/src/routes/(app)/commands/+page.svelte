@@ -3,6 +3,7 @@
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Context from "$lib/components/Context.svelte"
 	import ComboBox from "$lib/components/ComboBox.svelte"
+    import SchemaForm from "svelte-jsonschema-form";
 
     export let data;
     let {endpoint_list} = data;
@@ -16,15 +17,48 @@
         let option = {text: endpoint['id'], value: endpoint['id']}
         endpoint_options.push(option)
     })
-    let target_endpoint = ""
+    let target_endpoint = "00000000-0000-0000-0000-000000000000"
+    $: console.log(target_endpoint)
 
     let protocol_options = []
     let protocol = ""
-    
-    let cmd_options = []
-    let cmd = ""
 
-    import SchemaForm from "svelte-jsonschema-form";
+    let cmd_list = []
+    async function get_cmd_list(target_endpoint) {
+        // let test = await fetch('http://backend:8000/backend/endpoints/', {
+        //     method: 'GET',
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     }
+        // })
+        // test = await test.json()
+        // console.log(test)
+
+        cmd_list = await fetch(`http://backend.localhost/backend/endpoints/${target_endpoint}/get_command_metadata/`, {
+            method: 'GET',
+            headers: {
+              "Content-Type": "application/json",
+            }
+        })
+        cmd_list = await cmd_list.json()
+        console.log("43 cmd_list")
+        console.log(cmd_list)
+        let cmd_options = []
+        cmd_list.forEach(cmd => {
+            console.log(cmd)
+            let option = {text: cmd['name'], value: cmd['name']}
+            cmd_options.push(option)
+        })
+        return cmd_options
+    }
+    let cmd_options = [
+    	{ text: "Istanbul", value: "istanbul" },
+        { text: "Seoul", value: "seoul", disabled: true }
+    ]
+    $: cmd_options = [...cmd_options, get_cmd_list(target_endpoint)]
+    let cmd = ""
+    $: console.log(cmd)
+
     // let schema = fetchSchema();
 
     // async function fetchSchema() {
