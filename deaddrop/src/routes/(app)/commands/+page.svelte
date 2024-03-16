@@ -48,7 +48,7 @@
         cmd_list.forEach(cmd => {
             console.log(cmd)
             let option = {text: cmd['name'], value: i}
-            cmd_options.push(option)
+            cmd_options = [...cmd_options, option]
             i++;
         })
         return cmd_options
@@ -78,7 +78,7 @@
     //     }
     // }
 
-    const schema = cmd_list[parseInt(cmd)]['argument_schema']
+    // const schema = cmd_list[parseInt(cmd)]['argument_schema']
     
     const initialData = {
         "message": "asdfasdf",
@@ -180,13 +180,13 @@
                 </div> 
 
                 <div class = "tab_content">
-                    {#await schema}
+                    <!-- {#await schema}
                         <p>Loading schema...</p>
                     {:then schema}
                         <SchemaForm schema={schema} data={initialData} disabled/>
                     {:catch error}
                         <div class="error">ERROR: {error.message}</div>
-                    {/await}
+                    {/await} -->
                 </div>
                 
                 <button> 
