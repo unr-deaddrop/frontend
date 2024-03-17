@@ -33,7 +33,7 @@
         console.log(JSON.stringify(json));
     }
 
-    export let data;
+
 </script>
 
 <div class = "container">
