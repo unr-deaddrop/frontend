@@ -11,9 +11,6 @@ export async function load({cookies, params}) {
         method: 'GET'
     });
     pagedata['task'] = await task.json();
-    
-    console.log(pagedata['task'])
-    
     return {pagedata};
 };
 
