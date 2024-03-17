@@ -1,5 +1,6 @@
 <script>
     import Pagination from '$lib/components/Pagination.svelte';
+    import LineChart from '$lib/components/LineChart.svelte';
     export let data
     let {logs} = data.pagedata
     
@@ -14,7 +15,7 @@
                     <span> Server-generated logs </span>
                 </div> 
                 <div class = "tab_content">
-                    <!--<LineChart data = {}/>-->
+                    <LineChart data = {logs}/>
                 </div>    
             </div>
         </div>

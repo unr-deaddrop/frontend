@@ -55,6 +55,9 @@ function endpnt_chart(endpnts) {
     return chart
 }
 
+//function netwrk_chart(endpoints){
+    
+//}
 
 function get_freq(arr){
     return Object.values(arr.reduce((freq, cur_val)=>{

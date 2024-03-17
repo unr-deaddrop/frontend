@@ -2,6 +2,10 @@
 // this is https://unr-deaddrop.github.io/prototype_frontend/log_detail.html
 // specific detail of an log
 export async function load({params}) {
+    
+};
+
+/*
     var data = {};
     data['id'] = params.id;
 
@@ -39,4 +43,4 @@ export async function load({params}) {
     data['task'] = (await task.json());
     data['task_result'] = (await task_result.json());
     return data;
-};
+*/
