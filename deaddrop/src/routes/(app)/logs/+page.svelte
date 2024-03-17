@@ -2,7 +2,7 @@
     import Pagination from '$lib/components/Pagination.svelte';
     export let data
     let {logs} = data.pagedata
-    
+    let log_blacklist = ['data']
 </script>
 
 <div class = "container">
@@ -37,7 +37,7 @@
                 <span> Logs</span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {logs}/>
+                <Pagination data = {logs} blacklist = {log_blacklist}/>
             </div>    
         </div>
     </div>

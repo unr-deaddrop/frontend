@@ -36,7 +36,7 @@
 </div>
 
 <style>
-    :global(body, header, div) {
+    :global(body, header, div) {  
         margin: 0;
         padding: 0;
         box-sizing: border-box;

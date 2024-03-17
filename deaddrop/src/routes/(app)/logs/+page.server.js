@@ -1,11 +1,6 @@
-import { page } from '$app/stores';
-import { idText } from 'typescript';
-import user from '../../login/user';
-import { get } from 'svelte/store';
-
 /** @type {import('./$types').PageServerLoad} */
-export async function load() {
-    const auth = get(user).token
+export async function load({cookies}) {
+    const auth = cookies.get('token')
     const pagedata = {}
 
     const logs = await fetch('http://backend:8000/backend/logs/', {
@@ -17,11 +12,11 @@ export async function load() {
     })
 
     pagedata['logs'] = await logs.json()
-    pagedata['agent_chart'] = make_chart('agent', pagedata['logs'])
-    pagedata['server_chart'] = make_chart('server', pagedata['logs'])
+    
     return {pagedata}
 }
 
+/*
 function make_chart(type, logs){
     const labels = [
     '1AM', '2AM', '3AM', '4AM', '5AM', '6AM',
