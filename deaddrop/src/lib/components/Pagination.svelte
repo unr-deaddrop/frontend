@@ -4,8 +4,9 @@
     import PaginationButtons from "./PaginationButtons.svelte";
     export let data
     export let blacklist = [""]
+    
     let headers =['']
-   
+
     if(data.length > 0){
         headers = Object.getOwnPropertyNames(data[0])
     }
@@ -79,7 +80,7 @@
     }
 
     .content {
-        height:150px;
+        height:300px;
         display: flex;
         flex-direction: column;
         border-top: 2px solid #4d4d4d;

@@ -55,7 +55,7 @@
                     <span> All tasks </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {tasks}/>
+                    <Pagination data = {[]}/>
                 </div>    
             </div>
         </div>

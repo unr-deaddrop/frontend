@@ -20,7 +20,6 @@
       <div class = "payloads">
         <h3> Payloads </h3>
         <SidebarButton href="/agents" text = "Agents" src="/bug.svg" alt="agents icon" />
-        <SidebarButton href="/protocols" text = "Protocols" src="/wifi.svg" alt="protocols icon" />
       </div>
       <div class = "operational">
         <h3> Operational </h3>
