@@ -3,7 +3,8 @@
     import Pagination from '$lib/components/Pagination.svelte';
 
     export let data;
-    
+    let{credentials} = data.pagedata
+
 </script>
 
     <div class = "container">
@@ -14,7 +15,7 @@
                     <span> Stored credentials </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {tasks}/>
+                    <Pagination data = {credentials}/>
                 </div>    
             </div>
         </div>

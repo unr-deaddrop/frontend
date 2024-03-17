@@ -1,7 +1,8 @@
 <script>
     import { tasks } from '$lib/components/data';
     import Pagination from '$lib/components/Pagination.svelte';
-
+    export let data
+    let{files} = data.pagedata
 </script>
 
     <div class = "container">
@@ -12,7 +13,7 @@
                     <span> Stored files </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {tasks}/>
+                    <Pagination data = {files}/>
                 </div>    
             </div>
         </div>
