@@ -8,12 +8,12 @@ export async function load({ params }) {
         }
     })
     cmd_list = await cmd_list.json()
-    console.log("43 cmd_list")
-    console.log(cmd_list)
+    // console.log("43 cmd_list")
+    // console.log(cmd_list)
     let cmd_options = []
     let i = 0
     cmd_list.forEach(cmd => {
-        console.log(cmd)
+        // console.log(cmd)
         let option = {text: cmd['name'], value: i}
         cmd_options = [...cmd_options, option]
         i++;
@@ -27,25 +27,29 @@ export async function load({ params }) {
 };
 
 export const actions = {
-    default: async ({ cookies, request }) => {
-      const form = await request.formData();
-      // validation here
-    //   console.log(form.json())
-      console.log(form)
-      let endpoint = form.get('endpoint');
-      const res = await fetch(`http://backend:8000/backend/endpoints/${endpoint}/execute_command/`, {
-        method: 'POST',
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+    default: async ({ params, request }) => {
+        let endpoint_id = params.endpoint; 
+        const form = await request.formData();
+        // validation here
+        //   console.log(form.json())
+        console.log('form', form)
+        console.log('args', typeof(form.get('args')), JSON.stringify(form.get('args')))
+        console.log('endpoint', endpoint_id)
+        let execute_form = {
             "cmd_name": form.get('command'),
             "cmd_args": form.get('args')
+        }
+        console.log('execute_form', execute_form)
+        const res = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/execute_command/`, {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(execute_form)
         })
-      })
         
-      const json = await res.json();
-      console.log("POST CMD", JSON.stringify(json));
+        const json = await res.json();
+        console.log("POST CMD", JSON.stringify(json));
     }
   };

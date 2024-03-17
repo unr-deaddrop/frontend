@@ -15,25 +15,24 @@
     let protocol_options = []
     let protocol = ""
 
-    $: console.log('52', cmd_options)
+    // $: console.log('52', cmd_options)
     let cmd = "0"
-    $: cmd_int = 0 || parseInt(cmd)
-    $: console.log('54', cmd, typeof(cmd), typeof(parseInt(cmd)))
-    $: console.log('list', cmd_list)
-    $: console.log('schema', cmd_list[cmd_int])
-    $: console.log('argument_schema', cmd_list[cmd_int]['argument_schema'])
+    $: cmd_int = parseInt(cmd)
+    // $: console.log('54', cmd, typeof(cmd), typeof(parseInt(cmd)))
+    // $: console.log('list', cmd_list)
+    // $: console.log('schema', cmd_list[cmd_int])
+    // $: console.log('argument_schema', cmd_list[cmd_int]['argument_schema'])
     
     $: schema = cmd_list[cmd_int]['argument_schema']
-    $: console.log('argument_schema2', schema)
+    // $: console.log('argument_schema2', schema)
     
-    const initialData = {
-        "message": "asdfasdf",
-        "ping_timestamp": "2024-03-14"
-    };
+    let initialData = {};
+    $: console.log('initialData', initialData)
+    $: jsonData = JSON.stringify(initialData)
 </script>
 
 <div class = "container">
-    <form class = "upper_body"> 
+    <form class="upper_body" method="POST"> 
         <div class = "left">
 
             <h2> Issue Command </h2>
@@ -103,13 +102,14 @@
                     {#await schema}
                         <p>Loading schema...</p>
                     {:then schema}
-                        <SchemaForm schema={schema} data={initialData}/>
+                        <SchemaForm id="arguments" schema={schema} bind:data={(initialData)}/>
                     {:catch error}
                         <div class="error">ERROR: {error.message}</div>
                     {/await}
                 </div>
+                <input type="hidden" name="args" value={jsonData} />
                 
-                <button> 
+                <button type="submit"> 
                     Export Commands 
                 </button>  
             </div>
