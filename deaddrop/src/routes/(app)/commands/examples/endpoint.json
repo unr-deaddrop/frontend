@@ -1,0 +1,220 @@
+[
+    {
+        "name": "download",
+        "description": "Generic command to download a single file.\n\nThis command accepts a single argument, the file to download.\n\nTake care when opening large files; the entire file is read into memory and\nthen converted to base64! Very inefficient. It is up to the user to fragment\nthe file ahead of time manually if necessary. A protocol may also perform\nfragmentation if supported.\n\nThe path is resolved before the file is opened.",
+        "version": "0.0.1",
+        "has_renderer": false,
+        "argument_schema": {
+            "description": "Simple helper class used for holding arguments.",
+            "properties": {
+                "filepath": {
+                    "description": "The path to the file to download.",
+                    "format": "path",
+                    "title": "Filepath",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filepath"
+            ],
+            "title": "DownloadArguments",
+            "type": "object"
+        },
+        "result_schema": {
+            "description": "Model representing the results of the download command.",
+            "properties": {
+                "data": {
+                    "description": "The contents of the file.",
+                    "title": "Data",
+                    "format": "binary",
+                    "type": "null"
+                },
+                "success": {
+                    "description": "Whether the file could be opened and read.",
+                    "title": "Success",
+                    "type": "boolean"
+                },
+                "error": {
+                    "description": "If unsuccessful, the OSError.",
+                    "title": "Error",
+                    "type": "null"
+                },
+                "resolved_path": {
+                    "description": "The absolute, resolved path of the file.",
+                    "title": "Resolved Path",
+                    "format": "path",
+                    "type": "null"
+                },
+                "stat": {
+                    "description": "Additional file information obtained from os.stat().",
+                    "title": "Stat",
+                    "type": "null"
+                }
+            },
+            "required": [
+                "data",
+                "success",
+                "error",
+                "resolved_path",
+                "stat"
+            ],
+            "title": "DownloadResult",
+            "type": "object"
+        }
+    },
+    {
+        "name": "shell",
+        "description": "Generic command to execute arbitrary shell commands.\n\nShell accepts three arguments:\n- The command to execute\n- Whether to use a shell as the execution environment (i.e. shell=True)\n- The timeout for the command\n\nThe structure of the payload is as follows:\n```json\n{\n    // Whether or not subprocess.run() completed without raising an\n    // exception. For example, attempting to execute a binary that does\n    // not exist when shell=False will raise FileNotFoundError.\n    \"success\": bool,\n    // The exception raised if success=False. Empty string if no exception\n    // was raised.\n    \"exception\": str,\n    // The stdout of the command. Empty string if an exception was raised.\n    \"stdout\": str,\n    // The stderr of the command. Empty string if an exception was raised.\n    \"stderr\": str,\n    // The return code. -1 if an exception was raised.\n    \"returncode\": int,\n    // Whether or not shell=True was used.\n    \"shell\": bool,\n    // The start and end time of the command.\n    \"start_time\": float\n    \"finish_time\": float\n}\n```",
+        "version": "0.0.1",
+        "has_renderer": false,
+        "argument_schema": {
+            "description": "Simple helper class used for holding arguments.",
+            "properties": {
+                "command": {
+                    "description": "The command to execute.",
+                    "title": "Command",
+                    "type": "string"
+                },
+                "use_shell": {
+                    "description": "Whether to use `shell=True`. If True, this does not use `shlex.split()`.",
+                    "title": "Use Shell",
+                    "type": "boolean"
+                },
+                "timeout": {
+                    "default": null,
+                    "description": "The timeout for the command; returns an empty result on failure.",
+                    "title": "Timeout",
+                    "type": "null"
+                }
+            },
+            "required": [
+                "command",
+                "use_shell"
+            ],
+            "title": "ShellArguments",
+            "type": "object"
+        },
+        "result_schema": {
+            "description": "Model representing the results of the shell command.",
+            "properties": {
+                "success": {
+                    "description": "Whether or not the command executed without exception. For example, executing binaries that do not exist when shell=False will raise FileNotFoundError, and this will be set to False.",
+                    "title": "Success",
+                    "type": "boolean"
+                },
+                "exception": {
+                    "description": "If success=False, the exception raised.",
+                    "title": "Exception",
+                    "type": "null"
+                },
+                "stdout": {
+                    "description": "The stdout of the command if no exception was raised.",
+                    "title": "Stdout",
+                    "type": "null"
+                },
+                "stderr": {
+                    "description": "The stderr of the command if no exception was raised.",
+                    "title": "Stderr",
+                    "type": "null"
+                },
+                "returncode": {
+                    "description": "The return code if no exception was raised.",
+                    "title": "Returncode",
+                    "type": "null"
+                },
+                "shell": {
+                    "description": "Whether or not shell=True was used.",
+                    "title": "Shell",
+                    "type": "boolean"
+                },
+                "start_time": {
+                    "description": "When the command was invoked.",
+                    "format": "date-time",
+                    "title": "Start Time",
+                    "type": "string"
+                },
+                "finish_time": {
+                    "description": "When the command finished (even on exception).",
+                    "format": "date-time",
+                    "title": "Finish Time",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "success",
+                "exception",
+                "stdout",
+                "stderr",
+                "returncode",
+                "shell",
+                "start_time",
+                "finish_time"
+            ],
+            "title": "ShellResult",
+            "type": "object"
+        }
+    },
+    {
+        "name": "ping",
+        "description": "Simple test command used to evaluate connectivity.\n\nPing accepts two optional arguments:\n- A delay before sending the response, in seconds (0 by default)\n- A message to return with the response (nothing by default)\n\nThe structure of the payload is as follows:\n```json\n{\n    // The time at which the ping was issued.\n    \"ping_timestamp\": 000000000\n    // The time at which the ping was received.\n    \"pong_timestamp\": 000000000\n    // The optional message included with the original ping.\n    \"message\": str\n}\n```",
+        "version": "0.0.1",
+        "has_renderer": false,
+        "argument_schema": {
+            "description": "Simple helper class used for holding arguments.\n\nAlthough PingArgumentParser will guarantee that our dictionary has the\nsame keys in the right format as our attributes below, using a Pydantic\nmodel adds an extra layer of safety in case something *does* go wrong\nsomewhere.",
+            "properties": {
+                "message": {
+                    "default": "",
+                    "description": "Extra message to include in the ping response.",
+                    "title": "Message",
+                    "type": "string"
+                },
+                "delay": {
+                    "default": 0,
+                    "description": "The number of seconds to delay the reponse for.",
+                    "title": "Delay",
+                    "type": "number"
+                },
+                "ping_timestamp": {
+                    "description": "The reference timestamp for the ping request.",
+                    "format": "date-time",
+                    "title": "Ping Timestamp",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ping_timestamp"
+            ],
+            "title": "PingArguments",
+            "type": "object"
+        },
+        "result_schema": {
+            "description": "Model representing the results of the ping command.",
+            "properties": {
+                "ping_timestamp": {
+                    "description": "The time at which the ping was issued.",
+                    "format": "date-time",
+                    "title": "Ping Timestamp",
+                    "type": "string"
+                },
+                "pong_timestamp": {
+                    "description": "The time at which the ping was received.",
+                    "format": "date-time",
+                    "title": "Pong Timestamp",
+                    "type": "string"
+                },
+                "message": {
+                    "default": null,
+                    "description": "The optional message included with the original ping.",
+                    "title": "Message",
+                    "type": "null"
+                }
+            },
+            "required": [
+                "ping_timestamp",
+                "pong_timestamp"
+            ],
+            "title": "PingResult",
+            "type": "object"
+        }
+    }
+]

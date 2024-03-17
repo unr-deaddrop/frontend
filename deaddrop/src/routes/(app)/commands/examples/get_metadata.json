@@ -1,0 +1,281 @@
+{
+    "name": "matsumoto",
+    "description": "Pygin is the reference implementation of a DeadDrop agent.\n\nAlthough written in Python and therefore generally platform-agnostic,\nthis depends on Redis as its Celery broker and database. In general,\nthis is only available on Linux.",
+    "version": "0.2.10",
+    "author": "lgactna",
+    "source": "https://github.com/unr-deaddrop/pygin/",
+    "operating_systems": [
+        "linux"
+    ],
+    "protocols": [
+        "dddb_local",
+        "dddb_youtube",
+        "plaintext_local"
+    ],
+    "config": {
+        "description": "Agent-wide configuration definitions. Includes both non-sensitive and\nsensitive configurations set at runtime.\n\nSee agent.cfg for more details.",
+        "properties": {
+            "AGENT_ID": {
+                "description": "The agent's UUID.",
+                "format": "uuid",
+                "title": "Agent Id",
+                "type": "string",
+                "default": "09295907-363a-46b5-990e-08d48fcd9c74",
+                "readonly": true
+            },
+            "CONTROL_UNIT_THROTTLE_TIME": {
+                "default": 2,
+                "description": "The time, in seconds, the control unit should sleep on each cycle.",
+                "title": "Control Unit Throttle Time",
+                "type": "number"
+            },
+            "SERVER_PUBLIC_KEY": {
+                "description": "The server's public key as base64.",
+                "title": "Server Public Key",
+                "default": "",
+                "readonly": true,
+                "format": "binary",
+                "type": "null"
+            },
+            "INCOMING_PROTOCOLS": {
+                "description": "A list of supported agent names for which periodic listener tasks should be scheduled.",
+                "items": {
+                    "type": "string"
+                },
+                "title": "Incoming Protocols",
+                "type": "array"
+            },
+            "HEARTBEAT_PROTOCOL": {
+                "description": "The protocol used to send heartbeats.",
+                "title": "Heartbeat Protocol",
+                "type": "string"
+            },
+            "LOGGING_PROTOCOL": {
+                "description": "The protocol used to send log bundles.",
+                "title": "Logging Protocol",
+                "type": "string"
+            },
+            "SENDING_PROTOCOL": {
+                "description": "The protocol used to send all other messages.",
+                "title": "Sending Protocol",
+                "type": "string"
+            },
+            "LOGGING_INTERVAL": {
+                "description": "The frequency, in seconds, with which log bundles should be conditionally sent.",
+                "title": "Logging Interval",
+                "type": "integer"
+            },
+            "HEARTBEAT_INTERVAL": {
+                "description": "The frequency, in seconds, with which heartbeats should be conditionally sent.",
+                "title": "Heartbeat Interval",
+                "type": "integer"
+            },
+            "REDIS_MESSAGES_SEEN_KEY": {
+                "description": "The key used by the message dispatch unit to drop duplicate messages.",
+                "title": "Redis Messages Seen Key",
+                "type": "string"
+            },
+            "REDIS_NEW_MESSAGES_KEY": {
+                "description": "The key used by the control unit to discover completed message tasking.",
+                "title": "Redis New Messages Key",
+                "type": "string"
+            },
+            "REDIS_MAIN_PROCESS_MESSAGES_SEEN_KEY": {
+                "description": "The key used by the control unit to drop duplicated messages.",
+                "title": "Redis Main Process Messages Seen Key",
+                "type": "string"
+            },
+            "RESULT_RETRIEVAL_REATTEMPT_LIMIT": {
+                "description": "The number of times a Celery task may be observed to be pending before dropped.",
+                "title": "Result Retrieval Reattempt Limit",
+                "type": "integer"
+            },
+            "INCOMING_ENCODED_MESSAGE_DIR": {
+                "description": "The directory used to store incoming messages before decoding.",
+                "format": "path",
+                "title": "Incoming Encoded Message Dir",
+                "type": "string"
+            },
+            "INCOMING_DECODED_MESSAGE_DIR": {
+                "description": "The directory used to store incoming messages after decoding.",
+                "format": "path",
+                "title": "Incoming Decoded Message Dir",
+                "type": "string"
+            },
+            "OUTGOING_DECODED_MESSAGE_DIR": {
+                "description": "The directory used to store outgoing messages before encoding.",
+                "format": "path",
+                "title": "Outgoing Decoded Message Dir",
+                "type": "string"
+            },
+            "OUTGOING_ENCODED_MESSAGE_DIR": {
+                "description": "The directory used to store outgoing messages after encoding.",
+                "format": "path",
+                "title": "Outgoing Encoded Message Dir",
+                "type": "string"
+            }
+        },
+        "required": [
+            "AGENT_ID",
+            "SERVER_PUBLIC_KEY",
+            "INCOMING_PROTOCOLS",
+            "HEARTBEAT_PROTOCOL",
+            "LOGGING_PROTOCOL",
+            "SENDING_PROTOCOL",
+            "LOGGING_INTERVAL",
+            "HEARTBEAT_INTERVAL",
+            "REDIS_MESSAGES_SEEN_KEY",
+            "REDIS_NEW_MESSAGES_KEY",
+            "REDIS_MAIN_PROCESS_MESSAGES_SEEN_KEY",
+            "RESULT_RETRIEVAL_REATTEMPT_LIMIT",
+            "INCOMING_ENCODED_MESSAGE_DIR",
+            "INCOMING_DECODED_MESSAGE_DIR",
+            "OUTGOING_DECODED_MESSAGE_DIR",
+            "OUTGOING_ENCODED_MESSAGE_DIR"
+        ],
+        "title": "PyginConfig",
+        "type": "object"
+    },
+    "protocol_config": [
+        {
+            "name": "plaintext_local",
+            "description": "Plaintext implementation of the DeadDrop standard messaging system.\n\nThis is similar in function to dddb_local, but entirely operates on plaintext\nJSON documents stored as files. It avoids the dependency hell of dddb and helps\nsimplify testing and debugging. The remainder of the description is identical\nto dddb_local.\n\nThis leverages the local filesystem to \"send\" and \"receive\" videos, such that\nthe server and the agent have agreed on folders for incoming and outgoing\nmessages in advance.\n\nWhile this does not use an external protocol as intended by the framework,\nthis demonstrates a proof-of-concept that avoids depending on an external\nservice outside of our control.\n\nNote that this protocol is extremely simple with respect to error handling\nand local storage space; it makes no attempt at filtering out messages that\nhave already been read, and simply returns all available messages. It is up\nto higher-level code to filter out messages that have already been seen.\n\nThat is to say, this protocol does not keep track of the most recently viewed\nmessage.",
+            "version": "0.0.1",
+            "config": {
+                "description": "Model detailing available configuration options for plaintext_local.",
+                "properties": {
+                    "PLAINTEXT_LOCAL_CHECKIN_FREQUENCY": {
+                        "description": "The frequency with which to check for new messages.",
+                        "title": "Plaintext Local Checkin Frequency",
+                        "type": "integer"
+                    },
+                    "PLAINTEXT_LOCAL_INBOX_DIR": {
+                        "description": "The location to expect incoming messages in.",
+                        "format": "path",
+                        "title": "Plaintext Local Inbox Dir",
+                        "type": "string"
+                    },
+                    "PLAINTEXT_LOCAL_OUTBOX_DIR": {
+                        "description": "The location to send outgoing messages to.",
+                        "format": "path",
+                        "title": "Plaintext Local Outbox Dir",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "PLAINTEXT_LOCAL_CHECKIN_FREQUENCY",
+                    "PLAINTEXT_LOCAL_INBOX_DIR",
+                    "PLAINTEXT_LOCAL_OUTBOX_DIR"
+                ],
+                "title": "PlaintextLocalConfig",
+                "type": "object"
+            }
+        },
+        {
+            "name": "plaintext_tcp",
+            "description": "Plaintext implementation of the DeadDrop standard messaging system, similar\nto plaintext_local, but over TCP sockets.\n\nLike plaintext_local, it does not leverage an external service and has minimal\nerror handling. It is as reliable as TCP itself is, and no more. It is intended\nfor local testing when the filesystem cannot be used to \"send\" messages.\n\nTo receive messages, this protocol listens over the specified port and accepts\nall incoming connections. It assumes that the only message sent is a valid\nplaintext DeadDrop JSON message, then immediately closes the connection.\n\nBecause of how the agent is set up, the listener times out at regular intervals\nand returns all *valid* messages received during that time period.\n\nSending messages is a little more complicated.\n\nPygin's architecture was not really built to support sustained connections,\neven though those are certainly much more efficient and normal than our\n\"dead drops\". The net result is that we have to make a bunch of workarounds\nto make sure Pygin reliably works with TCP.\n\nThe main challenge is networking; when running directly on a host (or when\nrunning in a container with host networking), it's fairly safe to assume\nthat we can listen on localhost and take over ports. However, networking\nchanges when we use Docker and try to forward TCP ports out; you now\nneed to bind to 0.0.0.0 to allow Docker to correctly forward ports, so\nbinding to localhost no longer works.\n\nThe impact of this is that it's no longer possible for us to just repeatedly\nsend messages to localhost:8080 until the server starts listening for them;\nnot only do we not know where the server is, we can't even connect to it\nunless it's either in the same container environment as us or we do a lot\nof set up to get this to work.\n\nSo the solution is to allow Pygin to instantiate connections when it holds\nthat we can use localhost to connect to the server, and set up listeners\ninstead when this does not hold and the server must directly connect to the\nagent. The server should track of the agent's IP address, so it makes a little\nmore sense for the burden to be on the server in this case.",
+            "version": "0.0.1",
+            "config": {
+                "description": "Model detailing available configuration options for plaintext_tcp.",
+                "properties": {
+                    "PLAINTEXT_TCP_CHECKIN_FREQUENCY": {
+                        "default": 10,
+                        "description": "The frequency with which to start the TCP listener.",
+                        "title": "Plaintext Tcp Checkin Frequency",
+                        "type": "integer"
+                    },
+                    "PLAINTEXT_TCP_LISTEN_TIMEOUT": {
+                        "default": 8,
+                        "description": "The timeout duration of a single listener.",
+                        "title": "Plaintext Tcp Listen Timeout",
+                        "type": "integer"
+                    },
+                    "PLAINTEXT_TCP_LISTEN_BIND_HOST": {
+                        "default": "0.0.0.0",
+                        "description": "The host to bind to when setting up any listener.",
+                        "title": "Plaintext Tcp Listen Bind Host",
+                        "type": "string"
+                    },
+                    "PLAINTEXT_TCP_LISTEN_RECV_PORT": {
+                        "default": 12345,
+                        "description": "The port to bind to when receiving messages.",
+                        "title": "Plaintext Tcp Listen Recv Port",
+                        "type": "integer"
+                    },
+                    "PLAINTEXT_TCP_LISTEN_SEND_PORT": {
+                        "default": 12346,
+                        "description": "The port to bind to when sending messages via a listener.",
+                        "title": "Plaintext Tcp Listen Send Port",
+                        "type": "integer"
+                    },
+                    "PLAINTEXT_TCP_INITIATE_RECV_HOST": {
+                        "default": "localhost",
+                        "description": "When receiving messages by initiating a connection, the host to connect to.",
+                        "title": "Plaintext Tcp Initiate Recv Host",
+                        "type": "string"
+                    },
+                    "PLAINTEXT_TCP_INITIATE_RECV_PORT": {
+                        "default": 12346,
+                        "description": "When receiving messages by initiating a connection, the port to connect to.",
+                        "title": "Plaintext Tcp Initiate Recv Port",
+                        "type": "integer"
+                    },
+                    "PLAINTEXT_TCP_USE_LISTENER_TO_SEND": {
+                        "default": true,
+                        "description": "Whether to send messages via a listener.",
+                        "title": "Plaintext Tcp Use Listener To Send",
+                        "type": "boolean"
+                    },
+                    "PLAINTEXT_TCP_INITIATE_SEND_HOST": {
+                        "default": "localhost",
+                        "description": "The target host when sending messages by initiating connections.",
+                        "title": "Plaintext Tcp Initiate Send Host",
+                        "type": "string"
+                    },
+                    "PLAINTEXT_TCP_INITIATE_SEND_PORT": {
+                        "default": 12346,
+                        "description": "The target port when sending messages by initiating connections.",
+                        "title": "Plaintext Tcp Initiate Send Port",
+                        "type": "integer"
+                    }
+                },
+                "title": "PlaintextTCPConfig",
+                "type": "object"
+            }
+        },
+        {
+            "name": "dddb_local",
+            "description": "Local implementation of the dddb protocol.\n\nThis leverages the local filesystem to \"send\" and \"receive\" videos, such that\nthe server and the agent have agreed on folders for incoming and outgoing\nmessages in advance.\n\nWhile this does not use an external protocol as intended by the framework,\nthis demonstrates a proof-of-concept that avoids depending on an external\nservice outside of our control.\n\nNote that this protocol is extremely simple with respect to error handling\nand local storage space; it makes no attempt at filtering out messages that\nhave already been read, and simply returns all available messages. It is up\nto higher-level code to filter out messages that have already been seen.\n\nThat is to say, this protocol does not keep track of the most recently viewed\nmessage.",
+            "version": "0.0.1",
+            "config": {
+                "description": "Model detailing available configuration options for dddb_local.",
+                "properties": {
+                    "DDDB_LOCAL_CHECKIN_FREQUENCY": {
+                        "description": "The frequency with which to check for new messages.",
+                        "title": "Dddb Local Checkin Frequency",
+                        "type": "integer"
+                    },
+                    "DDDB_LOCAL_INBOX_DIR": {
+                        "description": "The location to expect incoming messages in.",
+                        "format": "path",
+                        "title": "Dddb Local Inbox Dir",
+                        "type": "string"
+                    },
+                    "DDDB_LOCAL_OUTBOX_DIR": {
+                        "description": "The location to send outgoing messages to.",
+                        "format": "path",
+                        "title": "Dddb Local Outbox Dir",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "DDDB_LOCAL_CHECKIN_FREQUENCY",
+                    "DDDB_LOCAL_INBOX_DIR",
+                    "DDDB_LOCAL_OUTBOX_DIR"
+                ],
+                "title": "dddbLocalConfig",
+                "type": "object"
+            }
+        }
+    ]
+}
