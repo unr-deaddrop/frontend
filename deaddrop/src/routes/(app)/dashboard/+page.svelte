@@ -3,7 +3,7 @@
     import { comms_data, } from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
     import PieChart from '$lib/components/PieChart.svelte';
-    import Pagination from '$lib/components/Pagination.svelte';
+    import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
     
     let {tasks, endpt_chart} = data.pagedata
@@ -117,7 +117,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {tasks} blacklist ={tasks_blacklist}/>
+                <PaginationDetail data = {tasks} blacklist ={tasks_blacklist} detail = "tasks"/>
 
             </div>    
         

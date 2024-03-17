@@ -1,7 +1,31 @@
-/** @type {import('./$types').PageLoad} */
+/** @type {import('./$types').PageServerLoad} */
+export async function load({cookies, params}) {
+    const auth = cookies.get('token')
+    
+    let pagedata = {}
+    
+    const task = await fetch(`http://backend:8000/backend/taskresults/${params.id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
+        },
+        method: 'GET'
+    });
+    pagedata['task'] = await task.json();
+    
+    console.log(pagedata['task'])
+    
+    return {pagedata};
+};
+
+/*
 // this is https://unr-deaddrop.github.io/prototype_frontend/task_detail.html
 // specific detail of an task
 export async function load({params}) {
+    
+};
+
+
     var data = {};
     data['id'] = params.id;
 
@@ -61,4 +85,4 @@ export async function load({params}) {
     // });
     // data['associated_logs'] = await logs.json(); // where to get
     return data;
-};
+*/
