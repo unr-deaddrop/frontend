@@ -1,7 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies, params}) {
     const auth = cookies.get('token')
-    
     let pagedata = {}
     
     const task = await fetch(`http://backend:8000/backend/taskresults/${params.id}`, {
