@@ -12,6 +12,7 @@
     export let placeholder = undefined;
     export let readonly = undefined;
     export let required = undefined;
+    export let showRealValue = undefined;
     export let value = "";
   
     export let filter = (text) => {
@@ -207,6 +208,7 @@
         {name}
         type="text"
         {disabled}
+        value={showRealValue ? value : ""}
         autocapitalize="none"
         autocomplete="off"
         {readonly}

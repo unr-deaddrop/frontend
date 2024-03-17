@@ -6,109 +6,30 @@
     import SchemaForm from "svelte-jsonschema-form";
 
     export let data;
-    let {endpoint_list} = data;
+    let {endpoint_id, cmd_list, cmd_options} = data;
 
     let endpoint_options = [
-    	{ text: "Istanbul", value: "istanbul" },
-        { text: "Seoul", value: "seoul", disabled: true },
+        { text: endpoint_id, value: endpoint_id, disabled: true },
   	]
-    endpoint_list.forEach(endpoint => {
-        console.log(endpoint)
-        let option = {text: endpoint['id'], value: endpoint['id']}
-        endpoint_options.push(option)
-    })
-    let target_endpoint = "00000000-0000-0000-0000-000000000000"
-    $: console.log(target_endpoint)
 
     let protocol_options = []
     let protocol = ""
 
-    let cmd_list = []
-    async function get_cmd_list(endpoint_id) {
-        cmd_list = await fetch(`http://backend.localhost/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
-            method: 'GET',
-            headers: {
-              "Content-Type": "application/json",
-            }
-        })
-        cmd_list = await cmd_list.json()
-        console.log("43 cmd_list")
-        console.log(cmd_list)
-        let cmd_options = []
-        let i = 0
-        cmd_list.forEach(cmd => {
-            console.log(cmd)
-            let option = {text: cmd['name'], value: i}
-            cmd_options = [...cmd_options, option]
-            i++;
-        })
-        console.log('cmd_options')
-        console.log(cmd_options)
-        return cmd_options
-    }
-    let cmd_options = [
-    	{ text: "Istanbul", value: "istanbul" },
-        { text: "Seoul", value: "seoul", disabled: true }
-    ]
-    let cmds_available = get_cmd_list(target_endpoint)
-    $: cmd_options = [...cmd_options, cmds_available]
-    console.log('52')
     $: console.log('52', cmd_options)
-    let cmd = ""
-    console.log('54')
-    $: console.log('54', cmd)
-
-    // let schema = fetchSchema();
-
-    // async function fetchSchema() {
-    //     let id = '00000000-0000-0000-0000-000000000000'; // this will change dynamically
-    //     const res = await fetch(`http://backend:8000/backend/endpoints/${id}/get_command_metadata/`, {
-    //         method: 'GET',
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     });
-    //     if (res.ok) {
-    //         return await res.json();
-    //     } else {
-    //         throw new Error(await res.text());
-    //     }
-    // }
-
-    // const schema = cmd_list[parseInt(cmd)]['argument_schema']
+    let cmd = "0"
+    $: cmd_int = 0 || parseInt(cmd)
+    $: console.log('54', cmd, typeof(cmd), typeof(parseInt(cmd)))
+    $: console.log('list', cmd_list)
+    $: console.log('schema', cmd_list[cmd_int])
+    $: console.log('argument_schema', cmd_list[cmd_int]['argument_schema'])
+    
+    $: schema = cmd_list[cmd_int]['argument_schema']
+    $: console.log('argument_schema2', schema)
     
     const initialData = {
         "message": "asdfasdf",
-        "ping_timestamp": "2024-03-14"};
-
-    
-    async function sendCommand(){
-        var currentDateTime = new Date().toISOString();
-        let body = {
-                "target_endpoint": target_endpoint,
-                "protocol": protocol,
-                "cmd": cmd
-            }
-        let task_form = {
-            "start_time": currentDateTime,
-            "end_time": null,
-            "in_progress": false,
-            "data": body,
-            "user": null,
-            "endpoint": null
-        }
-        const res = await fetch('http://backend:8000/backend/tasks/', {
-            method: 'POST',
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(task_form)
-        });
-        
-        const json = await res.json();
-        console.log(JSON.stringify(json));
-    }
+        "ping_timestamp": "2024-03-14"
+    };
 </script>
 
 <div class = "container">
@@ -126,8 +47,10 @@
                             <Context>   
                                 <div class="stack">
                                 <ComboBox 
-                                    id="endpoint" 
-                                    bind:value={target_endpoint}
+                                    disabled
+                                    id="endpoint"
+                                    showRealValue=true
+                                    bind:value={endpoint_id}
                                     label="Endpoint"
                                     name="endpoint"
                                     placeholder="Endpoint"
@@ -177,13 +100,13 @@
                 </div> 
 
                 <div class = "tab_content">
-                    <!-- {#await schema}
+                    {#await schema}
                         <p>Loading schema...</p>
                     {:then schema}
                         <SchemaForm schema={schema} data={initialData}/>
                     {:catch error}
                         <div class="error">ERROR: {error.message}</div>
-                    {/await} -->
+                    {/await}
                 </div>
                 
                 <button> 
