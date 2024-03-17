@@ -37,7 +37,7 @@ export const actions = {
         console.log('endpoint', endpoint_id)
         let execute_form = {
             "cmd_name": form.get('command'),
-            "cmd_args": form.get('args')
+            "cmd_args": JSON.parse(form.get('args'))
         }
         console.log('execute_form', execute_form)
         const res = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/execute_command/`, {
