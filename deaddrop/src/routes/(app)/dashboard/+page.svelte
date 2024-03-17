@@ -5,8 +5,9 @@
     import PieChart from '$lib/components/PieChart.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
     export let data
-    let {tasks, endpt_chart} = data.pagedata
     
+    let {tasks, endpt_chart} = data.pagedata
+    const tasks_blacklist = ['task_id', 'periodic_task_name', 'task_name', 'task_args', 'task_kwargs', 'worker', 'content_type', 'content_encoding', 'result', 'traceback', 'meta', 'task_creator']
     
     async function handleLink(link){
         await goto(link)
@@ -17,7 +18,7 @@
     <div class= "upper_body">
 
         <div class = "left"> 
-            <h2> Dashboard </h2>
+            <h2> Dashboard</h2>
 
             <div class = "tab_body"> 
                 <div class = "tab_head">
@@ -116,7 +117,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {tasks}/>
+                <Pagination data = {tasks} blacklist ={tasks_blacklist}/>
 
             </div>    
         

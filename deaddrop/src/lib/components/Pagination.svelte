@@ -2,11 +2,14 @@
     import SearchBar from "./SearchBar.svelte";
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte";
-    export let data;
-    let headers 
+    export let data
+    export let blacklist = [""]
+    let headers =['']
+   
     if(data.length > 0){
         headers = Object.getOwnPropertyNames(data[0])
     }
+    headers = headers.filter(item=> !blacklist.includes(item.toString()))
     
 </script>
 
