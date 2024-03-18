@@ -1,9 +1,9 @@
 <script>
-    import { tasks } from '$lib/components/data';
     import Dropdown from "$lib/components/Dropdown.svelte";
-    import Pagination from "$lib/components/Pagination.svelte";
-    
-    
+    import PaginationDetail from '$lib/components/PaginationDetail.svelte';
+    export let data
+    let {tasks} = data.pagedata
+    const tasks_blacklist = ['task_id', 'periodic_task_name', 'task_name', 'task_args', 'task_kwargs', 'worker', 'content_type', 'content_encoding', 'result', 'traceback', 'meta', 'task_creator']
 </script>
 
     <div class = "container">
@@ -55,7 +55,7 @@
                     <span> All tasks </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {[]}/>
+                    <PaginationDetail data = {tasks} blacklist ={tasks_blacklist} detail = "tasks"/>
                 </div>    
             </div>
         </div>

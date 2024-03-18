@@ -50,7 +50,7 @@
                     <span> Task Results </span>
                 </div> 
                 <div class = "tab_content">
-                    {task.result}
+                    {JSON.stringify(task_detail, null, 2)}
                 </div>    
             </div>    
         </div>
