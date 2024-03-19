@@ -1,15 +1,25 @@
-<script>
+<script src=https://cdn.jsdelivr.net/npm/pretty-print-json@2.1/dist/pretty-print-json.min.js>
+    import Pagination from '$lib/components/Pagination.svelte'
+    import { prettyPrintJson } from 'pretty-print-json'
+    import { onMount } from 'svelte'
     export let data
     let {task} = data.pagedata
     let task_detail = []
     task_detail[0] = task
-    import Pagination from '$lib/components/Pagination.svelte';
+    let prettyPrintedTask = ''
 
+    onMount(() => {
+        const elem = document.getElementById('results');
+        prettyPrintedTask = prettyPrintJson.toHtml(JSON.parse(task.result))
+        elem.innerHTML = prettyPrintedTask;
+    });
 </script>
+    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@2.1/dist/css/pretty-print-json.css>
+    
 
     <div class ="container"> 
-        <div class = "segment" style = "flex: .5">
-            <div class = "tab_body"> 
+        <div class = "segment">
+            <div class = "tab_body" style = "flex: .25"> 
                 <div class = "tab_head">
                     <span> Overview </span>
                 </div> 
@@ -50,18 +60,7 @@
                     <span> Task Results </span>
                 </div> 
                 <div class = "tab_content">
-                    {JSON.stringify(task_detail, null, 2)}
-                </div>    
-            </div>    
-        </div>
-
-        <div class = "segment">
-            <div class = "tab_body"> 
-                <div class = "tab_head">
-                    <span> Associated Logs? </span>
-                </div> 
-                <div class = "tab_content">
-                    <Pagination data = {[]}/>
+                    <pre id ="results" class =json-container></pre>
                 </div>    
             </div>    
         </div>
@@ -73,7 +72,7 @@
     .container {
 		display: flex;
 		flex-direction: column;
-		height: 175vh; 
+		height: 100vh; 
 	}
 
     .segment {
@@ -98,4 +97,20 @@
         margin-left: 5px;
     }
 
+    .tab_body{
+        overflow-x: auto;
+        overflow-y:auto;
+        max-height: 50vh
+    }
+    
+    .tab_content{
+        overflow-x: auto;
+        overflow-y:auto
+    }
+    
+    .tab_head {
+    width: 100%;
+    
+    }
+  
 </style>
