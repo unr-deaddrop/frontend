@@ -2,7 +2,7 @@
     import Dropdown from "$lib/components/Dropdown.svelte";
     import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
-    let {tasks} = data.pagedata
+    let {tasks, task_stats} = data.pagedata
     const tasks_blacklist = ['task_id', 'periodic_task_name', 'task_name', 'task_args', 'task_kwargs', 'worker', 'content_type', 'content_encoding', 'result', 'traceback', 'meta', 'task_creator']
 </script>
 
@@ -13,28 +13,28 @@
                 <div class ="task_tab">
                     <div class = "task_content">
                         <span style = "color: #a60707"> Running Tasks </span>
-                        <span style = "color:black"> 13 </span>
+                        <span style = "color:black"> {task_stats.running} </span>
                     </div>
                     <img src ="favicon.png" alt ="placeholder">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">
                         <span> Open Callbacks </span>
-                        <span style = "color:black"> 12 </span>
+                        <span style = "color:black"> {task_stats.callbacks} </span>
                     </div>
                     <img src ="favicon.png" alt ="placeholder">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">
                         <span> Total Tasks </span>
-                        <span style = "color:black"> 111 </span>
+                        <span style = "color:black"> {task_stats.total} </span>
                     </div>
                     <img src ="favicon.png" alt ="placeholder">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">
                         <span> Completed Tasks </span>
-                        <span style = "color:black"> 85 </span>
+                        <span style = "color:black"> {task_stats.completed} </span>
                     </div>
                     <img src ="favicon.png" alt ="placeholder">
                 </div>

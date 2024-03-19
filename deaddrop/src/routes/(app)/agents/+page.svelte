@@ -3,7 +3,7 @@
     import ActionButton from '$lib/components/ActionButton.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
     export let data
-    let {agents} = data.pagedata
+    let {agents, endpnt_chart} = data.pagedata
     
 </script>
 
@@ -18,7 +18,7 @@
                     </div> 
                     <div class = "tab_content">
                         <div class = "chart_container">
-                            <!--<PieChart data = {}/>-->
+                            <PieChart data = {endpnt_chart}/>
                         </div>
                     </div>    
                 </div>

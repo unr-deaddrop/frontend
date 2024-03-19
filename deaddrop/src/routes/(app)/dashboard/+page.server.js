@@ -13,53 +13,20 @@ export async function load({cookies}) {
             "Authorization": "Token " + auth
         },
     })
+
     
-    const endpoints = await fetch('http://backend:8000/backend/endpoints/', {
-        method: 'GET',
+   const endpnt_stats = await fetch('http://backend:8000/backend/messages/get_endpoint_stats',{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
         },
-    })
-
+   })
+    
     pagedata['tasks'] = await tasks.json()
-    ///pagedata['endpoints'] = await endpoints.json()
-    //pagedata['endpt_chart'] = endpnt_chart(pagedata['endpoints'])
-
+    
     return {pagedata};
 };
 
-function endpnt_chart(endpnts) {
-    let names = []
-    let endpt_freq = []
-    
-    for (let i = 0; i < endpnts.length; i++){
-        names.push(endpnts[i].name)
-    }
-    endpt_freq = get_freq(names)
-    
-    //remove duplicate names
-    names = [... new Set(names)]
-    
-    const chart = {
-        'labels': names,
-        'datasets': [
-            {
-                data: endpt_freq,
-                backgroundColor: ['#636097', '#73a4a7', '#d7375a'],
-                hoverBackgroundColor: ['#636097', '#73a4a7', '#d7375a']
-            },
-        ]
-    }
-  
-    return chart
-}
 
 
-function get_freq(arr){
-    return Object.values(arr.reduce((freq, cur_val)=>{
-        freq[cur_val] = (freq[cur_val] || 0) + 1
-        return freq
-    }, {}))
 
-}

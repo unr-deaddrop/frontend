@@ -12,7 +12,15 @@ export async function load({cookies}) {
         },
     })
     
+    const task_stats = await fetch('http://backend:8000/backend/taskresults/get_task_stats/',{
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
+        },
+    })
     
+    pagedata['task_stats'] = await task_stats.json()
     pagedata['tasks'] = await tasks.json()
     return {pagedata};
 };
