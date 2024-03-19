@@ -18,7 +18,7 @@
     
 
     <div class ="container"> 
-        <div class = "segment">
+        <div class = "segment" style = flex:.25>
             <div class = "tab_body"> 
                 <div class = "tab_head">
                     <span> Overview </span>
@@ -100,7 +100,7 @@
     .tab_body{
         overflow-x: auto;
         overflow-y:auto;
-        max-height: 50vh
+        max-height: 75vh
     }
     
     .tab_content{
