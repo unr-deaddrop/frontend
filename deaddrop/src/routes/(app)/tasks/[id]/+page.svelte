@@ -19,7 +19,7 @@
 
     <div class ="container"> 
         <div class = "segment">
-            <div class = "tab_body" style = "flex: .25"> 
+            <div class = "tab_body"> 
                 <div class = "tab_head">
                     <span> Overview </span>
                 </div> 
