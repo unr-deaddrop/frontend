@@ -6,7 +6,7 @@
     import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
     
-    let {tasks, comms_chart} = data.pagedata
+    let {tasks, comms_chart, dash_stats, endpnt_chart} = data.pagedata
     const tasks_blacklist = ['task_id', 'periodic_task_name', 'task_name', 'task_args', 'task_kwargs', 'worker', 'content_type', 'content_encoding', 'result', 'traceback', 'meta', 'task_creator']
    
 
@@ -29,36 +29,36 @@
                     <div class = "stat_container">
                         <div class = "stat_column">
                             <div class = "stat_field">
-                                <span class = "field_label"> Registered endpoints: </span> <span>24</span>
+                                <span class = "field_label"> Installed Agents: </span> <span>{dash_stats.installed_agents}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages sent: </span> <span>10 (1.5 kB)</span>
+                                <span class = "field_label"> Messages sent: </span> <span>{dash_stats.messages_sent}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages fetched:  </span> <span>4 (2.4 kB)</span>
+                                <span class = "field_label"> Messages fetched:  </span> <span>{dash_stats.messages_fetched}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Ongoing tasks: </span> <span>0</span>
+                                <span class = "field_label"> Outgoing Volume: </span> <span>{dash_stats.outgoing_volume}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Completed tasks: </span> <span>0</span>
+                                <span class = "field_label"> Incoming Volume: </span> <span>{dash_stats.incoming_volume}</span>
                             </div>
                         </div>
                         <div class = "stat_column">
                             <div class = "stat_field">
-                                <span class = "field_label"> Registered endpoints: </span> <span>24</span>
+                                <span class = "field_label"> Registered Endpoints: </span> <span>{dash_stats.registered_endpoints}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages sent: </span> <span>10 (1.5 kB)</span>
+                                <span class = "field_label"> Total Tasks: </span> <span>{dash_stats.total_tasks}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages fetched:  </span> <span>4 (2.4 kB)</span>
+                                <span class = "field_label"> Ongoing Tasks: </span> <span>{dash_stats.ongoing_tasks}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Ongoing tasks: </span> <span>0</span>
+                                <span class = "field_label"> Successful Tasks:  </span> <span>{dash_stats.successful_tasks}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Completed tasks: </span> <span>0</span>
+                                <span class = "field_label"> Failed Tasks </span> <span>{dash_stats.failed_tasks}</span>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                     <span> Endpoint Communication Share </span>
                 </div> 
                 <div class = "tab_content">
-                    <!--<PieChart data = {endpnt_chart}/>-->
+                    <PieChart data = {endpnt_chart}/>
                 </div>    
             </div>
         </div>

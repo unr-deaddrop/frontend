@@ -15,28 +15,32 @@ export async function load({cookies}) {
         },
     })
 
-
-    
     const comms = await fetch('http://backend:8000/backend/messages/get_global_recent_stats/',{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
         },
    })
-   
-    /*
-   const endpnt_stats = await fetch('http://backend:8000/backend/messages/get_endpoint_stats',{
+
+   const dash_stats = await fetch('http://backend:8000/backend/dashboard/',{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
         },
    })
-    
-   */
+   
+   const endpnts = await fetch('http://backend:8000/backend/messages/get_endpoint_stats/',{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
+        },
+   })
+
     let comms_data = await comms.json()
     pagedata['comms_chart'] = comms_chart(comms_data)
     pagedata['tasks'] = await tasks.json()
-    
+    pagedata['dash_stats'] = await dash_stats.json()
+    pagedata['endpnt_chart'] = endpnt_chart(await endpnts.json())
     return {pagedata};
 };
 
@@ -78,4 +82,26 @@ function comms_chart(data){
     return comms_chart
 }
 
+function endpnt_chart(data){
+    console.log(data)
+    let labels = ['']
+    let values = []
+    
+    labels = Object.getOwnPropertyNames(data)
+    Object.keys(data).forEach(key => {
+        values.push(data[key])
+      });
+    
+    const chart = {
+        labels: labels,
+        datasets: [
+            {
+                data: values,
+                backgroundColor: ['#636097', '#73a4a7', '#d7375a'],
+                hoverBackgroundColor: ['#636097', '#73a4a7', '#d7375a'],
+            },
+        ],
+    }
 
+    return chart
+}
