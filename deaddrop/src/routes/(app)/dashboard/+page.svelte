@@ -6,7 +6,7 @@
     import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
     
-    let {tasks, endpnt_chart} = data.pagedata
+    let {tasks, comms_chart} = data.pagedata
     const tasks_blacklist = ['task_id', 'periodic_task_name', 'task_name', 'task_args', 'task_kwargs', 'worker', 'content_type', 'content_encoding', 'result', 'traceback', 'meta', 'task_creator']
    
 
@@ -70,7 +70,7 @@
                     <span> Communications (Last 24 Hours) </span>
                 </div> 
                 <div class = "tab_content">
-                    <LineChart data = {comms_data}/>
+                    <LineChart data = {comms_chart}/>
                 </div>    
             </div>
         </div>
@@ -104,7 +104,7 @@
                     <span> Endpoint Communication Share </span>
                 </div> 
                 <div class = "tab_content">
-                    <PieChart data = {endpnt_chart}/>
+                    <!--<PieChart data = {endpnt_chart}/>-->
                 </div>    
             </div>
         </div>
