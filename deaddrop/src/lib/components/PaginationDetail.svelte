@@ -3,7 +3,7 @@
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte"; 
     import NavButton from "./NavButton.svelte";
-    export let data
+    export let data = []
     export let blacklist = [""]
    export let detail = "" 
     let headers =['']

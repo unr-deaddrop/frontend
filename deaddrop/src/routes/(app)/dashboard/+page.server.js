@@ -7,7 +7,7 @@ export async function load({cookies}) {
     
     moment.tz.setDefault("America/Los_Angeles")
     //note: if you want to make a call from /admin/backend, the uri is http://127.0.0.1:8000/api/backend/task, as opposed to http://127.0.0.1:8000/backend/tasks/
-    const tasks = await fetch('http://backend:8000/backend/taskresults/', {
+    const tasks = await fetch('http://backend:8000/backend/taskresults/?status=PENDING', {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
