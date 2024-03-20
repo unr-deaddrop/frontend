@@ -10,7 +10,7 @@ export async function load({cookies}) {
         },
         method: 'GET'
     });
-
+    
     const endpnt_share = await fetch('http://backend:8000/backend/agents/get_endpoint_share/',{
         method: 'GET',
         headers: {
@@ -18,6 +18,8 @@ export async function load({cookies}) {
             "Authorization": "Token " + auth 
         }
     })
+
+    
 
     let endpnts = await endpnt_share.json()
     pagedata['agents'] = await agents.json()

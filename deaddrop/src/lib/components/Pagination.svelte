@@ -55,7 +55,7 @@
 
     <div class="bar">
         <div class = "show">
-            <span style = "margin-top: 10px"> Showing items 1-3 of 3 </span>
+            <span style = "margin-top: 10px"> Showing {data.length} items </span>
         </div>
         <div class = "show"></div>
         <div class = "nav">
