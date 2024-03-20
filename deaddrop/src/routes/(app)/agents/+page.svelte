@@ -1,7 +1,7 @@
 <script>
     import PieChart from '$lib/components/PieChart.svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
-    import Pagination from '$lib/components/Pagination.svelte';
+    import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
     let {agents, endpnt_chart} = data.pagedata
     
@@ -62,7 +62,7 @@
                     <span> Installed agents </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {agents}/>
+                    <PaginationDetail data = {agents} detail = "agents"/>
                 </div>    
             </div>
            
