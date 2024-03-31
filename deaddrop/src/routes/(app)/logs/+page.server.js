@@ -1,3 +1,5 @@
+import moment from 'moment-timezone'
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies}) {
     const auth = cookies.get('token')
@@ -11,9 +13,58 @@ export async function load({cookies}) {
         },
     })
 
+    const split_logs = await fetch('http://backend:8000/backend/messages/get_split_recent_stats/',{
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
+        },
+    })
+
+    let split_data = await split_logs.json()
+    pagedata['agent_data'] = comms_chart(split_data[0])
+    pagedata['server_data'] = comms_chart(split_data[1])
     pagedata['logs'] = await logs.json()
     
     return {pagedata}
+}
+
+function comms_chart(data){
+    let labels = []
+
+    for(let i = 0; i <24; i++){
+        labels.push(moment().subtract(i, 'hour').format('MM-DD h A'))
+    }
+    labels.reverse()
+
+    let comms_chart = { // for line chart
+        labels: labels,
+        datasets: [
+        {
+            label: 'Communications',
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: 'rgba(184, 185, 210, .3)',
+            borderColor: '#a60707',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: '#a60707',
+            pointBackgroundColor: 'rgb(255, 255, 255)',
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgb(0, 0, 0)',
+            pointHoverBorderColor: 'rgba(220, 220, 220, 1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: data 
+        },
+        ],
+    }
+
+    return comms_chart
 }
 
 /*
