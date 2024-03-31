@@ -21,9 +21,9 @@ export async function load({cookies}) {
         },
     })
 
-    let split_data = await split_logs.json()
-    pagedata['agent_data'] = comms_chart(split_data[0])
-    pagedata['server_data'] = comms_chart(split_data[1])
+    let {sent_by_agent, sent_by_server} = await split_logs.json()
+    pagedata['agent_data'] = comms_chart(sent_by_agent)
+    pagedata['server_data'] = comms_chart(sent_by_server)
     pagedata['logs'] = await logs.json()
     
     return {pagedata}
@@ -31,7 +31,7 @@ export async function load({cookies}) {
 
 function comms_chart(data){
     let labels = []
-
+    
     for(let i = 0; i <24; i++){
         labels.push(moment().subtract(i, 'hour').format('MM-DD h A'))
     }
