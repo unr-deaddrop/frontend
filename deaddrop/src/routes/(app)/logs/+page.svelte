@@ -1,8 +1,9 @@
 <script>
     import Pagination from '$lib/components/Pagination.svelte';
+    import LineChart from '$lib/components/LineChart.svelte';
     export let data
-    let {logs} = data.pagedata
-    
+    let {logs, agent_data, server_data} = data.pagedata
+    let log_blacklist = ['data']
 </script>
 
 <div class = "container">
@@ -14,7 +15,7 @@
                     <span> Server-generated logs </span>
                 </div> 
                 <div class = "tab_content">
-                    <!--<LineChart data = {}/>-->
+                    <LineChart data = {server_data}/>-
                 </div>    
             </div>
         </div>
@@ -25,7 +26,7 @@
                     <span> Agent-generated logs </span>
                 </div> 
                 <div class = "tab_content">
-                    <!--<LineChart data = {}/>-->
+                    <LineChart data = {agent_data}/>
                 </div>    
             </div>
         </div>
@@ -37,7 +38,7 @@
                 <span> Logs</span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {logs}/>
+                <Pagination data = {logs} blacklist = {log_blacklist}/>
             </div>    
         </div>
     </div>

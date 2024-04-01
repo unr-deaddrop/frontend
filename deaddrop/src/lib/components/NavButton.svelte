@@ -1,5 +1,6 @@
 <script>
-    export let fn
+    import { goto } from "$app/navigation";
+    export let path = "/"
     export let button_color = ""
     export let text = 'placeholder'
     export let src = "favicon.png"
@@ -43,7 +44,7 @@
   </script>
   
   <button
-    on:click={() => fn}
+    on:click={()=>goto(path)}
     on:mouseover={handleMouseOver}
     on:mouseout={handleMouseOut}
     on:focus={handleFocus}

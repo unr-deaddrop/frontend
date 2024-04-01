@@ -1,11 +1,8 @@
-import { page } from '$app/stores';
-import { idText } from 'typescript';
-import user from '../../login/user';
-import { get } from 'svelte/store';
+import moment from 'moment-timezone'
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load() {
-    const auth = get(user).token
+export async function load({cookies}) {
+    const auth = cookies.get('token')
     const pagedata = {}
 
     const logs = await fetch('http://backend:8000/backend/logs/', {
@@ -16,12 +13,61 @@ export async function load() {
         },
     })
 
+    const split_logs = await fetch('http://backend:8000/backend/messages/get_split_recent_stats/',{
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
+        },
+    })
+
+    let {sent_by_agent, sent_by_server} = await split_logs.json()
+    pagedata['agent_data'] = comms_chart(sent_by_agent)
+    pagedata['server_data'] = comms_chart(sent_by_server)
     pagedata['logs'] = await logs.json()
-    pagedata['agent_chart'] = make_chart('agent', pagedata['logs'])
-    pagedata['server_chart'] = make_chart('server', pagedata['logs'])
+    
     return {pagedata}
 }
 
+function comms_chart(data){
+    let labels = []
+    
+    for(let i = 0; i <24; i++){
+        labels.push(moment().subtract(i, 'hour').format('MM-DD h A'))
+    }
+    labels.reverse()
+
+    let comms_chart = { // for line chart
+        labels: labels,
+        datasets: [
+        {
+            label: 'Communications',
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: 'rgba(184, 185, 210, .3)',
+            borderColor: '#a60707',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: '#a60707',
+            pointBackgroundColor: 'rgb(255, 255, 255)',
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgb(0, 0, 0)',
+            pointHoverBorderColor: 'rgba(220, 220, 220, 1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: data 
+        },
+        ],
+    }
+
+    return comms_chart
+}
+
+/*
 function make_chart(type, logs){
     const labels = [
     '1AM', '2AM', '3AM', '4AM', '5AM', '6AM',

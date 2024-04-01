@@ -1,17 +1,17 @@
 <script>
     import SearchBar from "./SearchBar.svelte";
     import IntDropdown from "./IntDropdown.svelte";
-    import PaginationButtons from "./PaginationButtons.svelte";
-    export let data
+    import PaginationButtons from "./PaginationButtons.svelte"; 
+    import NavButton from "./NavButton.svelte";
+    export let data = []
     export let blacklist = [""]
-    
+   export let detail = "" 
     let headers =['']
-
     if(data.length > 0){
         headers = Object.getOwnPropertyNames(data[0])
     }
     headers = headers.filter(item=> !blacklist.includes(item.toString()))
-    
+
 </script>
 
 <div class="container">
@@ -34,6 +34,7 @@
                     <span style="font-weight: bold">{header}</span>
                 {/each}
             {/if} 
+            <span style="font-weight: bold">Actions</span>
         </div>
         
         {#if data.length > 0 }
@@ -42,6 +43,9 @@
                     {#each headers as head}
                         <span style="flex: 1"> {item[head]} </span>
                     {/each}
+                        <span style="flex:1; padding: 10px">
+                            <NavButton button_color = '#a60707' text ='View Detail' hide_img = {true} path = {'/' + detail + '/' + item.id}/>
+                        </span>
                 </div>
             {/each}
 
@@ -55,7 +59,7 @@
 
     <div class="bar">
         <div class = "show">
-            <span style = "margin-top: 10px"> Showing {data.length} items </span>
+            <span style = "margin-top: 10px"> Showing items 1-3 of 3 </span>
         </div>
         <div class = "show"></div>
         <div class = "nav">

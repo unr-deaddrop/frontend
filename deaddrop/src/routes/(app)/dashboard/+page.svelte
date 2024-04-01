@@ -3,11 +3,13 @@
     import { comms_data, } from '$lib/components/data';
     import LineChart from '$lib/components/LineChart.svelte';
     import PieChart from '$lib/components/PieChart.svelte';
-    import Pagination from '$lib/components/Pagination.svelte';
+    import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
-    let {tasks, endpt_chart} = data.pagedata
     
-    
+    let {tasks, comms_chart, dash_stats, endpnt_chart} = data.pagedata
+    const tasks_blacklist = ['task_id', 'periodic_task_name', 'task_name', 'task_args', 'task_kwargs', 'worker', 'content_type', 'content_encoding', 'result', 'traceback', 'meta', 'task_creator']
+   
+
     async function handleLink(link){
         await goto(link)
     }
@@ -17,7 +19,7 @@
     <div class= "upper_body">
 
         <div class = "left"> 
-            <h2> Dashboard </h2>
+            <h2> Dashboard</h2>
 
             <div class = "tab_body"> 
                 <div class = "tab_head">
@@ -27,36 +29,36 @@
                     <div class = "stat_container">
                         <div class = "stat_column">
                             <div class = "stat_field">
-                                <span class = "field_label"> Registered endpoints: </span> <span>24</span>
+                                <span class = "field_label"> Installed Agents: </span> <span>{dash_stats.installed_agents}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages sent: </span> <span>10 (1.5 kB)</span>
+                                <span class = "field_label"> Messages sent: </span> <span>{dash_stats.messages_sent}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages fetched:  </span> <span>4 (2.4 kB)</span>
+                                <span class = "field_label"> Messages fetched:  </span> <span>{dash_stats.messages_fetched}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Ongoing tasks: </span> <span>0</span>
+                                <span class = "field_label"> Outgoing Volume: </span> <span>{dash_stats.outgoing_volume}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Completed tasks: </span> <span>0</span>
+                                <span class = "field_label"> Incoming Volume: </span> <span>{dash_stats.incoming_volume}</span>
                             </div>
                         </div>
                         <div class = "stat_column">
                             <div class = "stat_field">
-                                <span class = "field_label"> Registered endpoints: </span> <span>24</span>
+                                <span class = "field_label"> Registered Endpoints: </span> <span>{dash_stats.registered_endpoints}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages sent: </span> <span>10 (1.5 kB)</span>
+                                <span class = "field_label"> Total Tasks: </span> <span>{dash_stats.total_tasks}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Messages fetched:  </span> <span>4 (2.4 kB)</span>
+                                <span class = "field_label"> Ongoing Tasks: </span> <span>{dash_stats.ongoing_tasks}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Ongoing tasks: </span> <span>0</span>
+                                <span class = "field_label"> Successful Tasks:  </span> <span>{dash_stats.successful_tasks}</span>
                             </div>
                             <div class = "stat_field">
-                                <span class = "field_label"> Completed tasks: </span> <span>0</span>
+                                <span class = "field_label"> Failed Tasks </span> <span>{dash_stats.failed_tasks}</span>
                             </div>
                         </div>
                     </div>
@@ -68,7 +70,7 @@
                     <span> Communications (Last 24 Hours) </span>
                 </div> 
                 <div class = "tab_content">
-                    <LineChart data = {comms_data}/>
+                    <LineChart data = {comms_chart}/>
                 </div>    
             </div>
         </div>
@@ -102,7 +104,7 @@
                     <span> Endpoint Communication Share </span>
                 </div> 
                 <div class = "tab_content">
-                    <PieChart data = {endpt_chart}/>
+                    <PieChart data = {endpnt_chart}/>
                 </div>    
             </div>
         </div>
@@ -116,7 +118,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {tasks}/>
+                <PaginationDetail data = {tasks} blacklist ={tasks_blacklist} detail = "tasks"/>
 
             </div>    
         
