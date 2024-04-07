@@ -102,7 +102,7 @@
                     {#await schema}
                         <p>Loading schema...</p>
                     {:then schema}
-                        <SchemaForm id="arguments" schema={schema} bind:data={(initialData)}/>
+                        <SchemaForm schema={schema} bind:data={(initialData)}/>
                     {:catch error}
                         <div class="error">ERROR: {error.message}</div>
                     {/await}
