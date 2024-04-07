@@ -1,7 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
     let endpoint_id = params.endpoint; 
-    let cmd_list = await fetch(`http://backend.localhost/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
+    let cmd_list = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
