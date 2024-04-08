@@ -33,7 +33,15 @@ export const actions = {
             })
 
             const json = await res.json();
-            throw redirect(302, '/login')
+            console.log((json));
+            let message = json['message'];
+            if (message !== "Failed"){
+                throw redirect(302, '/login')
+            }
+            else{
+                return { "messages": json["password"]}
+            }
+            // throw redirect(302, '/login')
         }
         
     }

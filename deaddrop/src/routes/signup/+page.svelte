@@ -3,9 +3,9 @@
     $: passwd = ""
     $: confirm = ""
     $: isInputsFilled = username.length > 0 && passwd.length > 0 && confirm.length >0;
+    export let form;
 
 </script>
-
     
     <div class = "container">
         <div class = "section"></div>
@@ -27,7 +27,13 @@
                     <label for="confirm">Confirm:</label>
                     <input type="password" id="confirm" name = "confirm" bind:value={confirm} placeholder="Enter your password">
                 </div>
-
+                <div>
+                    {#if form !== null}
+                        {#each form["messages"] as msg}
+                            <div class="flex justify-center items-center">{msg}</div>
+                        {/each}
+                    {/if}
+                </div>
                 <div class ="field">
                     <button 
                     type = "submit"
