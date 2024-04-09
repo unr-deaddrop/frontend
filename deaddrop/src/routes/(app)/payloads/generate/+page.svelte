@@ -52,7 +52,7 @@
                                     bind:value={endpoint_id}
                                     label="Endpoint"
                                     name="endpoint"
-                                    placeholder="Endpoint"
+                                    placeholder="Agent Type"
                                     options={endpoint_options}
                                 />
                                 </div>
@@ -66,7 +66,7 @@
                                     bind:value={protocol}
                                     label="Protocol"
                                     name="protocol"
-                                    placeholder="Protocol"
+                                    placeholder="Encryption Key"
                                     options={protocol_options}
                                     />
                                 </div>
@@ -80,7 +80,7 @@
                                     bind:value={cmd}
                                     label="Command"
                                     name="command"
-                                    placeholder="Command"
+                                    placeholder="HMAC Key"
                                     options={cmd_options}
                                     />
                                 </div>
@@ -118,7 +118,7 @@
     <div class = "lower_body">
         <div class = "tab_body"> 
             <div class = "tab_head">
-                <span> Protocol Options </span>
+                <span> Agent Options </span>
             </div> 
             <div class = "tab_content">
                 <div class = "drop_container">
@@ -130,7 +130,7 @@
         </div>
         <div class = "tab_body"> 
             <div class = "tab_head">
-                <span> Command Reference </span>
+                <span> Protocol Options </span>
             </div> 
             <div class = "tab_content">
                 <div class = "tab_content">
