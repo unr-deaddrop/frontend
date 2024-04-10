@@ -42,7 +42,6 @@
                                 <InputBox 
                                     id="endpoint"
                                     bind:value={endpoint_id}
-                                    label="Endpoint"
                                     name="endpoint"
                                     placeholder="Name"
                                 />
@@ -55,7 +54,6 @@
                                 <InputBox 
                                     id="encryption" 
                                     bind:value={encryption}
-                                    label="encryption"
                                     name="encryption"
                                     placeholder="Hostname"
                                     />
@@ -68,7 +66,6 @@
                                 <InputBox 
                                     id="command" 
                                     bind:value={cmd}
-                                    label="Command"
                                     name="command"
                                     placeholder="Address"
                                     />
@@ -81,7 +78,6 @@
                                 <InputBox 
                                     id="command" 
                                     bind:value={cmd}
-                                    label="Command"
                                     name="command"
                                     placeholder="Is Virtual?"
                                     />
