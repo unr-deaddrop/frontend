@@ -2,18 +2,12 @@
     /** @type {import('./$types').PageData} */
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Context from "$lib/components/Context.svelte"
-	import ComboBox from "$lib/components/ComboBox.svelte"
+	import InputBox from "$lib/components/InputBox.svelte"
     import SchemaForm from "svelte-jsonschema-form";
 
     export let data;
     let {endpoint_id, cmd_list, cmd_options} = data;
-
-    let endpoint_options = [
-        { text: endpoint_id, value: endpoint_id, disabled: true },
-  	]
-
-    let protocol_options = []
-    let protocol = ""
+    let encryption = ""
 
     // $: console.log('52', cmd_options)
     let cmd = "0"
@@ -45,15 +39,12 @@
                         <div class = "field"> 
                             <Context>   
                                 <div class="stack">
-                                <ComboBox 
-                                    disabled
+                                <InputBox 
                                     id="endpoint"
-                                    showRealValue=true
                                     bind:value={endpoint_id}
                                     label="Endpoint"
                                     name="endpoint"
-                                    placeholder="Agent Type"
-                                    options={endpoint_options}
+                                    placeholder="Name"
                                 />
                                 </div>
                             </Context>
@@ -61,13 +52,12 @@
                         <div class = "field"> 
                             <Context>   
                                 <div class="stack">
-                                <ComboBox 
-                                    id="protocol" 
-                                    bind:value={protocol}
-                                    label="Protocol"
-                                    name="protocol"
-                                    placeholder="Encryption Key"
-                                    options={protocol_options}
+                                <InputBox 
+                                    id="encryption" 
+                                    bind:value={encryption}
+                                    label="encryption"
+                                    name="encryption"
+                                    placeholder="Hostname"
                                     />
                                 </div>
                             </Context>
@@ -75,13 +65,25 @@
                         <div class = "field"> 
                             <Context>   
                                 <div class="stack">
-                                <ComboBox 
+                                <InputBox 
                                     id="command" 
                                     bind:value={cmd}
                                     label="Command"
                                     name="command"
-                                    placeholder="HMAC Key"
-                                    options={cmd_options}
+                                    placeholder="Address"
+                                    />
+                                </div>
+                            </Context>
+                        </div>
+                        <div class = "field"> 
+                            <Context>   
+                                <div class="stack">
+                                <InputBox 
+                                    id="command" 
+                                    bind:value={cmd}
+                                    label="Command"
+                                    name="command"
+                                    placeholder="Is Virtual?"
                                     />
                                 </div>
                             </Context>
