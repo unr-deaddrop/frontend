@@ -120,9 +120,9 @@
             </div> 
             <div class = "tab_content">
                 <div class = "drop_container">
-                    <Dropdown title = "YouTube Configuration" radius_side = {1}/>
-                    <Dropdown title = "Randomization Options"/>
-                    <Dropdown title = "Encoding Options"  radius_side = {2}/>
+                    <Dropdown title = "Pygin" radius_side = {1}/>
+                    <Dropdown title = "Matsumoto"/>
+                    <Dropdown title = "Blackwell"  radius_side = {2}/>
                 </div>
             </div>    
         </div>
@@ -133,9 +133,9 @@
             <div class = "tab_content">
                 <div class = "tab_content">
                     <div class = "drop_container">
-                        <Dropdown title = "ls" radius_side = {1}/>
-                        <Dropdown title = "calculator"/>
-                        <Dropdown title = "dump_creds"  radius_side = {2}/>
+                        <Dropdown title = "Craigslist" radius_side = {1}/>
+                        <Dropdown title = "YouTube"/>
+                        <Dropdown title = "Dropbox"  radius_side = {2}/>
                     </div>
                 </div>    
             </div>    
