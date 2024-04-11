@@ -1,27 +1,37 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
-  let endpoint_id = '00000000-0000-0000-0000-000000000000'; 
-  let cmd_list = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
+  let agent_id = '3'; 
+  let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
       }
   })
-  cmd_list = await cmd_list.json()
-  // console.log("43 cmd_list")
-  // console.log(cmd_list)
-  let cmd_options = []
-  let i = 0
-  cmd_list.forEach(cmd => {
-      // console.log(cmd)
-      let option = {text: cmd['name'], value: i}
-      cmd_options = [...cmd_options, option]
-      i++;
-  })
-  return {
-      "endpoint_id": endpoint_id,
-      "cmd_list": cmd_list, 
-      "cmd_options": cmd_options
+  agent_metadata = await agent_metadata.json()
+  // console.log("43 agent_metadata")
+  // console.log(agent_metadata)
+  let protocol_schemas = []
+  agent_metadata["protocol_config"].forEach(protocol => {
+      // console.log(protocol)
+      let option = {"name": protocol["name"], "config": protocol['config']}
+      console.log('config', typeof(option['config']), 'properties', typeof(option['config']['properties']))
+
+      for (const [key, value] of Object.entries(option['config']['properties'])){
+        console.log(typeof(key), key)
+        console.log(typeof(value), value)
+      }
+
+      console.log("server option", typeof(option), option)
+      console.log("protocol['config']", typeof(protocol['config']), protocol['config'])
+      protocol_schemas = [...protocol_schemas, option]
+    })
+    console.log("server protocol_schemas", protocol_schemas)
+    // console.log("server config type", protocol_schemas)
+    return {
+      "agent_id": agent_id,
+      "agent_metadata": agent_metadata, 
+      "agent_schema": agent_metadata["config"],
+      "protocol_schemas": protocol_schemas
 
   };
 };

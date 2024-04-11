@@ -3,22 +3,20 @@
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Context from "$lib/components/Context.svelte"
 	import InputBox from "$lib/components/InputBox.svelte"
+	import Checkbox from "$lib/components/Checkbox.svelte"
     import SchemaForm from "svelte-jsonschema-form";
+    // import agent_schema from "../examples/agent_config.json"
+    // import protocol_schema from "../examples/protocol_config_one.json"
 
     export let data;
-    let {endpoint_id, cmd_list, cmd_options} = data;
-    let encryption = ""
+    let {agent_id, agent_metadata, agent_schema, protocol_schemas} = data;
 
-    // $: console.log('52', cmd_options)
-    let cmd = "0"
-    $: cmd_int = parseInt(cmd)
-    // $: console.log('54', cmd, typeof(cmd), typeof(parseInt(cmd)))
-    // $: console.log('list', cmd_list)
-    // $: console.log('schema', cmd_list[cmd_int])
-    // $: console.log('argument_schema', cmd_list[cmd_int]['argument_schema'])
-    
-    $: schema = cmd_list[cmd_int]['argument_schema']
-    // $: console.log('argument_schema2', schema)
+    let agentSchema = agent_schema
+    let protocolSchema = protocol_schemas
+    $: console.log('agent_schema', agentSchema)
+    $: console.log('protocol_schema', typeof(protocolSchema["config"]))
+    // $: console.log('protocol_schema', protocolSchema["config"]["properties"])
+    // $: console.log('protocol_schema', JSON.stringify(protocolSchema["config"]["properties"]))
     
     let initialData = {};
     $: console.log('initialData', initialData)
@@ -40,9 +38,9 @@
                             <Context>   
                                 <div class="stack">
                                 <InputBox 
-                                    id="endpoint"
-                                    bind:value={endpoint_id}
-                                    name="endpoint"
+                                    id="name"
+                                    bind:value={initialData["name"]}
+                                    name="name"
                                     placeholder="Name"
                                 />
                                 </div>
@@ -52,9 +50,9 @@
                             <Context>   
                                 <div class="stack">
                                 <InputBox 
-                                    id="encryption" 
-                                    bind:value={encryption}
-                                    name="encryption"
+                                    id="hostname" 
+                                    bind:value={initialData["hostname"]}
+                                    name="hostname"
                                     placeholder="Hostname"
                                     />
                                 </div>
@@ -64,9 +62,9 @@
                             <Context>   
                                 <div class="stack">
                                 <InputBox 
-                                    id="command" 
-                                    bind:value={cmd}
-                                    name="command"
+                                    id="address" 
+                                    bind:value={initialData["address"]}
+                                    name="address"
                                     placeholder="Address"
                                     />
                                 </div>
@@ -75,10 +73,12 @@
                         <div class = "field"> 
                             <Context>   
                                 <div class="stack">
+                                    make this a checkbox
+                                    <Checkbox/>
                                 <InputBox 
-                                    id="command" 
-                                    bind:value={cmd}
-                                    name="command"
+                                    id="isVirtual" 
+                                    bind:value={initialData["isVirtual"]}
+                                    name="isVirtual"
                                     placeholder="Is Virtual?"
                                     />
                                 </div>
@@ -97,14 +97,15 @@
                 </div> 
 
                 <div class = "tab_content">
-                    {#await schema}
+                    {#await protocolSchema}
                         <p>Loading schema...</p>
-                    {:then schema}
-                        <SchemaForm schema={schema} bind:data={(initialData)}/>
+                    {:then protocolSchema}
+                        <SchemaForm schema={protocolSchema} bind:data={(initialData)}/>
                     {:catch error}
                         <div class="error">ERROR: {error.message}</div>
                     {/await}
                 </div>
+                <!-- the below sends the actual data to with the button -->
                 <input type="hidden" name="args" value={jsonData} />
                 
                 <button type="submit"> 
@@ -120,9 +121,15 @@
             </div> 
             <div class = "tab_content">
                 <div class = "drop_container">
-                    <Dropdown title = "Pygin" radius_side = {1}/>
-                    <Dropdown title = "Matsumoto"/>
-                    <Dropdown title = "Blackwell"  radius_side = {2}/>
+                    <div class = "tab_content">
+                        {#await agentSchema}
+                            <p>Loading schema form agent_config...</p>
+                        {:then agentSchema}
+                            <SchemaForm schema={agentSchema} bind:data={(initialData["agent_config"])}/>
+                        {:catch error}
+                            <div class="error">ERROR: {error.message}</div>
+                        {/await}
+                    </div>
                 </div>
             </div>    
         </div>
@@ -133,9 +140,19 @@
             <div class = "tab_content">
                 <div class = "tab_content">
                     <div class = "drop_container">
-                        <Dropdown title = "Craigslist" radius_side = {1}/>
-                        <Dropdown title = "YouTube"/>
-                        <Dropdown title = "Dropbox"  radius_side = {2}/>
+                        <!-- each protocol schema -->
+                        <div class = "tab_content">
+                            {#await protocolSchema}
+                                <p>Loading schema form protocol_config_all...</p>
+                            {:then protocolSchema}
+                                {#each protocolSchema as {name, config}}
+                                    <SchemaForm schema={config} bind:data={(initialData[name])}/>
+                                {/each}
+                            {:catch error}
+                                <div class="error">ERROR: {error.message}</div>
+                            {/await}
+                        </div>
+
                     </div>
                 </div>    
             </div>    
