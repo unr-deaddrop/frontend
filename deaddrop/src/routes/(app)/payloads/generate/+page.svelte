@@ -14,7 +14,7 @@
     let agentSchema = agent_schema
     let protocolSchema = protocol_schemas
     $: console.log('agent_schema', agentSchema)
-    $: console.log('protocol_schema', typeof(protocolSchema["config"]))
+    $: console.log('protocol_schema', await typeof(protocolSchema["config"]))
     // $: console.log('protocol_schema', protocolSchema["config"]["properties"])
     // $: console.log('protocol_schema', JSON.stringify(protocolSchema["config"]["properties"]))
     
