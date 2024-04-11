@@ -14,8 +14,9 @@
     let agentSchema = agent_schema
     let protocolSchema = protocol_schemas
     $: console.log('agent_schema', agentSchema)
-    let prot_schema = async () => await typeof(await protocolSchema["config"])
-    $: console.log('protocol_schema', prot_schema)
+    let prot_schema = async () => typeof(await protocolSchema["config"])
+    let schematype = prot_schema()
+    $: console.log('protocol_schema', schematype)
     // $: console.log('protocol_schema', protocolSchema["config"]["properties"])
     // $: console.log('protocol_schema', JSON.stringify(protocolSchema["config"]["properties"]))
     
