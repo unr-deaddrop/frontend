@@ -14,13 +14,11 @@
     let agentSchema = agent_schema
     let protocolSchema = protocol_schemas
     $: console.log('agent_schema', agentSchema)
-    let prot_schema = async () => typeof(await protocolSchema["config"])
-    let schematype = prot_schema()
-    $: console.log('protocol_schema', schematype)
-    // $: console.log('protocol_schema', protocolSchema["config"]["properties"])
-    // $: console.log('protocol_schema', JSON.stringify(protocolSchema["config"]["properties"]))
+    $: console.log('protocol_schema', protocolSchema)
     
-    let initialData = {};
+    let initialData = {
+        "protocol_config": {}
+    };
     $: console.log('initialData', initialData)
     $: jsonData = JSON.stringify(initialData)
 </script>
@@ -98,17 +96,19 @@
                     <span> Command </span>
                 </div> 
 
-                <div class = "tab_content">
-                    {#await protocolSchema}
+                <!-- <div class = "tab_content">
+                    {#await agentSchema}
                         <p>Loading schema...</p>
-                    {:then protocolSchema}
-                        <SchemaForm schema={protocolSchema} bind:data={(initialData)}/>
+                    {:then agentSchema}
+                        <SchemaForm schema={agentSchema} bind:data={(initialData)}/>
                     {:catch error}
                         <div class="error">ERROR: {error.message}</div>
                     {/await}
-                </div>
+                </div> -->
                 <!-- the below sends the actual data to with the button -->
-                <input type="hidden" name="args" value={jsonData} />
+                <!-- <input type="hidden" name="args" value={initialData["agent_config"]} /> -->
+                <input type="hidden" name="agent_config" value={JSON.stringify(initialData["agent_config"])} />
+                <input type="hidden" name="protocol_config" value={JSON.stringify(initialData["protocol_config"])} />
                 
                 <button type="submit"> 
                     Export Commands 
@@ -148,7 +148,8 @@
                                 <p>Loading schema form protocol_config_all...</p>
                             {:then protocolSchema}
                                 {#each protocolSchema as {name, config}}
-                                    <SchemaForm schema={config} bind:data={(initialData[name])}/>
+                                    <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
+                                    <!-- <SchemaForm schema={config} bind:data={(initialData[name])}/> -->
                                 {/each}
                             {:catch error}
                                 <div class="error">ERROR: {error.message}</div>
