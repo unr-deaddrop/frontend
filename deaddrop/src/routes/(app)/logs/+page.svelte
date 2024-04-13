@@ -1,6 +1,8 @@
 <script>
     import Pagination from '$lib/components/Pagination.svelte';
     import LineChart from '$lib/components/LineChart.svelte';
+
+    /** @type {import('./$types').PageData} */
     export let data
     let {logs, agent_data, server_data} = data.pagedata
     let log_blacklist = ['data']
@@ -38,7 +40,7 @@
                 <span>Logs</span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {logs} blacklist = {log_blacklist}/>
+                <Pagination data = {logs['data']} pages={logs['pages']} showDownload={true} blacklist = {log_blacklist}/>
             </div>    
         </div>
     </div>
