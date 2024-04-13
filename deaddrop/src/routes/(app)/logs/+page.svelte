@@ -35,7 +35,7 @@
     <div class= "lower_body">
         <div class = "tab_body"> 
             <div class = "tab_head">
-                <span> Logs</span>
+                <span>Logs</span>
             </div> 
             <div class = "tab_content">
                 <Pagination data = {logs} blacklist = {log_blacklist}/>

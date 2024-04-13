@@ -1,9 +1,15 @@
 <script>
     import SearchBar from "./SearchBar.svelte";
+    import { onMount } from 'svelte';
+    import ActionButton from '$lib/components/ActionButton.svelte';
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte";
     export let data
     export let blacklist = [""]
+    export let file
+    onMount(() => {
+        file = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type:'application/json;charset=utf-8'}))
+    });
     
     let headers =['']
 
@@ -52,16 +58,21 @@
         {/if}
         
     </div>
-
-    <div class="bar">
-        <div class = "show">
-            <span style = "margin-top: 10px"> Showing {data.length} items </span>
+    {#if data.length > 0 }
+        <div class="bar">
+            <div class = "show">
+                <span style = "margin-top: 10px"> Showing {data.length} items </span>
+            </div>
+            <div class = "show"></div>
+            <div class = "nav">
+                <PaginationButtons/>
+            </div>
         </div>
-        <div class = "show"></div>
-        <div class = "nav">
-            <PaginationButtons/>
-        </div>
-    </div>
+        <a style="height:2em;width:15em;display:flex;align-items:center;" download="logs.json" href="{file}">
+            <img style="height:100%" src="./download.svg"/>
+            <span>Download</span>
+        </a>
+    {/if}
 
 </div>
 
