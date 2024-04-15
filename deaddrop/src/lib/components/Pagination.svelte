@@ -43,7 +43,7 @@
 </script>
 
 <div class="container">
-    <table id="myTable" class="content">
+    <table id="myTable" class="content display compact">
         {#if data.length > 0}
         <thead>
             <tr class="item">
@@ -98,31 +98,6 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-    }
-
-    .item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #4d4d4d;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto; 
-        border-top: 2px solid #4d4d4d;
-        border-bottom: 2px solid #4d4d4d;
-        /* overflow-wrap: anywhere; */
-    }
-
-    th, td {
-        flex: 1;
-        padding: 10px;
-        text-align: left;
-    }
-
-    th:last-child, td:last-child {
-        flex: 0.5;
     }
 
 </style>
