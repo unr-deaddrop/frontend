@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies}) {
@@ -15,14 +16,14 @@ export const actions = {
         let username = formData.get('username')
         let passwd = formData.get('password')
         let confirm = formData.get('confirm')
-        
-        if(passwd != confirm){console.log("error confirmation and password are not the same")}
+    
+        if(passwd != confirm){throw error(400, "passwords do not match")}
         
         else {
             const res = await fetch('http://backend:8000/backend/users/sign_up/', {
             method: 'POST',
             mode: "cors",
-            headers: {
+            headers: {  
                 "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
@@ -33,9 +34,30 @@ export const actions = {
             })
 
             const json = await res.json();
-            throw redirect(302, '/login')
+            
+            if (json.message != 'User created'){
+                const errorData = json
+                console.log(errorData)
+                let errorlist = ""
+                
+                if(errorData.username != undefined){
+                    console.log(errorData.password)
+                    errorData.username.forEach((string)=>{errorlist += string}) 
+                }
+
+                if(errorData.password!= undefined){
+                    console.log(errorData.password)
+                    errorData.password.forEach((string)=>{errorlist += string}) 
+                }
+                
+                console.log(errorlist)
+                throw error(400, errorlist)
+            }  
+
+            
+            throw redirect(302, '/signup_success')
+            
         }
-        
     }
 }
 

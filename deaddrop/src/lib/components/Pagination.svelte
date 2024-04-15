@@ -1,17 +1,16 @@
 <script>
     import SearchBar from "./SearchBar.svelte";
     import IntDropdown from "./IntDropdown.svelte";
-    import PaginationButtons from "./PaginationButtons.svelte";
-    export let data
-    export let blacklist = [""]
-    
-    let headers =['']
+    import PaginationButtons from "./PaginationButtons.svelte"; 
+
+    export let data = [];
+    export let blacklist = [""];
+    let headers = [''];
 
     if(data.length > 0){
-        headers = Object.getOwnPropertyNames(data[0])
+        headers = Object.getOwnPropertyNames(data[0]);
     }
-    headers = headers.filter(item=> !blacklist.includes(item.toString()))
-    
+    headers = headers.filter(item => !blacklist.includes(item.toString()));
 </script>
 
 <div class="container">
@@ -27,38 +26,39 @@
         </div>
     </div>
 
-    <div class="content">
-        <div class="item">
-            {#if data.length > 0} 
+    <table class="content">
+        {#if data.length > 0}
+        <thead>
+            <tr class="item">
                 {#each headers as header}
-                    <span style="font-weight: bold">{header}</span>
+                <th>{header}</th>
                 {/each}
-            {/if} 
-        </div>
-        
-        {#if data.length > 0 }
-            {#each data as item}    
-                <div class="item">
-                    {#each headers as head}
-                        <span style="flex: 1"> {item[head]} </span>
-                    {/each}
-                </div>
+            </tr>
+        </thead>
+        <tbody>
+            {#each data as item}
+            <tr class="item">
+                {#each headers as head}
+                <td>{item[head]}</td>
+                {/each}
+            </tr>
             {/each}
-
-            {:else}
-            <div class = "item"> 
-                <span style ="flex:1"> Table is Empty </span>
-            </div>
+        </tbody>
+       
+        {:else}
+            <tr class="item">
+                <td colspan={headers.length + 1}>Table is Empty</td>
+            </tr>
         {/if}
-        
-    </div>
+      
+    </table>
 
     <div class="bar">
-        <div class = "show">
-            <span style = "margin-top: 10px"> Showing {data.length} items </span>
+        <div class="show">
+            <span style="margin-top: 10px">Showing items 1-3 of 3</span>
         </div>
-        <div class = "show"></div>
-        <div class = "nav">
+        <div class="show"></div>
+        <div class="nav">
             <PaginationButtons/>
         </div>
     </div>
@@ -67,68 +67,43 @@
 
 <style>
     .container {
-        flex: 1;
         display: flex;
         flex-direction: column;
-        max-height: 100%;
+        height: 100%;
     }
 
-    .bar {
-        flex:.33;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .content {
-        height:300px;
-        display: flex;
-        flex-direction: column;
-        border-top: 2px solid #4d4d4d;
-        border-bottom: 2px solid #4d4d4d;
-        overflow-y: auto; 
-    }
-
-    .segment {
-        flex: 1;
-    }
-
-    .show {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .show span {
-        color: #4d4d4d; 
-        margin-right: 10px;
-    }
-
-    .search {
-        flex: 0.25; 
+    .bar{
         display: flex;
         align-items: center;
-        padding: 10px;
     }
 
     .item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        margin-bottom: 10px;
         border-bottom: 1px solid #4d4d4d;
     }
 
-    .item span {
-        flex: 1;
+    .content {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto; 
+        border-top: 2px solid #4d4d4d;
+        border-bottom: 2px solid #4d4d4d;
     }
 
-    .nav {
-        flex: 0.25; 
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
+    th, td {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+        
+    }
+
+    th:last-child, td:last-child {
+        flex: 0.5;
+    }
+
+    .nav, .search, .show {
+        flex: 1;
         padding: 10px;
     }
 </style>
