@@ -18,7 +18,7 @@
         file = window.URL.createObjectURL(new Blob([JSON.stringify(data)], {type:'application/json;charset=utf-8'}))
     });
     
-    let headers =['']
+    let headers = ['']
     const search = writable($page.url.searchParams.get('search') || '');
     const show = writable($page.url.searchParams.get('show')||'10');
     const currentPage = writable($page.url.searchParams.get('page'));
@@ -36,51 +36,51 @@
     })
 
     if(data.length > 0){
-        headers = Object.getOwnPropertyNames(data[0])
+        headers = Object.getOwnPropertyNames(data[0]);
     }
-    headers = headers.filter(item=> !blacklist.includes(item.toString()))
-    
+    headers = headers.filter(item => !blacklist.includes(item.toString()));
 </script>
 
 <div class="container">
-    
     <div class="bar"> 
-        <div class="show">
-            <span>Show </span>
-            <IntDropdown bind:selectedOption={$show}/>
-        </div>
         <div class="segment"></div>
         <div class="search">
-            <input type="button" onclick="window.location.replace(window.location.href)" class="button" value="Search"/>
-            <SearchBar bind:searchString={$search}/>
-        </div>
-    </div>
-
-    <div class="content">
-        <div class="item">
-            {#if data.length > 0} 
-                {#each headers as header}
-                    <span style="font-weight: bold">{header}</span>
-                {/each}
-            {/if} 
-        </div>
-        
-        {#if data.length > 0 }
-            {#each data as item}    
-                <div class="item">
-                    {#each headers as head}
-                        <span style="flex: 1"> {item[head]} </span>
-                    {/each}
-                </div>
-            {/each}
-
-            {:else}
-            <div class = "item"> 
-                <span style ="flex:1"> Table is Empty </span>
+            <div class="show-top">
+                <span style="margin-right: 5px">Show</span>
+                <IntDropdown bind:selectedOption={$show}/>
             </div>
-        {/if}
-        
+            <SearchBar bind:searchString={$search}/>
+            <input type="button" onclick="window.location.replace(window.location.href)" class="button" value="Update"/>
+            
+        </div>
     </div>
+
+    <table class="content">
+        {#if data.length > 0}
+        <thead>
+            <tr class="item">
+                {#each headers as header}
+                <th>{header}</th>
+                {/each}
+            </tr>
+        </thead>
+        <tbody>
+            {#each data as item}
+            <tr class="item">
+                {#each headers as head}
+                <td>{item[head]}</td>
+                {/each}
+            </tr>
+            {/each}
+        </tbody>
+       
+        {:else}
+            <tr class="item">
+                <td colspan={headers.length + 1}>Table is Empty</td>
+            </tr>
+        {/if}
+    </table>
+
     {#if data.length > 0}
         <div class="bar">
             <div class = "show">
@@ -98,7 +98,6 @@
             </a>
         {/if}
     {/if}
-
 </div>
 
 <style>
@@ -117,69 +116,56 @@
         background-color: #ccc;
         cursor:pointer;
     }
-    .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        max-height: 100%;
-    }
-
-    .bar {
-        flex:.33;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .content {
-        height:300px;
-        display: flex;
-        flex-direction: column;
-        border-top: 2px solid #4d4d4d;
-        border-bottom: 2px solid #4d4d4d;
-        overflow-y: auto; 
-    }
-
-    .segment {
-        flex: 1;
-    }
-
-    .show {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .show span {
-        color: #4d4d4d; 
-        margin-right: 10px;
-    }
 
     .search {
-        flex: 0.25; 
+        display: flex;
+        flex-direction: row;
+    }
+
+    .show-top{
+        display: flex;
+        align-items:center;
+        margin-right: 5px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .bar{
         display: flex;
         align-items: center;
-        padding: 10px;
     }
 
     .item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 10px;
-        margin-bottom: 10px;
         border-bottom: 1px solid #4d4d4d;
     }
 
-    .item span {
-        flex: 1;
+    .content {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto; 
+        border-top: 2px solid #4d4d4d;
+        border-bottom: 2px solid #4d4d4d;
+        overflow-wrap: anywhere;
     }
 
-    .nav {
-        flex: 0.25; 
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
+    th, td {
+        flex: 1;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th:last-child, td:last-child {
+        flex: 0.5;
+    }
+
+    .nav, .search, .show{
+        flex: 1;
         padding: 10px;
     }
 </style>

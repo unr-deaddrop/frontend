@@ -17,7 +17,7 @@
                     <span> Server-generated logs </span>
                 </div> 
                 <div class = "tab_content">
-                    <LineChart data = {server_data}/>-
+                    <LineChart data = {server_data}/>
                 </div>    
             </div>
         </div>
