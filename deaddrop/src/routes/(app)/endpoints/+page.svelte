@@ -3,7 +3,7 @@
     import Pagination from '$lib/components/Pagination.svelte';
     export let data;
     let {endpnts} = data.pagedata;
-
+    let blacklist = ['agent_cfg', 'protocol_state', 'connections', 'id']
 </script>
 
     <div class = "container"> 
@@ -24,7 +24,7 @@
                     <span> Registered endpoints </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {endpnts}/>
+                    <Pagination data = {endpnts} blacklist = {blacklist}/>
                 </div>    
             </div>
         </div>
