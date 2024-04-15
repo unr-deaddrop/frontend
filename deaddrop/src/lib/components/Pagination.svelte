@@ -44,14 +44,15 @@
 <div class="container">
     
     <div class="bar"> 
-        <div class="show">
-            <span>Show </span>
-            <IntDropdown bind:selectedOption={$show}/>
-        </div>
         <div class="segment"></div>
         <div class="search">
-            <input type="button" onclick="window.location.replace(window.location.href)" class="button" value="Search"/>
+            <div class="show-top">
+                <span style="margin-right: 5px">Show</span>
+                <IntDropdown bind:selectedOption={$show}/>
+            </div>
             <SearchBar bind:searchString={$search}/>
+            <input type="button" onclick="window.location.replace(window.location.href)" class="button" value="Update"/>
+            
         </div>
     </div>
 
@@ -116,6 +117,17 @@
         background-color: #ccc;
         cursor:pointer;
     }
+
+    .search {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .show-top{
+        display: flex;
+        align-items:center;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
@@ -151,7 +163,7 @@
         flex: 0.5;
     }
 
-    .nav, .search, .show {
+    .nav, .search, .show{
         flex: 1;
         padding: 10px;
     }
