@@ -94,8 +94,7 @@
     th, td {
         flex: 1;
         padding: 10px;
-        text-align: center;
-        
+        text-align: left;
     }
 
     th:last-child, td:last-child {
