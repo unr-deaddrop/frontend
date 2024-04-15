@@ -25,7 +25,10 @@ export async function load({cookies, url}) {
     let {sent_by_agent, sent_by_server} = await split_logs.json()
     pagedata['agent_data'] = comms_chart(sent_by_agent)
     pagedata['server_data'] = comms_chart(sent_by_server)
-    pagedata['logs'] = await logs.json()
+    let data = await logs.json()
+    pagedata['logs'] = data['results']
+
+
     
     return {pagedata}
 }

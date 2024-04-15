@@ -74,6 +74,7 @@
             <img style="height:100%" src="./download.svg"/>
             <span>Download</span>
         </a>
+        <span>Download all data in the table (including entries not currently visible) as a JSON.</span>
     {/if}
 </div>
 
