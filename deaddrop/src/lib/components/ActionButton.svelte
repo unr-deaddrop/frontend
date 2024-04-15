@@ -1,5 +1,6 @@
 <script>
     export let fn
+    export let data = ""
     export let button_color = ""
     export let text = 'placeholder'
     export let src = "favicon.png"
@@ -43,7 +44,7 @@
   </script>
   
   <button
-    on:click={() => fn}
+    on:click={(data) => fn}
     on:mouseover={handleMouseOver}
     on:mouseout={handleMouseOut}
     on:focus={handleFocus}
@@ -78,6 +79,7 @@
     }
   
     button img {
+      filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(94deg) brightness(108%) contrast(100%);
       max-width: 10%;
       height: auto;
     }

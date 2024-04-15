@@ -1,10 +1,10 @@
 <script>
-
+    export let searchString = ""
 </script>
 
 
 <div class="SearchBar">
-    <input type="text" placeholder="Search..." style = "flex:1;" />
+    <input bind:value={searchString} type="text" placeholder="Search..." style = "flex:1;" />
 </div>
 
 
