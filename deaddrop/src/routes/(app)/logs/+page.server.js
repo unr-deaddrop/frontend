@@ -1,11 +1,12 @@
 import moment from 'moment-timezone'
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load({cookies}) {
+/** @type {import('./$types').PageLoad} */
+export async function load({cookies, url}) {
     const auth = cookies.get('token')
+    const query = url.searchParams.toString()
     const pagedata = {}
 
-    const logs = await fetch('http://backend:8000/backend/logs/', {
+    const logs = await fetch('http://backend:8000/backend/logs?'+query, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

@@ -1,14 +1,26 @@
 <script>
-    
+    export let pages = 1
+    function getPage(page) {
+        let searchParams = new URLSearchParams(window.location.search);
+        let currentPage = searchParams.get('page') || '1';
+        if (page == "next") {
+            searchParams.set('page', Number(currentPage) + 1);
+        } else if (page == "prev") {
+            searchParams.set('page', Number(currentPage) - 1);
+        } else {
+            searchParams.set('page', page);
+        }
+        window.location.search = searchParams.toString();
+    }
 </script>
 
-    <div class = "container">
-        <button> &lt;&lt; </button>
-        <button> 1 </button>
-        <button> 2 </button>
-        <button> 3 </button>
-        <button> &gt;&gt;</button>
-    </div>
+<div class = "container">
+    <button onclick="{getPage}getPage('prev', {pages})"> &lt;&lt; </button>
+    {#each {length: pages} as _,i}
+        <button onclick="{getPage}getPage({i+1}, {pages})">{i+1}</button>
+    {/each}
+    <button onclick="{getPage}getPage('next', {pages})"> &gt;&gt;</button>
+</div>
 
 
 <style>
