@@ -63,6 +63,7 @@
         border-top: 2px solid #4d4d4d;
         border-bottom: 2px solid #4d4d4d;
         overflow-y: auto; 
+        overflow-wrap: anywhere;
     }
 
     .segment {

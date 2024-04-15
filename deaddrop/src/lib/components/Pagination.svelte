@@ -42,7 +42,6 @@
 </script>
 
 <div class="container">
-    
     <div class="bar"> 
         <div class="segment"></div>
         <div class="search">
@@ -126,6 +125,7 @@
     .show-top{
         display: flex;
         align-items:center;
+        margin-right: 5px;
     }
 
     .container {
@@ -151,6 +151,7 @@
         overflow-y: auto; 
         border-top: 2px solid #4d4d4d;
         border-bottom: 2px solid #4d4d4d;
+        overflow-wrap: anywhere;
     }
 
     th, td {

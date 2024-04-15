@@ -95,6 +95,7 @@
         overflow-y: auto; 
         border-top: 2px solid #4d4d4d;
         border-bottom: 2px solid #4d4d4d;
+        overflow-wrap: anywhere;
     }
 
     th, td {
