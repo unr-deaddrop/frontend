@@ -5,8 +5,12 @@
 	import InputBox from "$lib/components/InputBox.svelte"
 	import Checkbox from "$lib/components/Checkbox.svelte"
     import SchemaForm from "svelte-jsonschema-form";
-    // import agent_schema from "../examples/agent_config.json"
-    // import protocol_schema from "../examples/protocol_config_one.json"
+    // import { SubmitForm } from '@restspace/svelte-schema-form';
+    // import { SubmitForm, SchemaForm } from '@restspace/svelte-schema-form';
+    // import '@restspace/svelte-schema-form/css/layout.css';
+    // import '@restspace/svelte-schema-form/css/basic-skin.css';
+    import agent_schema1 from "../examples/agent_config.json"
+    import protocol_schema1 from "../examples/protocol_config_second.json"
 
     export let data;
     let {agent_id, agent_metadata, agent_schema, protocol_schemas} = data;
@@ -73,14 +77,7 @@
                         <div class = "field"> 
                             <Context>   
                                 <div class="stack">
-                                    make this a checkbox
-                                    <Checkbox/>
-                                <InputBox 
-                                    id="isVirtual" 
-                                    bind:value={initialData["isVirtual"]}
-                                    name="isVirtual"
-                                    placeholder="Is Virtual?"
-                                    />
+                                    <Checkbox id="isVirtual" label_name="Is Virtual?" bind:checked={initialData["isVirtual"]}/>
                                 </div>
                             </Context>
                         </div>
@@ -116,6 +113,8 @@
             </div>
         </div>
     </form>
+    <SchemaForm schema={agent_schema1} value={initialData["protocol_config"]}/>
+    <SchemaForm schema={protocol_schema1} value={initialData["protocol_config"]}/>
     <div class = "lower_body">
         <div class = "tab_body"> 
             <div class = "tab_head">
@@ -154,6 +153,17 @@
                             {:catch error}
                                 <div class="error">ERROR: {error.message}</div>
                             {/await}
+
+                            <!-- {#await protocolSchema}
+                                <p>Loading schema form protocol_config_all...</p>
+                            {:then protocolSchema}
+                                {#each protocolSchema as {name, config}}
+                                    <SubmitForm schema={config} bind:value={(initialData["protocol_config"][name])}/>
+                                    <SchemaForm schema={config} bind:data={(initialData[name])}/>
+                                {/each}
+                            {:catch error}
+                                <div class="error">ERROR: {error.message}</div>
+                            {/await} -->
                         </div>
 
                     </div>

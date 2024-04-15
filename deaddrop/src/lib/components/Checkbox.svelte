@@ -1,7 +1,14 @@
 <script>
     export let checked = false;
+    export let label_name = "";
 </script>
-<input type="checkbox" name="check" id="check" bind:checked={checked}>
+<label>
+    {label_name}
+    <input type="checkbox" name="check" id="check" bind:checked={checked}>
+</label>
 <style>
+label{
+    color: black;
+}
 
 </style>
