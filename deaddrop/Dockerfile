@@ -6,7 +6,8 @@ COPY package*.json ./
 
 RUN npm install --force
 
-COPY . .
+# if volume mounted, no need to copy the universe
+# COPY . .
 
 ENV PORT=5173
 EXPOSE 5173

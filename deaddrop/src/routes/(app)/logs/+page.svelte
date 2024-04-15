@@ -40,7 +40,7 @@
                 <span>Logs</span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {logs['data']} pages={logs['pages']} showDownload={true} blacklist = {log_blacklist}/>
+                <Pagination data = {logs} showDownload={true} blacklist = {log_blacklist}/>
             </div>    
         </div>
     </div>
