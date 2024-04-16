@@ -60,7 +60,7 @@
                     <span> Available Commands </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {agent_commands} blacklist = {command_blacklist}/>
+                    <Pagination table_id="commands_table" data = {agent_commands} blacklist = {command_blacklist}/>
                 </div>    
             </div> 
         </div>
@@ -71,7 +71,7 @@
                     <span> Endpoints Using This Agent </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {rel_endpnts} blacklist = {agent_blacklist}/>
+                    <Pagination table_id="endpoints_table" data = {rel_endpnts} blacklist = {agent_blacklist}/>
                 </div>    
             </div> 
         </div>

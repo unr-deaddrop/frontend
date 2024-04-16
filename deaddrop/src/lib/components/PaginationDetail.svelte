@@ -1,13 +1,27 @@
+<svelte:head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+</svelte:head>
+
 <script>
     import SearchBar from "./SearchBar.svelte";
     import IntDropdown from "./IntDropdown.svelte";
     import PaginationButtons from "./PaginationButtons.svelte"; 
     import NavButton from "./NavButton.svelte";
+    import { onMount } from 'svelte';
+
+    import DataTable from 'datatables.net-dt';
 
     export let data = [];
     export let blacklist = [""];
     export let detail = ""; 
+    export let table_id = "default_table";
     let headers = [''];
+
+    onMount(() => {
+        let table = new DataTable('#'+table_id, {
+            "bAutoWidth": false,
+        });
+    });
 
     if(data.length > 0){
         headers = Object.getOwnPropertyNames(data[0]);
@@ -16,20 +30,7 @@
 </script>
 
 <div class="container">
-    
-    <div class="bar"> 
-        <div class="show">
-            <span>Show </span>
-            <IntDropdown/>
-        </div>
-        <div class="segment"></div>
-        <div class="search">
-            <SearchBar/>
-        </div>
-    </div>
-
-    <table class="content">
-        {#if data.length > 0}
+    <table id={table_id} class="content display compact">
         <thead>
             <tr class="item">
                 {#each headers as header}
@@ -50,25 +51,7 @@
             </tr>
             {/each}
         </tbody>
-       
-        {:else}
-            <tr class="item">
-                <td colspan={headers.length + 1}>Table is Empty</td>
-            </tr>
-        {/if}
-      
     </table>
-
-    <div class="bar">
-        <div class="show">
-            <span style="margin-top: 10px">Showing items 1-3 of 3</span>
-        </div>
-        <div class="show"></div>
-        <div class="nav">
-            <PaginationButtons/>
-        </div>
-    </div>
-
 </div>
 
 <style>
@@ -76,40 +59,5 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-    }
-
-    .bar{
-        display: flex;
-        align-items: center;
-    }
-
-    .item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #4d4d4d;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto; 
-        border-top: 2px solid #4d4d4d;
-        border-bottom: 2px solid #4d4d4d;
-        overflow-wrap: anywhere;
-    }
-
-    th, td {
-        flex: 1;
-        padding: 10px;
-        text-align: left;
-    }
-
-    th:last-child, td:last-child {
-        flex: 0.5;
-    }
-
-    .nav, .search, .show {
-        flex: 1;
-        padding: 10px;
     }
 </style>

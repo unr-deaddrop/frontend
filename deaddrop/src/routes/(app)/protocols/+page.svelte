@@ -130,7 +130,7 @@ agent data
                     <span> Installed Protocols </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {tasks}/>
+                    <Pagination table_id = "protocols_table" data = {tasks}/>
                 </div>    
             </div>
            

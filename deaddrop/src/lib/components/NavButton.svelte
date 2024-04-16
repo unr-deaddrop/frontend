@@ -66,8 +66,8 @@
       display: flex;
       align-items: center;
       border-radius: 5px;
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 5px 20px;
+      font-size: 14px;
       text-decoration: none;
       color: white;
       overflow: hidden;

@@ -15,7 +15,7 @@
                     <span> Stored credentials </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {credentials}/>
+                    <Pagination table_id = "credentials_table" data = {credentials}/>
                 </div>    
             </div>
         </div>
