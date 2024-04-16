@@ -1,14 +1,10 @@
 <script>
     /** @type {import('./$types').PageData} */
-    import Dropdown from "$lib/components/Dropdown.svelte";
     import Context from "$lib/components/Context.svelte"
 	import InputBox from "$lib/components/InputBox.svelte"
 	import Checkbox from "$lib/components/Checkbox.svelte"
+	import Button from "$lib/components/Button.svelte"
     import SchemaForm from "svelte-jsonschema-form";
-    // import { SubmitForm } from '@restspace/svelte-schema-form';
-    // import { SubmitForm, SchemaForm } from '@restspace/svelte-schema-form';
-    // import '@restspace/svelte-schema-form/css/layout.css';
-    // import '@restspace/svelte-schema-form/css/basic-skin.css';
     import agent_schema1 from "../examples/agent_config.json"
     import protocol_schema1 from "../examples/protocol_config_second.json"
 
@@ -92,29 +88,13 @@
                 <div class = "tab_head">
                     <span> Command </span>
                 </div> 
-
-                <!-- <div class = "tab_content">
-                    {#await agentSchema}
-                        <p>Loading schema...</p>
-                    {:then agentSchema}
-                        <SchemaForm schema={agentSchema} bind:data={(initialData)}/>
-                    {:catch error}
-                        <div class="error">ERROR: {error.message}</div>
-                    {/await}
-                </div> -->
-                <!-- the below sends the actual data to with the button -->
-                <!-- <input type="hidden" name="args" value={initialData["agent_config"]} /> -->
                 <input type="hidden" name="agent_config" value={JSON.stringify(initialData["agent_config"])} />
                 <input type="hidden" name="protocol_config" value={JSON.stringify(initialData["protocol_config"])} />
                 
-                <button type="submit"> 
-                    Export Commands 
-                </button>  
+                <Button>Export Commands</Button>
             </div>
         </div>
     </form>
-    <SchemaForm schema={agent_schema1} value={initialData["protocol_config"]}/>
-    <SchemaForm schema={protocol_schema1} value={initialData["protocol_config"]}/>
     <div class = "lower_body">
         <div class = "tab_body"> 
             <div class = "tab_head">

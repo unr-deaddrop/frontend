@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
-  let agent_id = '3'; 
+  let agent_id = params.agent; 
   let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
       method: 'GET',
       headers: {
