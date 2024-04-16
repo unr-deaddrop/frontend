@@ -3,6 +3,7 @@
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Context from "$lib/components/Context.svelte"
 	import ComboBox from "$lib/components/ComboBox.svelte"
+	import Button from "$lib/components/Button.svelte"
     import SchemaForm from "svelte-jsonschema-form";
 
     export let data;
@@ -109,9 +110,7 @@
                 </div>
                 <input type="hidden" name="args" value={jsonData} />
                 
-                <button type="submit"> 
-                    Export Commands 
-                </button>  
+                <Button>Export Commands</Button>
             </div>
         </div>
     </form>

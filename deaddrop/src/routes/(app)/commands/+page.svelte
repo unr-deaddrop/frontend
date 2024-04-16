@@ -3,6 +3,7 @@
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Context from "$lib/components/Context.svelte"
 	import ComboBox from "$lib/components/ComboBox.svelte"
+	import Button from "$lib/components/Button.svelte"
     import SchemaForm from "svelte-jsonschema-form";
 
     export let data;
@@ -186,9 +187,7 @@
                     {/await} -->
                 </div>
                 
-                <button> 
-                    Export Commands 
-                </button>  
+                <Button>Export Commands</Button> 
             </div>
         </div>
     </form>

@@ -89,7 +89,7 @@
                 <input type="hidden" name="agent_config" value={JSON.stringify(initialData["agent_config"])} />
                 <input type="hidden" name="protocol_config" value={JSON.stringify(initialData["protocol_config"])} />
                 
-                <Button>Export Commands</Button>
+                <Button>Create Payload</Button>
             </div>
         </div>
     </form>
