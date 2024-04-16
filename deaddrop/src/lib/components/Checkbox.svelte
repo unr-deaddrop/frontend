@@ -11,4 +11,11 @@ label{
     color: black;
 }
 
+input {
+		margin: 0;
+		padding: 0.8rem 1rem;
+		border: 0.175rem solid gray;
+		border-radius: 0.3rem;
+	}
+
 </style>

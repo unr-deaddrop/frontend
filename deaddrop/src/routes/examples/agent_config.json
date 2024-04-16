@@ -1,0 +1,124 @@
+{
+    "description": "Agent-wide configuration definitions. Includes both non-sensitive and\nsensitive configurations set at runtime.\n\nSee agent.cfg for more details.",
+    "properties": {
+        "AGENT_ID": {
+            "description": "The agent's UUID.",
+            "format": "uuid",
+            "title": "Agent Id",
+            "type": "string",
+            "default": "09295907-363a-46b5-990e-08d48fcd9c74",
+            "readonly": true
+        },
+        "CONTROL_UNIT_THROTTLE_TIME": {
+            "default": 2,
+            "description": "The time, in seconds, the control unit should sleep on each cycle.",
+            "title": "Control Unit Throttle Time",
+            "type": "number"
+        },
+        "SERVER_PUBLIC_KEY": {
+            "description": "The server's public key as base64.",
+            "title": "Server Public Key",
+            "default": "",
+            "readonly": true,
+            "format": "binary",
+            "type": "null"
+        },
+        "INCOMING_PROTOCOLS": {
+            "description": "A list of supported agent names for which periodic listener tasks should be scheduled.",
+            "items": {
+                "type": "string"
+            },
+            "title": "Incoming Protocols",
+            "type": "array"
+        },
+        "HEARTBEAT_PROTOCOL": {
+            "description": "The protocol used to send heartbeats.",
+            "title": "Heartbeat Protocol",
+            "type": "string"
+        },
+        "LOGGING_PROTOCOL": {
+            "description": "The protocol used to send log bundles.",
+            "title": "Logging Protocol",
+            "type": "string"
+        },
+        "SENDING_PROTOCOL": {
+            "description": "The protocol used to send all other messages.",
+            "title": "Sending Protocol",
+            "type": "string"
+        },
+        "LOGGING_INTERVAL": {
+            "description": "The frequency, in seconds, with which log bundles should be conditionally sent.",
+            "title": "Logging Interval",
+            "type": "integer"
+        },
+        "HEARTBEAT_INTERVAL": {
+            "description": "The frequency, in seconds, with which heartbeats should be conditionally sent.",
+            "title": "Heartbeat Interval",
+            "type": "integer"
+        },
+        "REDIS_MESSAGES_SEEN_KEY": {
+            "description": "The key used by the message dispatch unit to drop duplicate messages.",
+            "title": "Redis Messages Seen Key",
+            "type": "string"
+        },
+        "REDIS_NEW_MESSAGES_KEY": {
+            "description": "The key used by the control unit to discover completed message tasking.",
+            "title": "Redis New Messages Key",
+            "type": "string"
+        },
+        "REDIS_MAIN_PROCESS_MESSAGES_SEEN_KEY": {
+            "description": "The key used by the control unit to drop duplicated messages.",
+            "title": "Redis Main Process Messages Seen Key",
+            "type": "string"
+        },
+        "RESULT_RETRIEVAL_REATTEMPT_LIMIT": {
+            "description": "The number of times a Celery task may be observed to be pending before dropped.",
+            "title": "Result Retrieval Reattempt Limit",
+            "type": "integer"
+        },
+        "INCOMING_ENCODED_MESSAGE_DIR": {
+            "description": "The directory used to store incoming messages before decoding.",
+            "format": "path",
+            "title": "Incoming Encoded Message Dir",
+            "type": "string"
+        },
+        "INCOMING_DECODED_MESSAGE_DIR": {
+            "description": "The directory used to store incoming messages after decoding.",
+            "format": "path",
+            "title": "Incoming Decoded Message Dir",
+            "type": "string"
+        },
+        "OUTGOING_DECODED_MESSAGE_DIR": {
+            "description": "The directory used to store outgoing messages before encoding.",
+            "format": "path",
+            "title": "Outgoing Decoded Message Dir",
+            "type": "string"
+        },
+        "OUTGOING_ENCODED_MESSAGE_DIR": {
+            "description": "The directory used to store outgoing messages after encoding.",
+            "format": "path",
+            "title": "Outgoing Encoded Message Dir",
+            "type": "string"
+        }
+    },
+    "required": [
+        "AGENT_ID",
+        "SERVER_PUBLIC_KEY",
+        "INCOMING_PROTOCOLS",
+        "HEARTBEAT_PROTOCOL",
+        "LOGGING_PROTOCOL",
+        "SENDING_PROTOCOL",
+        "LOGGING_INTERVAL",
+        "HEARTBEAT_INTERVAL",
+        "REDIS_MESSAGES_SEEN_KEY",
+        "REDIS_NEW_MESSAGES_KEY",
+        "REDIS_MAIN_PROCESS_MESSAGES_SEEN_KEY",
+        "RESULT_RETRIEVAL_REATTEMPT_LIMIT",
+        "INCOMING_ENCODED_MESSAGE_DIR",
+        "INCOMING_DECODED_MESSAGE_DIR",
+        "OUTGOING_DECODED_MESSAGE_DIR",
+        "OUTGOING_ENCODED_MESSAGE_DIR"
+    ],
+    "title": "PyginConfig",
+    "type": "object"
+}
