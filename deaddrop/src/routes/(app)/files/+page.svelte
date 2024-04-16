@@ -13,7 +13,7 @@
                     <span> Stored files </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {files}/>
+                    <Pagination table_id = "files_table" data = {files}/>
                 </div>    
             </div>
         </div>

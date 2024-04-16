@@ -1,13 +1,8 @@
 <svelte:head>
-    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css"> -->
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
-
-    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
-    <!-- <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
 </svelte:head>
 
-<script>
+<script> 
     import SearchBar from "./SearchBar.svelte";
     import { onMount } from 'svelte';
     import ActionButton from '$lib/components/ActionButton.svelte';
@@ -19,13 +14,13 @@
     import { goto } from '$app/navigation'
     import { browser } from '$app/environment'
     import DataTable from 'datatables.net-dt';
-    export let data
-    export let blacklist = [""]
-    export let file
-    export let showDownload = false
+    export let data;
+    export let blacklist = [""];
+    export let file;
+    export let showDownload = false;
+    export let table_id = "default_table";
     onMount(() => {
-        
-        let table = new DataTable('#myTable', {
+        let table = new DataTable('#'+table_id, {
             "bAutoWidth": false,
         });
 
@@ -43,8 +38,7 @@
 </script>
 
 <div class="container">
-    <table id="myTable" class="content display compact">
-        {#if data.length > 0}
+    <table id={table_id} class="content display compact" style="word-break: break-all">
         <thead>
             <tr class="item">
                 {#each headers as header}
@@ -61,12 +55,6 @@
             </tr>
             {/each}
         </tbody>
-       
-        {:else}
-            <tr class="item">
-                <td colspan={headers.length + 1}>Table is Empty</td>
-            </tr>
-        {/if}
     </table>
 
     {#if showDownload}

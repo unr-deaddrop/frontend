@@ -24,7 +24,7 @@
                     <span> Registered endpoints </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination data = {endpnts} blacklist = {blacklist}/>
+                    <Pagination table_id = "registered_endpoints_table" data = {endpnts} blacklist = {blacklist}/>
                 </div>    
             </div>
         </div>

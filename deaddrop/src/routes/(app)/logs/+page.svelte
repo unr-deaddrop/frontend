@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-                <button on:click={handleClick}>Filter logs</button>
+                <button on:click={handleClick} style="margin-top:20px;">Filter logs</button>
             </div>
         </div>    
     </div>
@@ -149,7 +149,7 @@
                 <span>Logs</span>
             </div> 
             <div class = "tab_content">
-                <Pagination data = {logs} showDownload={true} blacklist = {log_blacklist}/>
+                <Pagination table_id = "logs_table" data = {logs} showDownload={true} blacklist = {log_blacklist}/>
             </div>    
         </div>
     </div>
@@ -194,5 +194,25 @@
         outline: none;
         border-radius: 5px;
         border: 1px solid darkgray;
+    }
+
+    button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      padding: 5px 20px;
+      font-size: 14px;
+      text-decoration: none;
+      color: white;
+      overflow: hidden;
+      transition: background-color 0.3s ease-in-out;
+      background-color: #a60707;
+      width:25%;
+      min-width:250px;
+    }
+
+    button:hover {
+        background-color: #730000;
     }
 </style>

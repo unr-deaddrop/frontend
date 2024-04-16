@@ -118,7 +118,7 @@
                 <span> Running Tasks </span>
             </div> 
             <div class = "tab_content">
-                <PaginationDetail data = {tasks} blacklist ={tasks_blacklist} detail = "tasks"/>
+                <PaginationDetail table_id = "tasks_table" data = {tasks} blacklist ={tasks_blacklist} detail = "tasks"/>
 
             </div>    
         
