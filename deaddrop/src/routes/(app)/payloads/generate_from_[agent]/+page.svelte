@@ -128,22 +128,10 @@
                             {:then protocolSchema}
                                 {#each protocolSchema as {name, config}}
                                     <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
-                                    <!-- <SchemaForm schema={config} bind:data={(initialData[name])}/> -->
                                 {/each}
                             {:catch error}
                                 <div class="error">ERROR: {error.message}</div>
                             {/await}
-
-                            <!-- {#await protocolSchema}
-                                <p>Loading schema form protocol_config_all...</p>
-                            {:then protocolSchema}
-                                {#each protocolSchema as {name, config}}
-                                    <SubmitForm schema={config} bind:value={(initialData["protocol_config"][name])}/>
-                                    <SchemaForm schema={config} bind:data={(initialData[name])}/>
-                                {/each}
-                            {:catch error}
-                                <div class="error">ERROR: {error.message}</div>
-                            {/await} -->
                         </div>
 
                     </div>
