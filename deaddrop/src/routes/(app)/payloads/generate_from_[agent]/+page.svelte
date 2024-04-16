@@ -5,8 +5,6 @@
 	import Checkbox from "$lib/components/Checkbox.svelte"
 	import Button from "$lib/components/Button.svelte"
     import SchemaForm from "svelte-jsonschema-form";
-    import agent_schema1 from "../examples/agent_config.json"
-    import protocol_schema1 from "../examples/protocol_config_second.json"
 
     export let data;
     let {agent_id, agent_metadata, agent_schema, protocol_schemas} = data;
@@ -127,7 +125,9 @@
                                 <p>Loading schema form protocol_config_all...</p>
                             {:then protocolSchema}
                                 {#each protocolSchema as {name, config}}
-                                    <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
+                                    <div class="protocol_options">
+                                        <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
+                                    </div>
                                 {/each}
                             {:catch error}
                                 <div class="error">ERROR: {error.message}</div>
@@ -167,10 +167,9 @@
 
     .protocol_options{
         flex: 1;
-        display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin-top: 10px;
+        margin-bottom: 10px;
         
     }
 

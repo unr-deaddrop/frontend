@@ -71,8 +71,8 @@
 		margin: 0;
 		width: 100%;
 		padding: 0.8rem 1rem;
-		border: 0.175rem solid gray;
-		border-radius: 0.3rem;
+		border: 1px solid gray;
+		border-radius: 4px;
 	}
 	
 	.combobox__input:focus {
