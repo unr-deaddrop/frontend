@@ -4,10 +4,16 @@
 	import InputBox from "$lib/components/InputBox.svelte"
 	import Checkbox from "$lib/components/Checkbox.svelte"
 	import Button from "$lib/components/Button.svelte"
+	import { TabWrapper, TabHead, TabHeadItem , TabContentItem } from '$lib'
     import SchemaForm from "svelte-jsonschema-form";
 
     export let data;
     let {agent_id, agent_metadata, agent_schema, protocol_schemas} = data;
+
+    let activeTabValue = 1;
+    const handleTabClick = (tabValue) => () => {
+        activeTabValue = tabValue;
+    }
 
     let agentSchema = agent_schema
     let protocolSchema = protocol_schemas
@@ -20,6 +26,42 @@
     $: console.log('initialData', initialData)
     $: jsonData = JSON.stringify(initialData)
 </script>
+
+
+<TabWrapper>
+    <TabHead>
+        <TabHeadItem id={1} on:click={handleClick(1)}>Tab 1</TabHeadItem>
+        <TabHeadItem id={2} on:click={handleClick(2)}>Tab 2</TabHeadItem>
+        <TabHeadItem id={3} on:click={handleClick(3)}>Tab 3</TabHeadItem>
+    </TabHead>
+    
+    <TabContentItem id={1} {activeTabValue}>
+    {#await agentSchema}
+        <p>Loading schema form agent_config...</p>
+    {:then agentSchema}
+        <SchemaForm schema={agentSchema} bind:data={(initialData["agent_config"])}/>
+    {:catch error}
+        <div class="error">ERROR: {error.message}</div>
+    {/await}
+    </TabContentItem>
+
+    <TabContentItem id={2} {activeTabValue}>
+        {#await protocolSchema}
+            <p>Loading schema form protocol_config_all...</p>
+        {:then protocolSchema}
+            {#each protocolSchema as {name, config}}
+                <div class="protocol_options">
+                    <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
+                </div>
+            {/each}
+        {:catch error}
+            <div class="error">ERROR: {error.message}</div>
+        {/await}
+    </TabContentItem>
+    <TabContentItem id={3} {activeTabValue}>
+    
+    </TabContentItem>
+</TabWrapper>
 
 <div class = "container">
     <form class="upper_body" method="POST"> 
