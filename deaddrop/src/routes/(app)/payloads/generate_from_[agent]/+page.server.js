@@ -42,8 +42,8 @@ export const actions = {
       "address": form.get('name'),
       "is_virtual": false, // FIXME: I don't see this in the form for some reason
       "agent_cfg": {
-        "agent_config": form.get('agent_config'),
-        "protocol_config": form.get('protocol_config')
+        "agent_config": JSON.parse(form.get('agent_config')),
+        "protocol_config": JSON.parse(form.get('protocol_config'))
       },
       "protocol_state": null, // Currently unused by the form
       "payload_file": null, // Should be null when user-generated
@@ -51,7 +51,8 @@ export const actions = {
       "connections": [] // Not currently supported through the form
     }
 
-    let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
+    console.log("payload_data", payload_data)
+    let agent_metadata = await fetch(`http://backend:8000/backend/endpoints/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +63,7 @@ export const actions = {
     
     let result = await agent_metadata.json()
     // Redirect based on this result
-    console.log(result)
+    console.log("payload_data_result", result)
     
 
     // console.log('form2', JSON.parse(form))
