@@ -1,10 +1,12 @@
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ cookies, params }) {
+  const auth = cookies.get('token')
   let agent_id = params.agent; 
   let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Token " + auth
       }
   })
   agent_metadata = await agent_metadata.json()
