@@ -1,11 +1,30 @@
 <script>
+	import Button from "$lib/components/Button.svelte"
   export let id;
+  export let activeTabValue;
+  let isActive = true;
   export let buttonClass = '';
-  export let liClass = 'mr-2';
+  export let inactiveClass = '' + buttonClass
+
+  export let activeClass = 'active-bg' + buttonClass
+  const liClass = 'mr-2 liClassing'
+
 </script>
 
-<li class={liClass} role="presentation">
-  <button on:click class={buttonClass} id="{id}-tabhead" type="button" role="tab">
+<div class={liClass} role="presentation">
+  <!-- <Button on:click class={activeTabValue === id ? activeClass : inactiveClass} id="{id}-tabhead" type="button" role="tab"> -->
+  <Button on:click id="{id}-tabhead" type="button" role="tab">
     <slot></slot>
-  </button>
-</li>
+  </Button>
+</div>
+
+<style lang="scss">
+  .liClassing{
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  .mr-2{
+    margin-right: 0.5rem; 
+  }
+
+</style>

@@ -1,7 +1,7 @@
 <script>
   export let activeTabValue;
   export let id;
-  export let contentDivClass = 'p-4 bg-gray-40 rounded-lg dark:bg-gray-300';
+  export let contentDivClass = 'p-4 bg rounded-lg';
 </script>
 
 {#if activeTabValue === id}
@@ -9,3 +9,15 @@
     <slot></slot>
   </div>
 {/if}
+
+<style>
+  .p-4{
+    padding: 0rem;
+  }
+  .bg{
+    background-color: inherit;
+  }
+  .rounded-lg{
+    border-radius: 0.5rem;
+  }
+</style>

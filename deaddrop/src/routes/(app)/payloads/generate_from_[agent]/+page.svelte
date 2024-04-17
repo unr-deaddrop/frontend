@@ -28,10 +28,12 @@
 </script>
 
 <div class = "container">
+    <div class="left">
+        <h2> Generate Payload </h2>
+    </div>
     <form class="upper_body" method="POST"> 
-        <div class = "left">
+        <!-- <div class = ""> -->
 
-            <h2> Generate Payload </h2>
             <div class = "tab_body"> 
                 <div class = "tab_head"> 
                     <span> Standard Options </span>
@@ -81,38 +83,32 @@
                                 </div>
                             </Context>
                         </div>
+                        
+                
+                        <input type="hidden" name="agent_config" value={JSON.stringify(initialData["agent_config"])} />
+                        <input type="hidden" name="protocol_config" value={JSON.stringify(initialData["protocol_config"])} />
+                        
+                        <Button type="submit">Create Payload</Button>
                     </div>
                 </div>    
             </div>
-        </div>
-
-        <div class = "right">
-            <h2 style = "color: #e6e6e6">.</h2>
-            <div class = "tab_body"> 
-                <div class = "tab_head">
-                    <span> Command </span>
-                </div> 
-                <input type="hidden" name="agent_config" value={JSON.stringify(initialData["agent_config"])} />
-                <input type="hidden" name="protocol_config" value={JSON.stringify(initialData["protocol_config"])} />
-                
-                <Button>Create Payload</Button>
-            </div>
-        </div>
+        <!-- </div> -->
     </form>
     <div class = "lower_body">
         <div class = "tab_body"> 
             <div class = "tab_head">
-                <span> Agent Options </span>
+                <span> Options </span>
             </div> 
             <div class = "tab_content">
                 <!-- <div class = "drop_container">
                     <div class = "tab_content"> -->
                         <TabWrapper>
-                            <TabHead>
-                                <TabHeadItem id={1} on:click={handleTabClick(1)}>Agent Options</TabHeadItem>
-                                <TabHeadItem id={2} on:click={handleTabClick(2)}>Protocol Options</TabHeadItem>
-                                <TabHeadItem id={3} on:click={handleTabClick(3)}>Close</TabHeadItem>
-                            </TabHead>
+                            <!-- <div class=""> -->
+                                <TabHead>
+                                    <TabHeadItem id={1} on:click={handleTabClick(1)} {activeTabValue}>Agent Options</TabHeadItem>
+                                    <TabHeadItem id={2} on:click={handleTabClick(2)} {activeTabValue}>Protocol Options</TabHeadItem>
+                                </TabHead>
+                            <!-- </div> -->
                             
                             <TabContentItem id={1} {activeTabValue}>
                                 {#await agentSchema}
@@ -136,9 +132,6 @@
                                 {:catch error}
                                     <div class="error">ERROR: {error.message}</div>
                                 {/await}
-                            </TabContentItem>
-                            <TabContentItem id={3} {activeTabValue}>
-                            
                             </TabContentItem>
                         </TabWrapper>
                     <!-- </div>
@@ -176,7 +169,7 @@
         flex: 1;
         flex-direction: column;
         align-items: flex-start;
-        margin-bottom: 10px;
+        /* margin-bottom: 10px; */
         
     }
 
@@ -214,7 +207,30 @@
 		flex-direction: column;
 		gap: 1.5rem;
 	}
-    
-
+    .align-center{
+        align-items: center;
+    }
+    .tab_head {
+        flex:.005;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        border: 1px solid darkgrey;
+        background-color: #a60707;
+    }
+    .display-flex{
+        display: flex;
+    }
+    .justify-center{
+        justify-content: center;
+    }
+    .justify-start{
+        justify-content: flex-start;
+    }
+    .w-full{
+        width: 100%; 
+    }
     
 </style>

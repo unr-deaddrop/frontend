@@ -4,7 +4,19 @@
 </script>
 
 <div class={divClass}>
-  <ul class={ulClass} role="tablist">
+  <div class={ulClass} role="tablist">
     <slot></slot>
-  </ul>
+  </div>
 </div>
+
+<style>
+  .flex{
+    display: flex;
+  }
+  .flex-wrap{
+    flex-wrap: wrap;
+  }
+  .-mb-px{
+    margin-bottom: -1px;
+  }
+</style>
