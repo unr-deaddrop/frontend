@@ -27,42 +27,6 @@
     $: jsonData = JSON.stringify(initialData)
 </script>
 
-
-<TabWrapper>
-    <TabHead>
-        <TabHeadItem id={1} on:click={handleClick(1)}>Tab 1</TabHeadItem>
-        <TabHeadItem id={2} on:click={handleClick(2)}>Tab 2</TabHeadItem>
-        <TabHeadItem id={3} on:click={handleClick(3)}>Tab 3</TabHeadItem>
-    </TabHead>
-    
-    <TabContentItem id={1} {activeTabValue}>
-    {#await agentSchema}
-        <p>Loading schema form agent_config...</p>
-    {:then agentSchema}
-        <SchemaForm schema={agentSchema} bind:data={(initialData["agent_config"])}/>
-    {:catch error}
-        <div class="error">ERROR: {error.message}</div>
-    {/await}
-    </TabContentItem>
-
-    <TabContentItem id={2} {activeTabValue}>
-        {#await protocolSchema}
-            <p>Loading schema form protocol_config_all...</p>
-        {:then protocolSchema}
-            {#each protocolSchema as {name, config}}
-                <div class="protocol_options">
-                    <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
-                </div>
-            {/each}
-        {:catch error}
-            <div class="error">ERROR: {error.message}</div>
-        {/await}
-    </TabContentItem>
-    <TabContentItem id={3} {activeTabValue}>
-    
-    </TabContentItem>
-</TabWrapper>
-
 <div class = "container">
     <form class="upper_body" method="POST"> 
         <div class = "left">
@@ -141,43 +105,44 @@
                 <span> Agent Options </span>
             </div> 
             <div class = "tab_content">
-                <div class = "drop_container">
-                    <div class = "tab_content">
-                        {#await agentSchema}
-                            <p>Loading schema form agent_config...</p>
-                        {:then agentSchema}
-                            <SchemaForm schema={agentSchema} bind:data={(initialData["agent_config"])}/>
-                        {:catch error}
-                            <div class="error">ERROR: {error.message}</div>
-                        {/await}
-                    </div>
-                </div>
-            </div>    
-        </div>
-        <div class = "tab_body"> 
-            <div class = "tab_head">
-                <span> Protocol Options </span>
-            </div> 
-            <div class = "tab_content">
-                <div class = "tab_content">
-                    <div class = "drop_container">
-                        <!-- each protocol schema -->
-                        <div class = "tab_content">
-                            {#await protocolSchema}
-                                <p>Loading schema form protocol_config_all...</p>
-                            {:then protocolSchema}
-                                {#each protocolSchema as {name, config}}
-                                    <div class="protocol_options">
-                                        <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
-                                    </div>
-                                {/each}
-                            {:catch error}
-                                <div class="error">ERROR: {error.message}</div>
-                            {/await}
-                        </div>
-
-                    </div>
-                </div>    
+                <!-- <div class = "drop_container">
+                    <div class = "tab_content"> -->
+                        <TabWrapper>
+                            <TabHead>
+                                <TabHeadItem id={1} on:click={handleTabClick(1)}>Agent Options</TabHeadItem>
+                                <TabHeadItem id={2} on:click={handleTabClick(2)}>Protocol Options</TabHeadItem>
+                                <TabHeadItem id={3} on:click={handleTabClick(3)}>Close</TabHeadItem>
+                            </TabHead>
+                            
+                            <TabContentItem id={1} {activeTabValue}>
+                                {#await agentSchema}
+                                    <p>Loading schema form agent_config...</p>
+                                {:then agentSchema}
+                                    <SchemaForm schema={agentSchema} bind:data={(initialData["agent_config"])}/>
+                                {:catch error}
+                                    <div class="error">ERROR: {error.message}</div>
+                                {/await}
+                            </TabContentItem>
+                        
+                            <TabContentItem id={2} {activeTabValue}>
+                                {#await protocolSchema}
+                                    <p>Loading schema form protocol_config_all...</p>
+                                {:then protocolSchema}
+                                    {#each protocolSchema as {name, config}}
+                                        <div class="protocol_options">
+                                            <SchemaForm schema={config} bind:data={(initialData["protocol_config"][name])}/>
+                                        </div>
+                                    {/each}
+                                {:catch error}
+                                    <div class="error">ERROR: {error.message}</div>
+                                {/await}
+                            </TabContentItem>
+                            <TabContentItem id={3} {activeTabValue}>
+                            
+                            </TabContentItem>
+                        </TabWrapper>
+                    <!-- </div>
+                </div> -->
             </div>    
         </div>
     </div>

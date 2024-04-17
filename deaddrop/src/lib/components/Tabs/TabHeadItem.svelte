@@ -4,8 +4,8 @@
   export let liClass = 'mr-2';
 </script>
 
-<li class="liClass" role="presentation">
-  <button class="buttonClass" id="{id}-tabhead" type="button" role="tab">
-  <slot></slot>
+<li class={liClass} role="presentation">
+  <button on:click class={buttonClass} id="{id}-tabhead" type="button" role="tab">
+    <slot></slot>
   </button>
 </li>

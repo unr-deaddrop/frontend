@@ -5,7 +5,7 @@
 </script>
 
 {#if activeTabValue === id}
-  <div class="contentDivClass" id="{id}-tabitem" role="tabpanel" aria-labelledby="{id}-tab">
+  <div class={contentDivClass} id="{id}-tabitem" role="tabpanel" aria-labelledby="{id}-tab">
     <slot></slot>
   </div>
 {/if}
