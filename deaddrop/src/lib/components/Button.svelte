@@ -1,11 +1,12 @@
 <script>
     // generic button
     // this is the button that can edit, add and perform other actions
-    export let type = 'primary'; // type of button i.e. primary or secondary. a class to the button. used for css
-    export let href = '';
+    export let classes = 'primary'; // type of button i.e. primary or secondary. a class to the button. used for css
+    export let href = undefined;
+    export let type = 'submit';
 </script>
 <a href={href}>
-    <button class={type}>
+    <button type={type} class={classes}>
         <slot></slot>
     </button>
 </a>

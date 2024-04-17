@@ -1,0 +1,28 @@
+{
+    "description": "Simple helper class used for holding arguments.\n\nAlthough PingArgumentParser will guarantee that our dictionary has the\nsame keys in the right format as our attributes below, using a Pydantic\nmodel adds an extra layer of safety in case something *does* go wrong\nsomewhere.",
+    "properties": {
+        "message": {
+            "default": "",
+            "description": "Extra message to include in the ping response.",
+            "title": "Message",
+            "type": "string"
+        },
+        "delay": {
+            "default": 0,
+            "description": "The number of seconds to delay the reponse for.",
+            "title": "Delay",
+            "type": "number"
+        },
+        "ping_timestamp": {
+            "description": "The reference timestamp for the ping request.",
+            "format": "date-time",
+            "title": "Ping Timestamp",
+            "type": "string"
+        }
+    },
+    "required": [
+        "ping_timestamp"
+    ],
+    "title": "PingArguments",
+    "type": "object"
+}
