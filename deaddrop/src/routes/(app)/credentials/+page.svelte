@@ -30,7 +30,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: 90vh;
+        /* height: 90vh; */
     }
 
 </style>

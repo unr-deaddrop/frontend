@@ -81,7 +81,7 @@
     .container {
 		display: flex;
 		flex-direction: column;
-		height: 125vh; 
+		/* height: 125vh;  */
 	}
 
     .segment {
