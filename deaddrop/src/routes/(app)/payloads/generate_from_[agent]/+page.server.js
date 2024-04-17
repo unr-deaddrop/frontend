@@ -27,12 +27,43 @@ export async function load({ cookies, params }) {
 export const actions = {
   default: async ({ cookies, params, request }) => {
     const auth = cookies.get('token');
+    let agent_id = params.agent;
 
     // let endpoint_id = params.endpoint; 
     const form = await request.formData();
     // validation here
     //   console.log(form.json())
     console.log('form1', form)
+
+    // Expected format by server is as follows:
+    let payload_data = {
+      "name": form.get('address'),
+      "hostname": form.get('hostname'),
+      "address": form.get('name'),
+      "is_virtual": false, // FIXME: I don't see this in the form for some reason
+      "agent_cfg": {
+        "agent_config": form.get('agent_config'),
+        "protocol_config": form.get('protocol_config')
+      },
+      "protocol_state": null, // Currently unused by the form
+      "payload_file": null, // Should be null when user-generated
+      "agent": agent_id,
+      "connections": [] // Not currently supported through the form
+    }
+
+    let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Token " + auth
+      },
+      body: JSON.stringify(payload_data)
+    })
+    
+    let result = await agent_metadata.json()
+    // Redirect based on this result
+    console.log(result)
+    
 
     // console.log('form2', JSON.parse(form))
     // console.log('form3', (form.get('agent_config')))

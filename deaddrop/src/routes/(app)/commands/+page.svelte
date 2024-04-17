@@ -31,6 +31,7 @@
 
     let cmd_list = []
     async function get_cmd_list(endpoint_id) {
+        // FIXME: this doesn't work?
         cmd_list = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
             method: 'GET',
             headers: {

@@ -148,8 +148,7 @@
     .container {
         display: flex;
 		flex-direction: column;
-        height: 133vh;
-
+        /* height: 133vh; */
     }
 
     .upper_body {
