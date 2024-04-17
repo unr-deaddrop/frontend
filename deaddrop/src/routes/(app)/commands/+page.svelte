@@ -6,6 +6,11 @@
 	import Button from "$lib/components/Button.svelte"
     import SchemaForm from "svelte-jsonschema-form";
 
+    let auth = "";
+    export const load = (async ({ cookies }) => {
+        auth = cookies.get('sessionid');
+    })
+
     export let data;
     let {endpoint_list} = data;
 
@@ -26,10 +31,11 @@
 
     let cmd_list = []
     async function get_cmd_list(endpoint_id) {
-        cmd_list = await fetch(`http://backend.localhost/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
+        cmd_list = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
             method: 'GET',
             headers: {
               "Content-Type": "application/json",
+              "Authorization": "Token " + auth
             }
         })
         cmd_list = await cmd_list.json()
@@ -81,7 +87,6 @@
     const initialData = {
         "message": "asdfasdf",
         "ping_timestamp": "2024-03-14"};
-
     
     async function sendCommand(){
         var currentDateTime = new Date().toISOString();
@@ -102,7 +107,8 @@
             method: 'POST',
             mode: "cors",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Token " + auth
             },
             body: JSON.stringify(task_form)
         });

@@ -1,10 +1,12 @@
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ cookies, params }) {
+    const auth = cookies.get('token')
     let endpoint_id = params.endpoint; 
     let cmd_list = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Token " + auth
         }
     })
     cmd_list = await cmd_list.json()
@@ -27,9 +29,10 @@ export async function load({ params }) {
 };
 
 export const actions = {
-    default: async ({ params, request }) => {
+    default: async ({ cookies, params, request }) => {
         let endpoint_id = params.endpoint; 
         const form = await request.formData();
+        const auth = cookies.get('token')
         // validation here
         //   console.log(form.json())
         console.log('form', form)
@@ -45,6 +48,7 @@ export const actions = {
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Token " + auth
             },
             body: JSON.stringify(execute_form)
         })
