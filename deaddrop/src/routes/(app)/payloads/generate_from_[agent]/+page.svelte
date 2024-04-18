@@ -11,8 +11,8 @@
 
     let agentSchema = agent_schema
     let protocolSchema = protocol_schemas
-    $: console.log('agent_schema', agentSchema)
-    $: console.log('protocol_schema', protocolSchema)
+    // $: console.log('agent_schema', agentSchema)
+    // $: console.log('protocol_schema', protocolSchema)
     
     let initialData = {
         "protocol_config": {}

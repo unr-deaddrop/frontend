@@ -37,9 +37,9 @@ export const actions = {
 
     // Expected format by server is as follows:
     let payload_data = {
-      "name": form.get('address'),
+      "name": form.get('name'),
       "hostname": form.get('hostname'),
-      "address": form.get('name'),
+      "address": form.get('address'),
       "is_virtual": false, // FIXME: I don't see this in the form for some reason
       "agent_cfg": {
         "agent_config": JSON.parse(form.get('agent_config')),
