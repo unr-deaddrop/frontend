@@ -110,7 +110,7 @@
                 </div>
                 <input type="hidden" name="args" value={jsonData} />
                 
-                <Button>Export Commands</Button>
+                <Button>Execute Command</Button>
             </div>
         </div>
     </form>
