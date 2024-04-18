@@ -5,7 +5,6 @@
     $: passwd = ""
     $: confirm = ""
     $: isInputsFilled = username.length > 0 && passwd.length > 0 && confirm.length >0;
-    
 </script>
 
 <div class = "container">
@@ -108,5 +107,6 @@ a {
 .error{
     margin: 10px;
     color: #a60707;
+    white-space:pre-wrap;
 }
 </style>

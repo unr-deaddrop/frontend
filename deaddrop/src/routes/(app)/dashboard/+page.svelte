@@ -131,7 +131,7 @@
 .container {
 		display: flex;
 		flex-direction: column;
-		height: 175vh; 
+		/* height: 175vh;  */
 	}
 
     .upper_body {

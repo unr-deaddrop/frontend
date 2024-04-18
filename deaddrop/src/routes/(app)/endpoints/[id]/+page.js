@@ -2,7 +2,8 @@
 // this is https://unr-deaddrop.github.io/prototype_frontend/endpoint_detail.html
 
 // specific detail of an endpoint
-export async function load({params}) {
+export async function load({cookies, params}) {
+    const auth = cookies.get('token')
     var data = {};
     data['id'] = params.id;
 
@@ -10,21 +11,24 @@ export async function load({params}) {
 
     const endpoint = await fetch(`http://backend:8000/backend/endpoints/${params.id}`, {
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
         },
         method: 'GET'
     });
 
     const connections = await fetch(`http://backend:8000/backend/endpoints/?connections=${params.id}`, {
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
         },
         method: 'GET'
     });
 
     const tasks = await fetch(`http://backend:8000/backend/tasks/?endpoint=${params.id}`, {
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
         },
         method: 'GET'
     });

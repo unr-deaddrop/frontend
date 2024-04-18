@@ -36,18 +36,22 @@ export const actions = {
             const json = await res.json();
             
             if (json.message != 'User created'){
-                const errorData = json
-                console.log(errorData)
-                let errorlist = ""
+                const errorData = json;
+                console.log(errorData);
+
+                // leading newline used to align all successive lines. otherwise,
+                // the first line is slightly indented relative to the others if
+                // there are multiple errors
+                let errorlist = "\n";
                 
                 if(errorData.username != undefined){
                     console.log(errorData.password)
-                    errorData.username.forEach((string)=>{errorlist += string}) 
+                    errorData.username.forEach((string)=>{errorlist += string +"\n"}) 
                 }
 
                 if(errorData.password!= undefined){
                     console.log(errorData.password)
-                    errorData.password.forEach((string)=>{errorlist += string}) 
+                    errorData.password.forEach((string)=>{errorlist += string +"\n"}) 
                 }
                 
                 console.log(errorlist)
