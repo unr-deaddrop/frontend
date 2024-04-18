@@ -8,6 +8,12 @@
   <div class={contentDivClass} id="{id}-tabitem" role="tabpanel" aria-labelledby="{id}-tab">
     <slot></slot>
   </div>
+{:else}
+  <!-- Even if not selected, the relevant form items must be rendered. -->
+  <!-- Otherwise, the data won't be bound, and unvisited tabs won't be included in the POST request. -->
+  <div style="display: none;" class={contentDivClass} id="{id}-tabitem" role="tabpanel" aria-labelledby="{id}-tab">
+    <slot></slot>
+  </div>
 {/if}
 
 <style>
