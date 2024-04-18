@@ -1,7 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies, params }) {
     const auth = cookies.get('token')
-    let endpoint_id = params.endpoint; 
+    let endpoint_id = params.id; 
     let cmd_list = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/get_command_metadata/`, {
         method: 'GET',
         headers: {
@@ -30,7 +30,7 @@ export async function load({ cookies, params }) {
 
 export const actions = {
     default: async ({ cookies, params, request }) => {
-        let endpoint_id = params.endpoint; 
+        let endpoint_id = params.id; 
         const form = await request.formData();
         const auth = cookies.get('token')
         // validation here

@@ -1,7 +1,7 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies, params }) {
   const auth = cookies.get('token')
-  let agent_id = params.agent;
+  let agent_id = params.id;
   let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
     method: 'GET',
     headers: {
@@ -27,7 +27,7 @@ export async function load({ cookies, params }) {
 export const actions = {
   default: async ({ cookies, params, request }) => {
     const auth = cookies.get('token');
-    let agent_id = params.agent;
+    let agent_id = params.id;
 
     // let endpoint_id = params.endpoint; 
     const form = await request.formData();

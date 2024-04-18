@@ -59,7 +59,7 @@
                         </div>
                         <button
                     on:click={handleClick}> 
-                        Export Commands 
+                        Export Logs 
                     </button>
                     </div>
                 </div>    
