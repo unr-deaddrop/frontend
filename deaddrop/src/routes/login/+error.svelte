@@ -1,10 +1,10 @@
 <script>
+    import { page } from '$app/stores';
     let username = ""
     let passwd = ""
     $: isInputsFilled = username.length > 0 && passwd.length > 0;
     
     export let data
-    export let form;
 
 </script>
 
@@ -25,15 +25,11 @@
                 <label for="email">Password:</label>
                 <input type="password" id="password" name = "password" bind:value={passwd} placeholder="Enter your password">
             </div>
-
-            {#if form !== null}
-            <div class="error">
-                {#each form["messages"] as msg}
-                    <div class="flex justify-center items-center">{msg}</div>
-                {/each}
-            </div>
-            {/if}       
     
+            <div class = "field"> 
+                <span style = "color:white"> Error: Username or Password is incorrect </span>
+            </div>
+
             <div class ="field">
                 <button 
                 disabled = {!isInputsFilled}> 
@@ -142,9 +138,6 @@
     .signup a{
         color: whitesmoke
     }
-
-    .error {
-        color: white;
-    }
+ 
 
 </style>

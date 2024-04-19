@@ -1,4 +1,5 @@
 import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import user from './user.js';
 
 
@@ -50,7 +51,8 @@ export const actions = {
         }
         
         else {
-            console.log("Authentication failed")
+            console.log(json)
+            return {"messages": ["Username or password incorrect."]};
         }
     }
 }
