@@ -1,9 +1,23 @@
 <script>
     import PieChart from '$lib/components/PieChart.svelte';
-    import ActionButton from '$lib/components/ActionButton.svelte';
     import PaginationDetail from '$lib/components/PaginationDetail.svelte';
     export let data
     let {agents, endpnt_chart} = data.pagedata
+    let file_content = '';
+    let label_name = 'Select an agent.zip to install';
+  
+    const handleChange = (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        file_content = reader.result;
+      };
+  
+      reader.readAsText(file);
+      label_name = file.name;
+    };
+    
     
 </script>
 
@@ -19,6 +33,7 @@
                     <div class = "tab_content">
                         <div class = "chart_container">
                             <PieChart data = {endpnt_chart}/>
+                            
                         </div>
                     </div>    
                 </div>
@@ -28,29 +43,31 @@
                 <h2 style = "color: #e6e6e6">.</h2>
                 <div class = "tab_body"> 
                     <div class = "tab_head">
-                        <span> Actions </span>
+                        <span> Register an Agent </span>
                     </div> 
                     <div class = "tab_content">
-                        <div class = "action_column"> 
-                            <div class = "action_bar"> 
-                                <ActionButton button_color = "#4364C1" text = "Register agent" src = './clipboard.svg'/>
-                                <span>Register a new type of agent for payload construction</span>
-                            </div>
-                            <div class = "action_bar"> 
-                                <ActionButton button_color = '#E74A3B' text = "Delete agent" src = './trash.svg'/>
-                                <span>Uninstall an agent type and its definitions </span>
-                            </div>
-                            <div class = "action_bar"> 
-                                <ActionButton button_color = '#858796' text = "Show agents" src = "./folder.svg"/>
-                                <span>Show the agent definition storage directory</span>
-                            </div>
+                        <div class = "section">
+                            <span class = "description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                            nisi ut aliquip ex ea commodo consequat.
+                            </span>
                         </div>
+
+                        <div class = "section" style = "flex-direction:row;">
+                            <form action="?/api" method="post" enctype="multipart/form-data">
+                                <label for="bundle_path" class = "inputbttn" tabindex= {0}>{label_name}</label>
+                                <input type="file" id="bundle_path" name = "bundle_path" on:change={handleChange} hidden = {true}>
+                                <button class = "inputbttn" type = "submit"> Start Install </button>
+                            </form>
+                        </div>
+                        
                     </div>    
                 </div>
                 <div style = "flex:1">
                     <h2 style = "color: #e6e6e6">.</h2> 
                 </div>
-         
             </div>
 
         </div>
@@ -86,25 +103,29 @@
         justify-content: center;
         align-items: center;
     }
-    .action_column{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+
+    .description {
+        margin-bottom: 15px;
     }
-    .action_bar {
-        flex: 1;
-        display:flex;
-        flex-direction: row;
-        max-width: 85%;
-        max-height: 10%;
-        margin-bottom: 25px;
-        align-items: center;
+  
+    .inputbttn{
+        box-sizing: border-box;
+        background-color: #a60707;
+        color: white;
+        border-radius: 5px;
+        padding: 7px;
+        font-size: 1em;
+        border-color: #a60707;
     }
 
-    .action_bar span {
-        flex: 2.5;
-        color: #4d4d4d;
-        margin-left: 10px;
+    .inputbttn:hover{
+        box-sizing: border-box;
+        background-color: #7b0606;
+        color: white;
+        border-radius: 5px;
+        padding: 7px;
+        font-size: 1em;
+        border-color: #7b0606;
     }
 
 </style>

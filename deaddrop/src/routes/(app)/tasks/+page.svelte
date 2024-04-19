@@ -41,14 +41,16 @@
             </div>
         </div>
         
+        <!--
         <div class = "section">
             <div class = "drop_container">
+                
                 <Dropdown title = "Running Tasks" radius_side = {1}/>
                 <Dropdown title = "Open Callbacks"/>
                 <Dropdown title = "Periodic Tasks"  radius_side = {2}/>
-            </div>
+            
         </div>
-
+        -->
         <div class ="section" style = "flex: 1.6">
             <div class = "tab_body"> 
                 <div class = "tab_head">

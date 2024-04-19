@@ -85,7 +85,7 @@
                 <div class = "tab_content">
                     <div class = "quick_links">
                         <button
-                        on:click={() => handleLink("http://backend:8000/admin")}>
+                        on:click={() => handleLink("http://localhost:8000/admin/")}>
                             Go to Django administrative site 
                         </button>
                         <button
@@ -93,7 +93,9 @@
                             Issue command 
                         </button>
                         <button>Generate new payload </button>
-                        <button>View recent tasks</button>
+                        <button on:click={()=> handleLink('/tasks')}>
+                            View recent tasks
+                        </button>
                     </div>
                     
                 </div>    

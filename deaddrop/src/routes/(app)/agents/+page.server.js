@@ -41,3 +41,26 @@ function endpnt_chart(endpnts) {
   
     return chart
 }
+
+
+/** @type {import('./$types').Actions} */
+export const actions = {
+    api: async ({request, cookies}) => {
+        const auth = cookies.get('token')
+        const formData = await request.formData()
+
+        console.log(formData);
+
+        const res = await fetch('http://backend:8000/backend/installAgent/', {
+            method: 'POST',
+            mode: "cors",
+            headers: {
+                "Authorization": "Token " + auth,
+            },
+            body: formData
+        })
+
+        const json = await res.json()
+        console.log(json)
+    }
+}
