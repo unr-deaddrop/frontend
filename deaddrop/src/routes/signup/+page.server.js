@@ -17,10 +17,11 @@ export const actions = {
         let passwd = formData.get('password')
         let confirm = formData.get('confirm')
     
-        if(passwd != confirm){throw error(400, "passwords do not match")}
-        
-        else {
-            const res = await fetch('http://backend:8000/backend/users/sign_up/', {
+        if(passwd != confirm){
+            return {"messages": ["Passwords do not match."]};
+        } 
+
+        const res = await fetch('http://backend:8000/backend/users/sign_up/', {
             method: 'POST',
             mode: "cors",
             headers: {  
@@ -31,37 +32,28 @@ export const actions = {
                 "username": username,
                 "password": passwd,
             })
-            })
+        })
 
-            const json = await res.json();
-            
-            if (json.message != 'User created'){
-                const errorData = json;
-                console.log(errorData);
-
-                // leading newline used to align all successive lines. otherwise,
-                // the first line is slightly indented relative to the others if
-                // there are multiple errors
-                let errorlist = "\n";
-                
-                if(errorData.username != undefined){
-                    console.log(errorData.password)
-                    errorData.username.forEach((string)=>{errorlist += string +"\n"}) 
-                }
-
-                if(errorData.password!= undefined){
-                    console.log(errorData.password)
-                    errorData.password.forEach((string)=>{errorlist += string +"\n"}) 
-                }
-                
-                console.log(errorlist)
-                throw error(400, errorlist)
-            }  
-
-            
-            throw redirect(302, '/signup_success')
-            
+        const json = await res.json();
+        if (json.message === "User created"){
+            throw redirect(302, '/signup_success');
         }
+
+        const errorData = json;
+        console.log(errorData);
+
+        let errorlist = [];
+        
+        if(errorData.username != undefined){
+            errorlist = errorlist.concat(errorData.username);
+        }
+
+        if(errorData.password != undefined){
+            errorlist = errorlist.concat(errorData.password);
+        }
+        
+        console.log(errorlist);
+        return {"messages": errorlist};
     }
 }
 
