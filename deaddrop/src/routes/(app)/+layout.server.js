@@ -9,7 +9,7 @@ export async function load({cookies}) {
     }
 
     const auth = cookies.get('token')
-    const arbitrary_endpoint = 'http://backend:8000/backend/agents'
+    const arbitrary_endpoint = 'http://backend.localhost/backend/agents'
     
     try {
         const authorize = await fetch(arbitrary_endpoint, {

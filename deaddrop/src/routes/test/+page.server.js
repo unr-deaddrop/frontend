@@ -7,7 +7,7 @@ export async function load({ cookies }) {
     let bool_val = false;
 
     if (bool_val){
-        let test_backend = await fetch(`http://backend:8000/backend/`, {
+        let test_backend = await fetch(`http://backend.localhost/backend/`, {
             method: 'GET',
             headers: {
               "Content-Type": "application/json"

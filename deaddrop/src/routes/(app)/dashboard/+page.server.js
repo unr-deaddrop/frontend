@@ -7,7 +7,7 @@ export async function load({cookies}) {
     
     moment.tz.setDefault("America/Los_Angeles")
     //note: if you want to make a call from /admin/backend, the uri is http://127.0.0.1:8000/api/backend/task, as opposed to http://127.0.0.1:8000/backend/tasks/
-    const tasks = await fetch('http://backend:8000/backend/taskresults/?status=PENDING', {
+    const tasks = await fetch('http://backend.localhost/backend/taskresults/?status=PENDING', {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -15,21 +15,21 @@ export async function load({cookies}) {
         },
     })
 
-    const comms = await fetch('http://backend:8000/backend/messages/get_global_recent_stats/',{
+    const comms = await fetch('http://backend.localhost/backend/messages/get_global_recent_stats/',{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
         },
    })
 
-   const dash_stats = await fetch('http://backend:8000/backend/dashboard/',{
+   const dash_stats = await fetch('http://backend.localhost/backend/dashboard/',{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
         },
    })
    
-   const endpnts = await fetch('http://backend:8000/backend/messages/get_endpoint_stats/',{
+   const endpnts = await fetch('http://backend.localhost/backend/messages/get_endpoint_stats/',{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth

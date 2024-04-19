@@ -2,7 +2,7 @@
 export async function load({ cookies, params }) {
   const auth = cookies.get('token')
   let agent_id = params.id;
-  let agent_metadata = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_metadata/`, {
+  let agent_metadata = await fetch(`http://backend.localhost/backend/agents/${agent_id}/get_metadata/`, {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const actions = {
     }
 
     console.log("payload_data", payload_data)
-    let agent_metadata = await fetch(`http://backend:8000/backend/endpoints/`, {
+    let agent_metadata = await fetch(`http://backend.localhost/backend/endpoints/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export const actions = {
     //     "cmd_args": JSON.parse(form.get('args'))
     // }
     // console.log('execute_form', execute_form)
-    // const res = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}/execute_command/`, {
+    // const res = await fetch(`http://backend.localhost/backend/endpoints/${endpoint_id}/execute_command/`, {
     //     method: 'POST',
     //     mode: "cors",
     //     headers: {

@@ -3,7 +3,7 @@ export async function load({cookies}) {
     const auth = cookies.get('token')
     let pagedata ={}
     
-    const files = await fetch('http://backend:8000/backend/files/',{
+    const files = await fetch('http://backend.localhost/backend/files/',{
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

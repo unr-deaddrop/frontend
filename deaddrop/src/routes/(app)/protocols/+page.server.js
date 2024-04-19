@@ -6,14 +6,14 @@ export async function load({cookies}) {
     let endpt_comms_data = [40, 30, 30]
     let comms_data_points = [12, 45, 67, 23, 5, 34, 89, 1, 56, 78, 9, 22, 68, 31, 74, 17, 83, 41, 3, 60, 29, 51, 14]
 
-    const protocols = await fetch(`http://backend:8000/backend/protocols/`, {
+    const protocols = await fetch(`http://backend.localhost/backend/protocols/`, {
         headers: {
             "Content-Type": "application/json",
         },
         method: 'GET'
     });
 
-    const endpoints = await fetch(`http://backend:8000/backend/endpoints/`, {
+    const endpoints = await fetch(`http://backend.localhost/backend/endpoints/`, {
         headers: {
             "Content-Type": "application/json"
         },

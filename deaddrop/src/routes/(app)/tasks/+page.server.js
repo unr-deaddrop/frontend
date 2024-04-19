@@ -4,7 +4,7 @@ export async function load({cookies}) {
     const pagedata = {}
     
     //note: if you want to make a call from /admin/backend, the uri is http://127.0.0.1:8000/api/backend/task, as opposed to http://127.0.0.1:8000/backend/tasks/
-    const tasks = await fetch('http://backend:8000/backend/taskresults/', {
+    const tasks = await fetch('http://backend.localhost/backend/taskresults/', {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export async function load({cookies}) {
         },
     })
     
-    const task_stats = await fetch('http://backend:8000/backend/taskresults/get_task_stats/',{
+    const task_stats = await fetch('http://backend.localhost/backend/taskresults/get_task_stats/',{
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

@@ -3,7 +3,7 @@ export async function load({cookies, params}) {
     const auth = cookies.get('token')
     let pagedata = {}
     
-    const agents = await fetch(`http://backend:8000/backend/agents/${params.id}`, {
+    const agents = await fetch(`http://backend.localhost/backend/agents/${params.id}`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
@@ -11,7 +11,7 @@ export async function load({cookies, params}) {
         method: 'GET'
     });
     
-    const agent_metadata = await fetch(`http://backend:8000/backend/agents/${params.id}/get_metadata`,{
+    const agent_metadata = await fetch(`http://backend.localhost/backend/agents/${params.id}/get_metadata`,{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
@@ -19,7 +19,7 @@ export async function load({cookies, params}) {
         method: 'GET'
     })
 
-    const agent_commands = await fetch(`http://backend:8000/backend/agents/${params.id}/get_command_metadata`,{
+    const agent_commands = await fetch(`http://backend.localhost/backend/agents/${params.id}/get_command_metadata`,{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
@@ -27,7 +27,7 @@ export async function load({cookies, params}) {
         method: 'GET'
     })
 
-    const related_endpnts = await fetch(`http://backend:8000/backend/endpoints/?agent=${params.id}`,{
+    const related_endpnts = await fetch(`http://backend.localhost/backend/endpoints/?agent=${params.id}`,{
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
