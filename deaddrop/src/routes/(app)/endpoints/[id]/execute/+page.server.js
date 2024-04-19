@@ -8,23 +8,43 @@ export async function load({ cookies, params }) {
           "Content-Type": "application/json",
           "Authorization": "Token " + auth
         }
-    })
-    cmd_list = await cmd_list.json()
-    // console.log("43 cmd_list")
-    // console.log(cmd_list)
-    let cmd_options = []
-    let i = 0
+    });
+    cmd_list = await cmd_list.json();
+    let cmd_options = [];
+    let i = 0;
     cmd_list.forEach(cmd => {
         // console.log(cmd)
         let option = {text: cmd['name'], value: i}
         cmd_options = [...cmd_options, option]
         i++;
+    });
+
+    // Get commands associated with this agent
+    let endpoint_data = await fetch(`http://backend:8000/backend/endpoints/${endpoint_id}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Token " + auth
+        }
+    });
+    let endpoint_dict = await endpoint_data.json();
+    let agent_id = endpoint_dict["agent"];
+    const agent_commands = await fetch(`http://backend:8000/backend/agents/${agent_id}/get_command_metadata`,{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Token " + auth
+        },
+        method: 'GET'
     })
+
+    // console.log("43 cmd_list")
+    // console.log(cmd_list)
+
     return {
         "endpoint_id": endpoint_id,
         "cmd_list": cmd_list, 
-        "cmd_options": cmd_options
-
+        "cmd_options": cmd_options,
+        "agent_commands": await agent_commands.json()
     };
 };
 

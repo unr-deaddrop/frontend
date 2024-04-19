@@ -6,8 +6,11 @@
 	import Button from "$lib/components/Button.svelte"
     import SchemaForm from "svelte-jsonschema-form";
 
+    import Pagination from '$lib/components/Pagination.svelte';
+    let command_blacklist = ['version', 'has_renderer', 'argument_schema', 'result_schema']
+
     export let data;
-    let {endpoint_id, cmd_list, cmd_options} = data;
+    let {endpoint_id, cmd_list, cmd_options, agent_commands} = data;
 
     let endpoint_options = [
         { text: endpoint_id, value: endpoint_id, disabled: true },
@@ -114,33 +117,16 @@
             </div>
         </div>
     </form>
-    <div class = "lower_body">
+    
+    <div class ="segment">
         <div class = "tab_body"> 
             <div class = "tab_head">
-                <span> Protocol Options </span>
+                <span> Available Commands </span>
             </div> 
             <div class = "tab_content">
-                <div class = "drop_container">
-                    <Dropdown title = "YouTube Configuration" radius_side = {1}/>
-                    <Dropdown title = "Randomization Options"/>
-                    <Dropdown title = "Encoding Options"  radius_side = {2}/>
-                </div>
+                <Pagination table_id="commands_table" data = {agent_commands} blacklist = {command_blacklist}/>
             </div>    
-        </div>
-        <div class = "tab_body"> 
-            <div class = "tab_head">
-                <span> Command Reference </span>
-            </div> 
-            <div class = "tab_content">
-                <div class = "tab_content">
-                    <div class = "drop_container">
-                        <Dropdown title = "ls" radius_side = {1}/>
-                        <Dropdown title = "calculator"/>
-                        <Dropdown title = "dump_creds"  radius_side = {2}/>
-                    </div>
-                </div>    
-            </div>    
-        </div>
+        </div> 
     </div>
 </div>
 
@@ -148,8 +134,7 @@
     .container {
         display: flex;
 		flex-direction: column;
-        height: 133vh;
-
+        /* height: 133vh; */
     }
 
     .upper_body {
@@ -168,13 +153,10 @@
         margin: 20px;
     }
 
-    .protocol_options{
-        flex: 1;
+    .segment {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 10px;
-        
+        flex-direction: row;
+        flex: 1;
     }
 
     .field {
@@ -183,29 +165,12 @@
         margin-right: 0px;
     }
 
-    .field label {
-        color: #4d4d4d
-    }
-
-    .field input {
-        padding: 10px;
-        outline: none;
-        border-radius: 5px;
-        border: 1px solid darkgray;
-    }
-
     .right {
         flex:.5;
         display:flex;
         flex-direction: column;
     }
     
-    .lower_body {
-        flex: .6;
-        display: flex;    
-        flex-direction: column;
-    }
-
 	.stack {
 		display: flex;
 		flex-direction: column;
