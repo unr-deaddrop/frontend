@@ -48,10 +48,11 @@
                     <div class = "tab_content">
                         <div class = "section">
                             <span class = "description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                            nisi ut aliquip ex ea commodo consequat.
+                            You can install a new DeadDrop agent package here.
+                            </span>
+                            <span class = "description">
+                            For the latest version of Pygin, the reference agent of the DeadDrop
+                            framework, visit the <a href="https://github.com/unr-deaddrop/pygin/releases">Pygin release page on GitHub</a>.
                             </span>
                         </div>
 
