@@ -52,7 +52,7 @@ export const actions = {
         
         else {
             console.log(json)
-            throw error(400, "Username or Password was incorrect")
+            return {"messages": ["Username or password incorrect."]};
         }
     }
 }
