@@ -6,7 +6,7 @@ export async function load({cookies, url}) {
     const query = url.searchParams.toString()
     const pagedata = {}
 
-    const logs = await fetch('http://backend:8000/backend/logs?'+query, {
+    const logs = await fetch('http://backend.localhost/backend/logs?'+query, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export async function load({cookies, url}) {
         },
     })
 
-    const split_logs = await fetch('http://backend:8000/backend/messages/get_split_recent_stats/',{
+    const split_logs = await fetch('http://backend.localhost/backend/messages/get_split_recent_stats/',{
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

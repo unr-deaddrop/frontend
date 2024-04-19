@@ -21,7 +21,7 @@ export const actions = {
             return {"messages": ["Passwords do not match."]};
         } 
 
-        const res = await fetch('http://backend:8000/backend/users/sign_up/', {
+        const res = await fetch('http://backend.localhost/backend/users/sign_up/', {
             method: 'POST',
             mode: "cors",
             headers: {  

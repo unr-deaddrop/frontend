@@ -3,7 +3,7 @@ export async function load({cookies}) {
     const auth = cookies.get('token')
     let pagedata ={}
 
-    const agents = await fetch(`http://backend:8000/backend/agents/`, {
+    const agents = await fetch(`http://backend.localhost/backend/agents/`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + auth
@@ -11,7 +11,7 @@ export async function load({cookies}) {
         method: 'GET'
     });
     
-    const endpnt_share = await fetch('http://backend:8000/backend/agents/get_endpoint_share/',{
+    const endpnt_share = await fetch('http://backend.localhost/backend/agents/get_endpoint_share/',{
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export const actions = {
 
         console.log(formData);
 
-        const res = await fetch('http://backend:8000/backend/installAgent/', {
+        const res = await fetch('http://backend.localhost/backend/installAgent/', {
             method: 'POST',
             mode: "cors",
             headers: {

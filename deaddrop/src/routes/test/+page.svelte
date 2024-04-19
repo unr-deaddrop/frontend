@@ -1,32 +1,22 @@
 <script>
-    import Context from "$lib/components/Context.svelte"
-	import ComboBox from "$lib/components/ComboBox.svelte"
-    let options = [
-    	{ text: "Istanbul", value: "istanbul" },
-        { text: "Seoul", value: "seoul", disabled: true },
-  	]
-    endpoint_list.forEach(endpoint => {
-        console.log(endpoint)
-        let option = {text: endpoint['id'], value: endpoint['id']}
-        options.push(option)
-    })
+	import { onMount } from 'svelte';
+
+	let onScreen;
+
+	onMount(async () => {
+		const test_proxy = await fetch(`http://backend.localhost/backend/`, {
+			method: 'GET',
+			headers: {
+			  "Content-Type": "application/json",
+			}
+		});
+		let json = test_proxy.json();
+		console.log(JSON.stringify(json))
+		onScreen = JSON.stringify(json)
+	});
 </script>
 
-<Context>   
-	<div class="stack">
-	<ComboBox
-		label="Endpoint"
-		name="endpoint"
-		placeholder="00000000-0000-0000-0000-000000000000"
-		options={options}
-	/>
-</Context>
-
+test_proxy
+{onScreen}
 <style>
-    
-	.stack {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
 </style>
