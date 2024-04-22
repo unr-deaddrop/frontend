@@ -89,8 +89,8 @@
                             Go to Django administrative site 
                         </button>
                         <button
-                        on:click={() => handleLink("/commands")}>
-                            Issue command 
+                        on:click={() => handleLink("http://frontend.localhost/endpoints ")}>
+                            View Endpoints
                         </button>
                         <button>Generate new payload </button>
                         <button on:click={()=> handleLink('/tasks')}>
