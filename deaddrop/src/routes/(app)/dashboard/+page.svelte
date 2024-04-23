@@ -89,12 +89,15 @@
                             Go to Django administrative site 
                         </button>
                         <button
-                        on:click={() => handleLink("http://frontend.localhost/endpoints ")}>
-                            View Endpoints
+                        on:click={() => handleLink("http://github.com/unr-deaddrop")}>
+                            View the DeadDrop Repositories
                         </button>
-                        <button>Generate new payload </button>
-                        <button on:click={()=> handleLink('/tasks')}>
-                            View recent tasks
+                        <button
+                        on:click={() => handleLink("http://github.com/unr-deaddrop/backend")}>
+                            View The Backend Source
+                        </button>
+                        <button on:click={()=> handleLink('https://unr-deaddrop.github.io')}>
+                            Visit the DeadDrop Website
                         </button>
                     </div>
                     
