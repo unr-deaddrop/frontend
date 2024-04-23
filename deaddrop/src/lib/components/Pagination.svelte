@@ -3,16 +3,7 @@
 </svelte:head>
 
 <script> 
-    import SearchBar from "./SearchBar.svelte";
     import { onMount } from 'svelte';
-    import ActionButton from '$lib/components/ActionButton.svelte';
-    import IntDropdown from "./IntDropdown.svelte";
-    import PaginationButtons from "./PaginationButtons.svelte";
-    import { invalidateAll } from "$app/navigation";
-    import { writable } from "svelte/store";
-    import { page } from '$app/stores'
-    import { goto } from '$app/navigation'
-    import { browser } from '$app/environment'
     import DataTable from 'datatables.net-dt';
     export let data;
     export let blacklist = [""];
@@ -59,7 +50,7 @@
 
     {#if showDownload}
         <a class="button" style="height:2em;width:fit-content;display:flex;align-items:center;justify-content:space-between" download="logs.json" href="{file}">
-            <img style="height:100%" src="./download.svg"/>
+            <img style="height:100%" src="./download.svg" alt = "download"/>
             <span>Download</span>
         </a>
         <span>Download all data in the table (including entries not currently visible) as a JSON.</span>

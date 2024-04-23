@@ -1,11 +1,7 @@
 <script>
-    export let fn
-    export let data = ""
+    export let href = ""
     export let button_color = ""
     export let text = 'placeholder'
-    export let src = "favicon.png"
-    export let alt = "example"
-    export let hide_img = false
 
     let isHovered = false;
   
@@ -43,29 +39,27 @@
 
   </script>
   
-  <button
-    on:click={(data) => fn}
+  <a
+    href = {href}
     on:mouseover={handleMouseOver}
     on:mouseout={handleMouseOut}
     on:focus={handleFocus}
     on:blur={handleBlur}
     style={`background-color: ${isHovered ? darkenColor(button_color, 20) : button_color}`}
   >
-    {#if hide_img == false}
-      <img src={src} alt={alt}>
-      <span style="margin-left: 5px;">{text}</span>
-      {:else}
-      <span>{text}</span>
-    {/if}
-    
-  </button>
+ 
+   {text}
+   
+  </a>
   
   <style>
-    button {
+    a {
       flex: 1;
       display: flex;
       align-items: center;
+      justify-content: center;
       border-radius: 5px;
+      border-color: black 5px;
       padding: 10px 20px;
       font-size: 16px;
       text-decoration: none;
@@ -73,16 +67,7 @@
       overflow: hidden;
       transition: background-color 0.3s ease-in-out;
     }
-  
-    button span {
-      flex: 1;
-    }
-  
-    button img {
-      filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(94deg) brightness(108%) contrast(100%);
-      max-width: 10%;
-      height: auto;
-    }
+
     
   </style>
   
