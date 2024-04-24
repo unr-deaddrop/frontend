@@ -60,7 +60,7 @@
 
 <div class="container">
     <!-- <table id={table_id} class="content display compact" style="word-break: break-all"> -->
-    <table id={table_id} class="content display compact" style="word-break: break-all"></table>
+    <table id={table_id} class="content display compact" style="word-break: break-all">
         <thead>
             <tr class="item">
                 {#each headers as header}
