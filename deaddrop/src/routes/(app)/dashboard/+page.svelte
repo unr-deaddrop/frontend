@@ -85,16 +85,19 @@
                 <div class = "tab_content">
                     <div class = "quick_links">
                         <button
-                        on:click={() => handleLink("http://localhost:8000/admin/")}>
+                        on:click={() => handleLink("http://backend.localhost/admin/")}>
                             Go to Django administrative site 
                         </button>
                         <button
-                        on:click={() => handleLink("/commands")}>
-                            Issue command 
+                        on:click={() => handleLink("http://github.com/unr-deaddrop")}>
+                            View the DeadDrop repositories
                         </button>
-                        <button>Generate new payload </button>
-                        <button on:click={()=> handleLink('/tasks')}>
-                            View recent tasks
+                        <button
+                        on:click={() => handleLink("http://github.com/unr-deaddrop/backend")}>
+                            View the backend source
+                        </button>
+                        <button on:click={()=> handleLink('https://unr-deaddrop.github.io')}>
+                            Visit the DeadDrop website
                         </button>
                     </div>
                     

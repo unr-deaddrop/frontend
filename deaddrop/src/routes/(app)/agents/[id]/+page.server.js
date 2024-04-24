@@ -39,5 +39,6 @@ export async function load({cookies, params}) {
     pagedata['agent_metadata'] = await agent_metadata.json()
     pagedata['agent_commands'] = await agent_commands.json()
     pagedata['rel_endpnts'] = await related_endpnts.json()
+    pagedata['id'] = params.id
     return {pagedata};
 };

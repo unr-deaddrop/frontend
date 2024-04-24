@@ -2,7 +2,7 @@
     import ActionButton from '$lib/components/ActionButton.svelte';
     import Pagination from '$lib/components/Pagination.svelte';
     export let data
-    let {rel_endpnts, agent_metadata, agent_commands} = data.pagedata
+    let {rel_endpnts, agent_metadata, agent_commands, id} = data.pagedata
     let agent_blacklist = ['agent', 'detail', 'id', 'connections', 'protocol_state', 'agent_cfg', ]
     let command_blacklist = ['version', 'has_renderer', 'argument_schema', 'result_schema']
 </script>
@@ -46,7 +46,7 @@
                                     <b>Supported Protocols:</b> <span> {agent_metadata.protocols} </span>
                                 </div>
                                 <div class = "segment">
-                                    <ActionButton text = "Create a new payload from agent" button_color = "#a60707" hide_img = {true} fn = {console.log('hello')}/>
+                                    <ActionButton text = "Create a new payload from agent" button_color = "#a60707" href = "http://frontend.localhost/agents/{id}/generate"/>
                                 </div>
                             </div>
                         </div>
