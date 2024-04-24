@@ -25,7 +25,7 @@
                     <span> Registered endpoints </span>
                 </div> 
                 <div class = "tab_content">
-                    <PaginationExecute table_id = "registered_endpoints_table" data = {endpnts} blacklist = {blacklist}/>
+                    <PaginationExecute table_id = "registered_endpoints_table" data = {endpnts} blacklist = {blacklist} url_columns = {["payload_file"]}/>
                 </div>    
             </div>
         </div>
