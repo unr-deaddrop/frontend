@@ -13,7 +13,7 @@
                     <span> Stored files </span>
                 </div> 
                 <div class = "tab_content">
-                    <Pagination table_id = "files_table" data = {files}/>
+                    <Pagination table_id = "files_table" data = {files} url_columns={["file"]}/>
                 </div>    
             </div>
         </div>

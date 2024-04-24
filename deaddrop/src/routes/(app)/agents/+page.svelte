@@ -80,7 +80,7 @@
                     <span> Installed agents </span>
                 </div> 
                 <div class = "tab_content">
-                    <PaginationDetail data = {agents} detail = "agents"/>
+                    <PaginationDetail data = {agents} detail = "agents" url_columns = {["package_file"]}/>
                 </div>    
             </div>
            
