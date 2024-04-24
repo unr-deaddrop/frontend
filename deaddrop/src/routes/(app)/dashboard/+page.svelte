@@ -90,14 +90,14 @@
                         </button>
                         <button
                         on:click={() => handleLink("http://github.com/unr-deaddrop")}>
-                            View the DeadDrop Repositories
+                            View the DeadDrop repositories
                         </button>
                         <button
                         on:click={() => handleLink("http://github.com/unr-deaddrop/backend")}>
-                            View The Backend Source
+                            View the backend source
                         </button>
                         <button on:click={()=> handleLink('https://unr-deaddrop.github.io')}>
-                            Visit the DeadDrop Website
+                            Visit the DeadDrop website
                         </button>
                     </div>
                     

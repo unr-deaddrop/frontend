@@ -112,8 +112,9 @@
                     {/await}
                 </div>
                 <input type="hidden" name="args" value={jsonData} />
-                
-                <Button>Execute Command</Button>
+                <div style="padding:10px;">
+                    <Button>Execute Command</Button>
+                </div>
             </div>
         </div>
     </form>
