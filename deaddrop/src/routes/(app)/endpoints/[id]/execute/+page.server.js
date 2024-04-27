@@ -1,3 +1,4 @@
+import { error, redirect } from '@sveltejs/kit';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies, params }) {
     const auth = cookies.get('token')
@@ -74,6 +75,33 @@ export const actions = {
         })
         
         const json = await res.json();
+        let {task_id} = json
+        let {celery_id} = json
         console.log("POST CMD", JSON.stringify(json));
+        console.log(task_id)
+      
+        if(celery_id == undefined){
+            console.log('execute')
+            // {"cmd_name":["This field may not be blank."]}
+            // {"error":"{'global': [ErrorDetail(string=\"'filepath' is a required property\", code='invalid')]}"}
+            let {error} = json
+            let {cmd_name} = json
+            
+            if(error == undefined){
+                return {"cmd_name": cmd_name}
+            }
+
+            else{ 
+                return {"error":  error}
+            }
+            // throw error(404, {
+            //     message: "empty"
+            // })
+        }
+        else{
+            throw redirect(302, `http://frontend.localhost/tasks/${task_id}`)  
+        }
+        
+        
     }
   };

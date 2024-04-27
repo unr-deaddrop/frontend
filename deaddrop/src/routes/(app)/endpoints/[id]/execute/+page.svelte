@@ -33,6 +33,9 @@
     let initialData = {};
     $: console.log('initialData', initialData)
     $: jsonData = JSON.stringify(initialData)
+
+    /** @type {import('./$types').ActionData} */
+	export let form;
 </script>
 
 <div class = "container">
@@ -89,6 +92,7 @@
                                     />
                                 </div>
                             </Context>
+                            
                         </div>
                     </div>
                 </div>    
@@ -112,6 +116,14 @@
                     {/await}
                 </div>
                 <input type="hidden" name="args" value={jsonData} />
+                <div class="error">
+                    {#if form !== null}
+                    <div class="error">
+                        <div class="flex justify-center items-center">{JSON.stringify(form)}</div>
+                    </div>
+                    {/if}  
+                </div>
+            
                 <div style="padding:10px;">
                     <Button>Execute Command</Button>
                 </div>
@@ -177,6 +189,11 @@
 		flex-direction: column;
 		gap: 1.5rem;
 	}
+
+    .error {
+        color: #a60707;
+        margin-left: 10px;
+    }
     
 
     
