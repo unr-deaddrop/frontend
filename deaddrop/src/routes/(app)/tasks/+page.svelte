@@ -22,7 +22,7 @@
                         <span> Open Callbacks </span>
                         <span style = "color:black"> {task_stats.callbacks} </span>
                     </div>
-                    <img src ="phone.svg" alt ="phone">
+                    <img src ="phone-solid.svg" alt ="phone">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">
