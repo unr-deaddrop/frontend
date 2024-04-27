@@ -1,3 +1,5 @@
+import { redirect } from '@sveltejs/kit';
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies}) {
     const auth = cookies.get('token')
@@ -61,6 +63,8 @@ export const actions = {
         })
 
         const json = await res.json()
-        console.log(json)
+        let {task_id} = json
+        throw redirect(302, `http://frontend.localhost/tasks/${task_id}`)  
+    
     }
 }
