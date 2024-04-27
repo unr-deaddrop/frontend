@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-
+import { redirect } from '@sveltejs/kit';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies, params }) {
   const auth = cookies.get('token')
@@ -75,8 +75,10 @@ export const actions = {
     
     let result = await agent_metadata.json()
     // Redirect based on this result
+    console.log("/////")
     console.log("payload_data_result", result)
-    
+    let {task_id} = result
+    throw redirect(302, `http://frontend.localhost/tasks/${task_id}`) 
 
     // console.log('form2', JSON.parse(form))
     // console.log('form3', (form.get('agent_config')))
