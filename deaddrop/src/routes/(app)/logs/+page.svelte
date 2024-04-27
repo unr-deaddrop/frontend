@@ -91,7 +91,7 @@
                     <div class ="section">
                         <div class = "field"> 
                             <label for="log_id">ID</label>
-                            <input type="text" id="log_id" bind:value={log_id}>
+                            <input type="number" id="log_id" bind:value={log_id}>
                         </div>
                         <div class = "field"> 
                             <label for="log_category">Category</label>

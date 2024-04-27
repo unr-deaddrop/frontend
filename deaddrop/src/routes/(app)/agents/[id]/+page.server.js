@@ -1,3 +1,5 @@
+import { error } from '@sveltejs/kit';
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({cookies, params}) {
     const auth = cookies.get('token')
@@ -40,5 +42,11 @@ export async function load({cookies, params}) {
     pagedata['agent_commands'] = await agent_commands.json()
     pagedata['rel_endpnts'] = await related_endpnts.json()
     pagedata['id'] = params.id
+    let {detail} = pagedata['agent_metadata']
+    if(detail == 'Not found.'){
+        throw error(404, {
+            message: " Error: Agent ID not found"
+        })
+    }
     return {pagedata};
 };
