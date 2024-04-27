@@ -17,7 +17,7 @@
 
 <style>
     h1 {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 </style>
 
