@@ -1,3 +1,5 @@
+import { error } from '@sveltejs/kit';
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ cookies, params }) {
   const auth = cookies.get('token')
@@ -10,11 +12,21 @@ export async function load({ cookies, params }) {
     }
   })
   agent_metadata = await agent_metadata.json()
+
+  let {detail} = agent_metadata
+  if(detail == 'Not found.'){
+    throw error(404,{
+      message: 'Error: Agent ID not found'
+    })
+  }
+
   let protocol_schemas = []
   agent_metadata["protocol_config"].forEach(protocol => {
     let option = { "name": protocol["name"], "config": protocol['config'] }
     protocol_schemas = [...protocol_schemas, option]
   })
+
+ 
   return {
     "agent_id": agent_id,
     "agent_metadata": agent_metadata,
