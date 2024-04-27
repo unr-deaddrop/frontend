@@ -5,7 +5,7 @@
 
 <header>
     <div class="container">
-        <SearchBar/>
+        <spam>deaddrop server@ff58a20 (demo day build)</spam>
     </div>
     <div class="container"></div>
 </header>
@@ -19,7 +19,7 @@
 
     header {
         background-color: white;
-        color: white;
+        color: black;
         display: flex;
         align-items: center;
         justify-content: space-around;
