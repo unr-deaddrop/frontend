@@ -15,21 +15,21 @@
                         <span style = "color: #a60707"> Running Tasks </span>
                         <span style = "color:black"> {task_stats.running} </span>
                     </div>
-                    <img src ="favicon.png" alt ="placeholder">
+                    <img src ="clock.svg" alt ="placeholder">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">
                         <span> Open Callbacks </span>
                         <span style = "color:black"> {task_stats.callbacks} </span>
                     </div>
-                    <img src ="favicon.png" alt ="placeholder">
+                    <img src ="phone.svg" alt ="placeholder">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">
                         <span> Total Tasks </span>
                         <span style = "color:black"> {task_stats.total} </span>
                     </div>
-                    <img src ="favicon.png" alt ="placeholder">
+                    <img src ="clipboard-g.svg" alt ="placeholder">
                 </div>
                 <div class ="task_tab">
                     <div class = "task_content">

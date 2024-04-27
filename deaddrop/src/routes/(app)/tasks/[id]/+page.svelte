@@ -45,7 +45,7 @@
                                 <span> {task.date_created}</span>
                             </div>
                             <div class = "statistic">
-                                <b> Start Time  </b>
+                                <b> End Time  </b>
                                 <span> {task.date_done}</span>
                             </div>
                         </div>
