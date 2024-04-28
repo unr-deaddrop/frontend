@@ -1,7 +1,7 @@
 <script>
     import { TypedJs } from '$lib'
 	import { afterUpdate, tick } from 'svelte';
-    let chatlog = ['asdasd', 'wasdasd', 'asda'];
+    let chatlog = [];
     let value = '';
     let lastChat;
 
