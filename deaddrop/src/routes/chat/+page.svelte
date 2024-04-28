@@ -1,12 +1,12 @@
 <script>
-    import SvelteTypedJs from 'svelte-typed-js';
-    let chatlog = [];
+    import { TypedJs } from '$lib'
+    let chatlog = ['asdasd', 'wasdasd', 'asda'];
     let value = '';
 
     function handleSubmit(event) {
         event.preventDefault(); // Prevent the form from actually submitting
         if (value.trim() !== '') {
-            chatlog = [value, ...chatlog];
+            chatlog = [...chatlog, value];
             value = ''; // Clear input after submitting
         }
     }
@@ -24,11 +24,9 @@
         
         <div class="chat_box">
             <div class="chat_logs" id="logs">
-                <SvelteTypedJs strings={['First text', 'Second Text']} loop=true>
-                    <h2 class="typing"></h2>
-                </SvelteTypedJs>
+                
                 {#each chatlog as chat}
-                    <div class="chat">{chat}</div>
+                    <TypedJs string = {chat}/>
                 {/each}
             </div>
             
