@@ -27,9 +27,14 @@
 				<SidebarButton href="/files" text="Files" src="/folder.svg" alt="test icon" />
 				<SidebarButton href="/credentials" text="Credentials" src="/key.svg" alt="test icon" />
 			</div>
+			<div class="sidebar-section">
+				<h3>Demo Day</h3>
+				<SidebarButton href = "/chat" text = "Chatbot" src = "/favicon.png" alt = "chat"/>
+			</div>
 			<div class="sidebar-last">
 				<SidebarButton href="/" text="Log Out" src="/log_out.svg" alt="test icon" />
 			</div>
+			
 		</div>
 
 		<div class="foot" />

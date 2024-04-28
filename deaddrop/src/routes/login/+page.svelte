@@ -147,4 +147,8 @@
         color: white;
     }
 
+    .card {
+        backgrou
+    }
+
 </style>
