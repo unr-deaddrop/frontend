@@ -1,7 +1,23 @@
 <script>
     import { TypedJs } from '$lib'
+	import { afterUpdate, tick } from 'svelte';
     let chatlog = ['asdasd', 'wasdasd', 'asda'];
     let value = '';
+    let lastChat;
+
+    afterUpdate(() => {
+		console.log("afterUpdate");
+		if(chatlog) scrollToBottom(lastChat);
+    });
+        
+    $: if(chatlog && lastChat) {
+        console.log("tick");
+        scrollToBottom(lastChat);
+    }
+
+    const scrollToBottom = async (node) => {
+        node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
+    }; 
 
     function handleSubmit(event) {
         event.preventDefault(); // Prevent the form from actually submitting
@@ -23,7 +39,7 @@
         <div class="left_bar">a</div>
         
         <div class="chat_box">
-            <div class="chat_logs" id="logs">
+            <div class="chat_logs" id="logs" bind:this={lastChat}>
                 
                 {#each chatlog as chat}
                     <TypedJs string = {chat}/>
@@ -75,9 +91,6 @@
         flex-direction: column;
         overflow-y: auto;
         scrollbar-color: #1e2124 #36393e;
-    }
-    ::-webkit-scrollbar-thumb{
-        background:url('favicon.png')
     }
 
     .input_section{

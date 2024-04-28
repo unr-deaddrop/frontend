@@ -22,7 +22,7 @@
 			</div>
 			<div class="sidebar-section">
 				<h3>Operational</h3>
-				<SidebarButton href="/endpoints" text="Endpoints" src="/monitor.svg" alt="test icon" />
+				<SidebarButton href="/endpoints" text="Endpoints" src="/monitor.svg" alt="" />
 				<SidebarButton href="/tasks" text="Tasks" src="/clipboard.svg" alt="test icon" />
 				<SidebarButton href="/files" text="Files" src="/folder.svg" alt="test icon" />
 				<SidebarButton href="/credentials" text="Credentials" src="/key.svg" alt="test icon" />
