@@ -51,18 +51,16 @@
         </div>
         
         <div class="right_bar">
-            <AniSphere/>
+            a
+            <div style ="z-index: -1" >
+                <AniSphere/>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
-    :global(body, div) {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
+    
     .container {
         background-color: #36393e;
         flex: 1;
@@ -97,6 +95,7 @@
         scrollbar-color: #1e2124 #36393e;
         padding-top: 20px;
         padding-left: 20px;
+        z-index: 1;
     }
 
     .input_section{

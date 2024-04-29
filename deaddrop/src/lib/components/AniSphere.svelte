@@ -107,17 +107,17 @@
 } */
 
 .animation-wrapper {
-	width: 75%;
+	width: 100%;
 	padding-bottom: 50%;
 }
 
 .sphere-animation {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 580px;
-	height: 580px;
-	margin: -290px 0 0 -290px;
+    position: absolute;
+    top:35%;
+    left: 45%;
+    width: 780px;
+    height: 780px;
+    margin: -290px 0 0 -290px;
 }
 
 .sphere path {
