@@ -1,4 +1,8 @@
 <script>
+    import ChatLeftBar from './ChatLeftBar.svelte';
+    import ChatHeader from './ChatHeader.svelte';
+    import AniSphere from '../../lib/components/AniSphere.svelte'
+
     import { TypedJs } from '$lib'
 	import { afterUpdate, tick } from 'svelte';
     let chatlog = [];
@@ -29,18 +33,13 @@
 </script>
 
 <div class="container">
-    <div class="header">
-        <div class="left_bar"></div>
-        <div style="flex: 1"></div>
-        <div style="flex: .33"></div>
-    </div>
     
+    <ChatHeader/>
     <div class="section" style="flex-direction: row; color: white; display:flex;">
-        <div class="left_bar">a</div>
+        <ChatLeftBar></ChatLeftBar>
         
         <div class="chat_box">
             <div class="chat_logs" id="logs" bind:this={lastChat}>
-                
                 {#each chatlog as chat}
                     <TypedJs string = {chat}/>
                 {/each}
@@ -51,7 +50,9 @@
             </form>
         </div>
         
-        <div class="right_bar">a</div>
+        <div class="right_bar">
+            <AniSphere/>
+        </div>
     </div>
 </div>
 
@@ -72,6 +73,9 @@
 
     .left_bar{
         background-color: #282b30;
+        color: white;
+        justify-content: center;
+        align-items: center;
         display: flex;
         flex: .33;
         flex-direction: column;
@@ -91,6 +95,8 @@
         flex-direction: column;
         overflow-y: auto;
         scrollbar-color: #1e2124 #36393e;
+        padding-top: 20px;
+        padding-left: 20px;
     }
 
     .input_section{
@@ -105,13 +111,6 @@
         flex: .33;
     }
 
-    .header {
-        display:flex;   
-        flex: .1;  
-        box-shadow: 0 1px 1px 1px #1e2124;
-        z-index: 3;
-    }
-
     input {
         background-color: #424549;
         border: none;
@@ -122,11 +121,7 @@
         height: 30px;
         color: white;
         padding-left: 20px;
-
     }
 
-    .chat{
-        color:white
-    }
 
 </style>
