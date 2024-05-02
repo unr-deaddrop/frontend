@@ -1,32 +1,33 @@
 <script>
     import SvelteTypedJs from 'svelte-typed-js';
-    export let string
+    export let string;
+    export let typeSpeed = 6;
+    export let backDelay = 10000;
+    export let loop = true;
+    export let smartBackspace = true;
+    export let shuffle = true;
+    export let fadeOut = true;
+    export let showCursor = true;
+    
     console.log(string)
     let str = [string]
 </script>
 
 <div class = "chat">
-    <img src = "/bird.svg" alt = "bird">
-    <span> DeadDrop~</span>
-    <SvelteTypedJs typeSpeed=6 backDelay=10000 strings={str} loop=true>
+    <SvelteTypedJs 
+        typeSpeed={typeSpeed} 
+        backDelay={backDelay} 
+        strings={str} 
+        loop={loop} 
+        smartBackspace={smartBackspace} 
+        shuffle={shuffle} 
+        fadeOut={fadeOut} 
+        showCursor={showCursor}
+    >
         <span class="typing"></span>
     </SvelteTypedJs>
 </div>
 
 
 <style>
-    .chat {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-    img {
-        width: 25px;
-        height: 25px;
-        margin-right: 5px;
-    }
-
-    span {
-        margin-right: 10px;
-    }
 </style>

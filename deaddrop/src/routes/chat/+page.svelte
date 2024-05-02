@@ -10,7 +10,6 @@
     let lastChat;
 
     afterUpdate(() => {
-		console.log("afterUpdate");
 		if(chatlog) scrollToBottom(lastChat);
     });
         
@@ -41,7 +40,11 @@
         <div class="chat_box">
             <div class="chat_logs" id="logs" bind:this={lastChat}>
                 {#each chatlog as chat}
-                    <TypedJs string = {chat}/>
+                <div class="chat">
+                    <img src = "/bird.svg" alt = "bird">
+                    <span> DeadDrop~</span>
+                        <TypedJs string = {chat}/>
+                </div>
                 {/each}
             </div>
             
@@ -60,6 +63,20 @@
 </div>
 
 <style>
+    .chat {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    img {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+    }
+
+    span {
+        margin-right: 10px;
+    }
     
     .container {
         background-color: #36393e;
