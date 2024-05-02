@@ -6,7 +6,7 @@
     export let loop = true;
     export let smartBackspace = true;
     export let shuffle = true;
-    export let fadeOut = true;
+    export let fadeOut = false;
     export let showCursor = true;
     
     console.log(string)

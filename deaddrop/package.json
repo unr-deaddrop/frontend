@@ -19,6 +19,7 @@
 		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
 	},
 	"devDependencies": {
+		"@loscrackitos/svelte-typed-js": "^0.1.3",
 		"@mdi/js": "^7.4.47",
 		"@playwright/test": "^1.28.1",
 		"@smui/common": "^7.0.0-beta.18",
