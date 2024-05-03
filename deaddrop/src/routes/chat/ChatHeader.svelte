@@ -17,7 +17,7 @@
                     <TypedJs 
                         typeSpeed={6} 
                         backDelay={10000} 
-                        strings="{headerlog}" 
+                        strings={headerlog} 
                         loop={true} 
                         smartBackspace={true} 
                         shuffle={true} 
