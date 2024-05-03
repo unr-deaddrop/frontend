@@ -2,6 +2,7 @@
     import ChatLeftBar from './ChatLeftBar.svelte';
     import ChatHeader from './ChatHeader.svelte';
     import AniSphere from '../../lib/components/AniSphere.svelte'
+    import SpaceShip from '$lib/components/SpaceShip.svelte'
 
     import { TypedJs } from '$lib'
 	import { afterUpdate, tick } from 'svelte';
