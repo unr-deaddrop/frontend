@@ -87,22 +87,13 @@
         height: 100vh; 
     }
 
-    .left_bar{
-        background-color: #282b30;
-        color: white;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex: .33;
-        flex-direction: column;
-    }
-
     .chat_box{
         background-color: #36393e;
         display: flex;
         flex: 1;
         flex-direction: column;
         max-height: 90vh;
+        overflow-x: auto;
     }
 
     .chat_logs{
