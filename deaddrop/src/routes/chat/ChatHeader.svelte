@@ -8,9 +8,15 @@
 
 <div class="header">
     <div class="left_bar">
-        <h3>
-            DeadDrop v7af5c8e
-        </h3>
+     
+        <h1 style="margin-bottom: -10px;">
+            DeadDrop 
+        </h1>
+        <h2>
+            v7af5c8e
+        </h2>
+     
+        
     </div>
     <div class = "center">
          <SpaceShip/>
