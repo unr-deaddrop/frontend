@@ -45,7 +45,7 @@
     .header {
         display:flex;   
         flex: .1;  
-        box-shadow: 0 1px 1px 1px #1e2124;
+        box-shadow: 0 3px 3px 3px #1e2124;
         z-index: 3;
     }
 

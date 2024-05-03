@@ -5,7 +5,8 @@
 </script>
 
 <div class="left_bar">
-    <TypedJs 
+    <div style = "margin-top: 10px;">
+        <TypedJs 
         typeSpeed={6} 
         backDelay={10000} 
         strings={headerlog} 
@@ -13,8 +14,9 @@
         smartBackspace={true} 
         shuffle={true} 
     >
-    <span class="typing"></span>
-    </TypedJs>
+        <span class="typing"></span>
+        </TypedJs>
+    </div>
 </div>
 
 <style>
@@ -26,6 +28,7 @@
         display: flex;
         flex: .33;
         flex-direction: column;
+  
     }
 
 </style>
