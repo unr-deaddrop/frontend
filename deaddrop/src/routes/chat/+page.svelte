@@ -1,10 +1,12 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
     import ChatLeftBar from './ChatLeftBar.svelte';
     import ChatHeader from './ChatHeader.svelte';
     import AniSphere from '../../lib/components/AniSphere.svelte'
 
     import { TypedJs } from '$lib'
 	import { afterUpdate, tick } from 'svelte';
+    export let auth;
     let chatlog = [];
     let value = '';
     let lastChat;
@@ -22,13 +24,56 @@
         node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
     }; 
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault(); // Prevent the form from actually submitting
         if (value.trim() !== '') {
             chatlog = [...chatlog, value];
-            value = ''; // Clear input after submitting
         }
+        let chat_submission = await fetch(`http://backend.localhost/backend/chat/`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + auth
+            },
+            body: JSON.stringify(value)
+        })
+        
+        let result = await chat_submission.json()
+        console.log(result)
+        value = ''; // Clear input after submitting
     }
+
+    async function getPeertubeLogs(event){
+        event.preventDefault();
+        let peertube_logs = await fetch(`http://backend.localhost/backend/chat/`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Token " + auth
+            }
+        })
+        
+        let result = await peertube_logs.json()
+        console.log(result)
+        // result.data = result.data.map(value => String(value)); // convert result to strings
+        // chatlog = [...chatlog, result] // add peertube chats to chatlog
+    }
+    // Function to poll for data at regular intervals
+    function startPolling(interval=3000) {
+        getPeertubeLogs(); // Initial fetch
+        const pollingInterval = setInterval(getPeertubeLogs, interval);
+        
+        // Cleanup function
+        onDestroy(() => {
+        clearInterval(pollingInterval);
+        });
+    }
+
+    // Start polling when the component mounts
+    onMount(() => {
+        const pollingInterval = 3000; // Poll every 3 seconds
+        startPolling(pollingInterval);
+    });
 </script>
 
 <div class="container">
