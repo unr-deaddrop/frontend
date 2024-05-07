@@ -27,13 +27,22 @@
                     <label for="confirm">Confirm:</label>
                     <input type="password" id="confirm" name = "confirm" bind:value={confirm} placeholder="Enter your password">
                 </div>
+
+                <ul style = "list-style-position: inside; padding-left:10px">
+                    <li class = "requirement">can't be similar to your username</li>
+                    <li class = "requirement">must be 8 characters</li>  
+                    <li class = "requirement">can't be a common password</li> 
+                    <li class = "requirement">can't be entirely numeric</li> 
+                </ul>
+
                 {#if form !== null}
                 <div class="error">
                     {#each form["messages"] as msg}
-                        <div class="flex justify-center items-center">{msg}</div>
+                        <div class="flex justify-center items-center" style = "margin-left: 10px;">{msg}</div>
                     {/each}
                 </div>
-                {/if}                
+                {/if} 
+                
                 <div class ="field">
                     <button 
                     type = "submit"
@@ -110,5 +119,10 @@
 
     .error {
         color: #a60707;
+    }
+
+    .requirement{ 
+        color: gray;
+
     }
 </style>
