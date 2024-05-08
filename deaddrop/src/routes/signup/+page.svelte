@@ -27,6 +27,13 @@
                     <label for="confirm">Confirm:</label>
                     <input type="password" id="confirm" name = "confirm" bind:value={confirm} placeholder="Enter your password">
                 </div>
+                <ul style = "list-style-position: inside; padding-left:10px">
+                    <li class = "requirement">can't be similar to your username</li>
+                    <li class = "requirement">must be 8 characters</li>  
+                    <li class = "requirement">can't be a common password</li> 
+                    <li class = "requirement">can't be entirely numeric</li> 
+                </ul>
+
                 {#if form !== null}
                 <div class="error">
                     {#each form["messages"] as msg}
@@ -110,5 +117,9 @@
 
     .error {
         color: #a60707;
+    }
+
+    .requirement{ 
+        color: gray;
     }
 </style>
