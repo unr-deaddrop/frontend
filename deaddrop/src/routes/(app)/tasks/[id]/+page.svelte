@@ -9,9 +9,16 @@
     let prettyPrintedTask = ''
 
     onMount(() => {
+         // Reload the route after it's initially loaded
+        if (task == null) {
+        location.reload();
+        }
+
         const elem = document.getElementById('results');
         prettyPrintedTask = prettyPrintJson.toHtml(JSON.parse(task.result))
         elem.innerHTML = prettyPrintedTask;
+        
+       
     });
 </script>
     <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@2.1/dist/css/pretty-print-json.css>

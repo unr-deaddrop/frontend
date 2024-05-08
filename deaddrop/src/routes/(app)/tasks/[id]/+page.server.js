@@ -14,6 +14,7 @@ export async function load({cookies, params}) {
     });
     pagedata['task'] = await task.json();
     let {detail} = pagedata['task']
+    
     if(detail == 'Not found.'){
         throw error(404,{
             message: "Error: Task ID not found"
